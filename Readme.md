@@ -40,10 +40,16 @@ npm run lint:fix
 
 ### Members
 
-(example)
 |Photo | Name  | Mail | Github
 | :-----: | :-----: | :-----: | :-----: |
-<img src="https://avatars.githubusercontent.com/u/20587232?v=4" height="50" width="50">| Esteban Frare | esteban.frare@radiumrocket.com | [@estefrare](https://github.com/estefrare)
+<img src="https://avatars.githubusercontent.com/u/72083391?v=4" height="50" width="50">| Martina Moser | martina.moser@radiumrocket.com | [@martumoser](https://github.com/martumoser)
+<img src="https://avatars.githubusercontent.com/u/101273459?v=4" height="50" width="50">| Evelyn Heredia | evefhrd@gmail.com | [@Evelyn-Heredia](https://github.com/Evelyn-Heredia)
+<img src="https://avatars.githubusercontent.com/u/97045616?v=4" height="50" width="50">| Juan Cruz Bonelli | juancbonelli@gmail.com | [@negrojcb](https://github.com/negrojcb)
+<img src="https://avatars.githubusercontent.com/u/12883926?v=4" height="50" width="50">| Julian Lescano | lescano.julian22@gmail.com | [@Julian25](https://github.com/Julian25)
+<img src="https://avatars.githubusercontent.com/u/101286767?v=4" height="50" width="50">| Lautaro Acosta | lautaroeacosta23@gmail.com | [@lautaro23](https://github.com/lautaro23)
+<img height="50" width="50">| Maria Laura Brussa | mlaurafbrussa@gmail.com | [@laura-brussa12](https://github.com/laura-brussa12)
+<img src="https://avatars.githubusercontent.com/u/101211200?v=4" height="50" width="50">| Martin Didoli | ixanol99@gmail.com | [@MartinDidoli](https://github.com/MartinDidoli)
+<img height="50" width="50">| Rodrigo Vallejos | vallejos.rodriigo@gmail.com | [@x-Ramses-x](https://github.com/x-Ramses-x)
 
 
 
