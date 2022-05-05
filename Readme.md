@@ -47,9 +47,9 @@ npm run lint:fix
 <img src="https://avatars.githubusercontent.com/u/97045616?v=4" height="50" width="50">| Juan Cruz Bonelli | juancbonelli@gmail.com | [@negrojcb](https://github.com/negrojcb)
 <img src="https://avatars.githubusercontent.com/u/12883926?v=4" height="50" width="50">| Julian Lescano | lescano.julian22@gmail.com | [@Julian25](https://github.com/Julian25)
 <img src="https://avatars.githubusercontent.com/u/101286767?v=4" height="50" width="50">| Lautaro Acosta | lautaroeacosta23@gmail.com | [@lautaro23](https://github.com/lautaro23)
-<img height="50" width="50">| Maria Laura Brussa | mlaurafbrussa@gmail.com | [@laura-brussa12](https://github.com/laura-brussa12)
+<img src="https://avatars.githubusercontent.com/u/63599160?v=4" height="50" width="50">| Maria Laura Brussa | mlaurafbrussa@gmail.com | [@laura-brussa12](https://github.com/laura-brussa12)
 <img src="https://avatars.githubusercontent.com/u/101211200?v=4" height="50" width="50">| Martin Didoli | ixanol99@gmail.com | [@MartinDidoli](https://github.com/MartinDidoli)
-<img height="50" width="50">| Rodrigo Vallejos | vallejos.rodriigo@gmail.com | [@x-Ramses-x](https://github.com/x-Ramses-x)
+<img src="https://avatars.githubusercontent.com/u/99558370?v=4" height="50" width="50">| Rodrigo Vallejos | vallejos.rodriigo@gmail.com | [@x-Ramses-x](https://github.com/x-Ramses-x)
 
 
 
