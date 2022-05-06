@@ -1,0 +1,1036 @@
+[
+  {
+    "id": "5212c537-a2b9-451e-9627-f443b8de966f",
+    "project_name": "Fintone",
+    "start_date": "6/23/2021",
+    "finish_date": "10/23/2021",
+    "client": "Brakus Group",
+    "active": true,
+    "employee": [
+      {
+        "id": "1dbf93cc-d385-4ac5-9ac9-92f45527bbed",
+        "role": "TL",
+        "rate": 20
+      },
+      {
+        "id": "a315a19d-e2b1-4a25-86c7-6a343f1c891b",
+        "role": "DEV",
+        "rate": 20
+      },
+      { "id": "042c0840-2e38-47a4-b3f1-1a9cdb459084", "role": "PM", "rate": 40 }
+    ],
+    "admin_id": "a8bdbb82-f8e8-4576-a69e-66bce4b58662"
+  },
+  {
+    "id": "7a4cfe42-4b49-497f-acc6-6a08e1c8a920",
+    "project_name": "Bytecard",
+    "start_date": "1/2/2022",
+    "finish_date": "11/16/2021",
+    "client": "Koelpin, Langworth and Little",
+    "active": false,
+    "employee": [
+      { "id": "7dc26bc0-085e-45fa-9296-487de1c60f97", "role": "PM", "rate": 40 }
+    ],
+    "admin_id": "bbe6d5c5-a548-4cd7-aff0-27204d9fbddd"
+  },
+  {
+    "id": "279c7068-907d-4c3a-ada5-4daa3f7078f7",
+    "project_name": "Wrapsafe",
+    "start_date": "8/6/2021",
+    "finish_date": "1/9/2022",
+    "client": "Littel, Rice and Breitenberg",
+    "active": true,
+    "employee": [
+      {
+        "id": "195f4c68-ac64-4f67-9c43-3181d0fe328f",
+        "role": "QA",
+        "rate": 30
+      },
+      {
+        "id": "54dd2f65-76ee-4168-8d07-1486af23a6f5",
+        "role": "QA",
+        "rate": 40
+      },
+      {
+        "id": "ccfd749a-a440-493b-a479-de404bec6c4f",
+        "role": "QA",
+        "rate": 50
+      },
+      {
+        "id": "e7681926-a0c2-4ff9-9346-4e816b1091a9",
+        "role": "DEV",
+        "rate": 50
+      }
+    ],
+    "admin_id": "046d0ad4-45bd-4d80-aad4-cb948cbc768c"
+  },
+  {
+    "id": "eb770376-0a46-44c2-b03a-f15df3d7eff2",
+    "project_name": "Sub-Ex",
+    "start_date": "8/3/2021",
+    "finish_date": "1/17/2022",
+    "client": "Huels, Jenkins and Grimes",
+    "active": true,
+    "employee": [
+      {
+        "id": "facde9cb-0833-41ea-abcf-118841a8c6c7",
+        "role": "TL",
+        "rate": 50
+      },
+      {
+        "id": "35435d89-1e4d-45aa-98b3-f340ab17f78a",
+        "role": "DEV",
+        "rate": 20
+      }
+    ],
+    "admin_id": "72fba436-e062-46e2-b3d2-e6c3b3aa4151"
+  },
+  {
+    "id": "c8f6ce04-5bde-4b27-91d8-af6316111b53",
+    "project_name": "Zoolab",
+    "start_date": "4/3/2022",
+    "finish_date": "9/30/2021",
+    "client": "Batz LLC",
+    "active": false,
+    "employee": [
+      {
+        "id": "8f101baa-24a9-4715-92d3-25eeaddaac84",
+        "role": "TL",
+        "rate": 50
+      },
+      {
+        "id": "0677f864-bd8c-42f8-968b-02c932f7da1d",
+        "role": "DEV",
+        "rate": 50
+      },
+      {
+        "id": "b415f204-398b-417b-b22b-6535d0743023",
+        "role": "TL",
+        "rate": 20
+      },
+      { "id": "5f9aa6f9-b5b9-4a24-b8a6-1d208062f253", "role": "TL", "rate": 20 }
+    ],
+    "admin_id": "41ed31d7-a7f1-40e7-9b1d-c03b7ce520f6"
+  },
+  {
+    "id": "60736c08-ace3-4e60-87fd-8cdd07c9314f",
+    "project_name": "Quo Lux",
+    "start_date": "2/8/2022",
+    "finish_date": "7/21/2021",
+    "client": "Rau-Stamm",
+    "active": false,
+    "employee": [
+      {
+        "id": "c3a9fc13-f633-4fc8-b988-04d80da43e87",
+        "role": "QA",
+        "rate": 20
+      },
+      {
+        "id": "40b68ead-c912-4bd4-bf63-e8ecdcb74bb1",
+        "role": "QA",
+        "rate": 50
+      },
+      {
+        "id": "923416b0-935b-4a1e-b7fc-05e31acdffef",
+        "role": "DEV",
+        "rate": 40
+      }
+    ],
+    "admin_id": "7bd835de-e264-4a89-8380-f12b21725f93"
+  },
+  {
+    "id": "fb61b112-34a6-4400-9fa1-4ad0e52f0376",
+    "project_name": "Lotstring",
+    "start_date": "12/18/2021",
+    "finish_date": "4/6/2022",
+    "client": "Upton-Lind",
+    "active": false,
+    "employee": [
+      {
+        "id": "3fd76956-d51c-464b-b150-326c2dc73144",
+        "role": "QA",
+        "rate": 50
+      },
+      { "id": "bc3cac69-9afb-4662-8047-41b2b99c6edb", "role": "PM", "rate": 30 }
+    ],
+    "admin_id": "bb4a8907-5730-47c5-aa49-4ba0b6873ccd"
+  },
+  {
+    "id": "de337f27-763c-43c6-b265-7c7fa851b70d",
+    "project_name": "Fix San",
+    "start_date": "6/20/2021",
+    "finish_date": "5/8/2021",
+    "client": "Stiedemann-Treutel",
+    "active": true,
+    "employee": [
+      {
+        "id": "2a465c10-85cc-4f5b-8058-9ed256a378cb",
+        "role": "QA",
+        "rate": 50
+      },
+      { "id": "4d65262c-3440-4e71-be89-6905e8f56bf3", "role": "TL", "rate": 20 }
+    ],
+    "admin_id": "5df5c379-0407-4532-87be-e5cdfe9799e7"
+  },
+  {
+    "id": "bf208942-3649-4638-b14a-69afb3617748",
+    "project_name": "Konklab",
+    "start_date": "12/27/2021",
+    "finish_date": "8/19/2021",
+    "client": "Weissnat Inc",
+    "active": true,
+    "employee": [
+      {
+        "id": "65c4ec7b-aba5-415c-bc04-62d00a8f8180",
+        "role": "PM",
+        "rate": 20
+      },
+      { "id": "a1e721ab-7471-405d-b24b-448e79aadaa7", "role": "QA", "rate": 30 }
+    ],
+    "admin_id": "d186bc55-db9c-4068-a44d-2f607253725f"
+  },
+  {
+    "id": "27c2d2c7-8aa6-45fd-868e-77f25dd0b366",
+    "project_name": "Alpha",
+    "start_date": "7/24/2021",
+    "finish_date": "1/13/2022",
+    "client": "Gerlach, Smitham and Schultz",
+    "active": false,
+    "employee": [
+      {
+        "id": "2e961f69-f899-40b9-ae81-46a9c8df936d",
+        "role": "PM",
+        "rate": 30
+      },
+      {
+        "id": "f510b380-02a5-414b-9261-49c037ddc1fd",
+        "role": "DEV",
+        "rate": 40
+      },
+      {
+        "id": "5521e22d-bd31-4160-8c9b-d43c6e20a073",
+        "role": "PM",
+        "rate": 20
+      },
+      { "id": "f280da29-9ce4-459f-87f3-526f27363f09", "role": "PM", "rate": 30 }
+    ],
+    "admin_id": "bad83002-2475-4456-8887-0fb79d60ec66"
+  },
+  {
+    "id": "90d5294b-92fc-4a85-b89b-a832c2625f84",
+    "project_name": "Veribet",
+    "start_date": "12/20/2021",
+    "finish_date": "7/14/2021",
+    "client": "Bergnaum-Jast",
+    "active": false,
+    "employee": [
+      { "id": "a40d8883-c707-42a2-a844-89c070f8af4b", "role": "QA", "rate": 40 }
+    ],
+    "admin_id": "5d528bca-8391-45ef-8c18-f1fd6ece46ee"
+  },
+  {
+    "id": "4f342aed-e206-4bd9-925d-ff3e1455e897",
+    "project_name": "Prodder",
+    "start_date": "7/27/2021",
+    "finish_date": "7/5/2021",
+    "client": "Labadie LLC",
+    "active": true,
+    "employee": [
+      { "id": "f2abfb45-a002-48bb-bb7b-c95e26bca4ab", "role": "PM", "rate": 20 }
+    ],
+    "admin_id": "1176c7f0-2005-40b1-917f-a4b37cb90136"
+  },
+  {
+    "id": "fce174d8-b4be-418a-9f1b-af1639fe2eea",
+    "project_name": "Tresom",
+    "start_date": "7/22/2021",
+    "finish_date": "12/20/2021",
+    "client": "Shields Group",
+    "active": true,
+    "employee": [
+      { "id": "1bb5e38b-e677-4393-8860-bfbfb2e8187f", "role": "PM", "rate": 30 }
+    ],
+    "admin_id": "d4afb219-c504-46d1-a183-5a62dbe654e4"
+  },
+  {
+    "id": "9fca0153-991b-4c46-aa69-ffdcb1820ad0",
+    "project_name": "Treeflex",
+    "start_date": "8/12/2021",
+    "finish_date": "12/14/2021",
+    "client": "Heller, Barrows and Ratke",
+    "active": true,
+    "employee": [
+      {
+        "id": "00a19c76-03f8-4d02-8eaa-18322f4eadda",
+        "role": "QA",
+        "rate": 20
+      },
+      {
+        "id": "485382a5-d0a6-4eda-bbb9-8801b38fb53b",
+        "role": "DEV",
+        "rate": 30
+      }
+    ],
+    "admin_id": "1fbeb8ae-4c03-4286-a35b-31b88a061ee0"
+  },
+  {
+    "id": "24285d31-4139-4eb0-a328-e9a6f1c32894",
+    "project_name": "Rank",
+    "start_date": "7/15/2021",
+    "finish_date": "5/4/2022",
+    "client": "Fadel-Kshlerin",
+    "active": true,
+    "employee": [
+      {
+        "id": "a1dd0d7a-6ba8-4058-9899-c4390b247993",
+        "role": "QA",
+        "rate": 40
+      },
+      {
+        "id": "9b0bc202-5375-4617-98ce-db94ded5da5b",
+        "role": "PM",
+        "rate": 30
+      },
+      { "id": "6cf6ae35-d5ab-4982-86c7-d575c4473cc2", "role": "PM", "rate": 30 }
+    ],
+    "admin_id": "7f6b4a39-6dd8-411c-ab8d-b5e34c0d4835"
+  },
+  {
+    "id": "c5e2f1a6-6039-4af4-b96d-ca8e9b9109d7",
+    "project_name": "Latlux",
+    "start_date": "8/29/2021",
+    "finish_date": "6/14/2021",
+    "client": "Kuphal and Sons",
+    "active": false,
+    "employee": [
+      {
+        "id": "063d8724-ba00-43b9-a0be-f6e98d4ad55d",
+        "role": "TL",
+        "rate": 40
+      },
+      { "id": "8451f5a0-6be8-4d90-a755-61943afc7ff2", "role": "TL", "rate": 20 }
+    ],
+    "admin_id": "c96a5ed4-f8b0-45c4-9700-4719553be001"
+  },
+  {
+    "id": "f0cfe6a4-39cd-496f-bd1c-2820564433aa",
+    "project_name": "Tresom",
+    "start_date": "8/27/2021",
+    "finish_date": "2/11/2022",
+    "client": "Cormier LLC",
+    "active": true,
+    "employee": [
+      { "id": "3b977831-e549-41df-81af-8376680e01fb", "role": "QA", "rate": 30 }
+    ],
+    "admin_id": "adbfe9fa-229b-4661-af19-732039498bd5"
+  },
+  {
+    "id": "53a00660-0c14-482a-a9f6-7d7439b412a1",
+    "project_name": "Fix San",
+    "start_date": "12/30/2021",
+    "finish_date": "2/7/2022",
+    "client": "Durgan and Sons",
+    "active": false,
+    "employee": [
+      {
+        "id": "ca2ae043-28ff-4e7a-80ca-0bd4b5839770",
+        "role": "DEV",
+        "rate": 50
+      },
+      {
+        "id": "18208258-aa5e-4270-9d6e-611714a4666f",
+        "role": "DEV",
+        "rate": 50
+      }
+    ],
+    "admin_id": "3196ead0-1b02-4c61-aaa1-d10fc1adb55e"
+  },
+  {
+    "id": "a5a83b80-c4a3-4410-993e-9d2a80698bf7",
+    "project_name": "Biodex",
+    "start_date": "2/17/2022",
+    "finish_date": "9/26/2021",
+    "client": "Purdy-Terry",
+    "active": true,
+    "employee": [
+      {
+        "id": "9876eb42-1e29-4099-bc69-fe42fe21a138",
+        "role": "QA",
+        "rate": 50
+      },
+      {
+        "id": "0263e3a3-7cc0-477b-8256-4226e8587137",
+        "role": "QA",
+        "rate": 50
+      },
+      { "id": "b0191fc3-be89-4872-adaf-e6a1e80febbd", "role": "QA", "rate": 20 }
+    ],
+    "admin_id": "375664e9-453e-4c8e-a6de-e825d7c3ed93"
+  },
+  {
+    "id": "2acd0e56-86c5-4c76-b429-fa4c9859c913",
+    "project_name": "Lotstring",
+    "start_date": "2/18/2022",
+    "finish_date": "7/25/2021",
+    "client": "Corwin and Sons",
+    "active": true,
+    "employee": [
+      {
+        "id": "93ca5955-dc40-44a8-8771-cc5b1c968240",
+        "role": "DEV",
+        "rate": 30
+      }
+    ],
+    "admin_id": "f5b94332-b033-47d0-ad7a-2061e81eff48"
+  },
+  {
+    "id": "9d71fd51-7462-450b-81b2-35819d05e18c",
+    "project_name": "Voyatouch",
+    "start_date": "9/22/2021",
+    "finish_date": "8/10/2021",
+    "client": "McGlynn-Cronin",
+    "active": true,
+    "employee": [
+      {
+        "id": "be25f733-d296-4586-b774-2551c2964f65",
+        "role": "DEV",
+        "rate": 20
+      },
+      {
+        "id": "5c5acf14-1b2d-4d9f-8811-70dff62b9126",
+        "role": "QA",
+        "rate": 40
+      },
+      { "id": "4db9414b-12e3-405d-a3bd-ad37b5d944f2", "role": "TL", "rate": 40 }
+    ],
+    "admin_id": "6fe752ba-ba20-445c-a162-9615637f912f"
+  },
+  {
+    "id": "a49256fa-2972-4ffd-9a1e-6c78c7cf3a7b",
+    "project_name": "Ronstring",
+    "start_date": "8/14/2021",
+    "finish_date": "3/18/2022",
+    "client": "Cassin LLC",
+    "active": false,
+    "employee": [
+      {
+        "id": "7ee3ac2b-5928-4e9b-b87c-e7e2041edb92",
+        "role": "DEV",
+        "rate": 50
+      }
+    ],
+    "admin_id": "adee204b-42c8-4b22-a53d-e61ebf1883ea"
+  },
+  {
+    "id": "18666e2b-ba2f-4580-a0aa-0709fdb51ad3",
+    "project_name": "Sonair",
+    "start_date": "4/14/2022",
+    "finish_date": "12/13/2021",
+    "client": "Davis Inc",
+    "active": true,
+    "employee": [
+      {
+        "id": "91f40858-1eba-41e3-9f1f-e9d7833fb95f",
+        "role": "QA",
+        "rate": 20
+      },
+      {
+        "id": "1c9d4b4a-6209-43a1-9a19-c44a8a371f25",
+        "role": "DEV",
+        "rate": 50
+      },
+      {
+        "id": "337e72e6-f557-4a1a-bbda-9fa3fb78ab29",
+        "role": "DEV",
+        "rate": 30
+      }
+    ],
+    "admin_id": "2b717a93-45f9-49ea-b97a-28b2c6668c71"
+  },
+  {
+    "id": "f6025442-fb92-407c-a930-b97fcbc9dc5c",
+    "project_name": "Ronstring",
+    "start_date": "3/28/2022",
+    "finish_date": "5/21/2021",
+    "client": "Rau and Sons",
+    "active": true,
+    "employee": [
+      {
+        "id": "58b6647a-cbe1-4260-950d-564f4c051ee6",
+        "role": "DEV",
+        "rate": 50
+      },
+      { "id": "0b4de49a-ab55-4e34-a1da-89203dd82b69", "role": "PM", "rate": 30 }
+    ],
+    "admin_id": "835c5901-a36b-43a8-8c0d-4d0a307cf439"
+  },
+  {
+    "id": "6daed051-3b04-4841-a410-4b31fb4bf49a",
+    "project_name": "Tempsoft",
+    "start_date": "1/12/2022",
+    "finish_date": "9/30/2021",
+    "client": "Grant, Ledner and Watsica",
+    "active": true,
+    "employee": [
+      {
+        "id": "56177f1d-a9f8-4a0a-a4e3-d2c176485256",
+        "role": "TL",
+        "rate": 20
+      },
+      {
+        "id": "76317e05-c9c1-44d5-99ba-9f4a33ce3cbb",
+        "role": "DEV",
+        "rate": 20
+      }
+    ],
+    "admin_id": "710418e2-0956-4786-a354-34f31d34ac9e"
+  },
+  {
+    "id": "269a68f0-986a-4e3e-826d-0173f55e3f45",
+    "project_name": "Y-find",
+    "start_date": "7/13/2021",
+    "finish_date": "12/14/2021",
+    "client": "Torp-Johnston",
+    "active": false,
+    "employee": [
+      {
+        "id": "799e0d65-6510-4eaf-bbf0-668304c52a4b",
+        "role": "QA",
+        "rate": 30
+      },
+      {
+        "id": "188d4085-fe19-4c6c-8931-d1288f8b469f",
+        "role": "QA",
+        "rate": 30
+      },
+      { "id": "23b8d804-a8e5-4550-85e5-c4075b6c3070", "role": "QA", "rate": 30 }
+    ],
+    "admin_id": "213aae1f-1867-4acb-afaf-59bdbccde763"
+  },
+  {
+    "id": "0ec92f1a-eb22-48d5-942c-c47dabae21db",
+    "project_name": "Bigtax",
+    "start_date": "3/3/2022",
+    "finish_date": "7/24/2021",
+    "client": "Schamberger and Sons",
+    "active": true,
+    "employee": [
+      {
+        "id": "2ae25e92-b648-4759-abae-92332cca31a8",
+        "role": "QA",
+        "rate": 40
+      },
+      {
+        "id": "aa84cb6e-ad27-4447-9ce6-3a29f134e3c6",
+        "role": "QA",
+        "rate": 30
+      },
+      {
+        "id": "d266ae83-f336-4a81-9c13-db177ac26852",
+        "role": "PM",
+        "rate": 40
+      },
+      { "id": "6f4489f4-22b1-43d4-a3ab-ee2088a7c8cc", "role": "TL", "rate": 40 }
+    ],
+    "admin_id": "f1ebeb23-6b6d-4676-943a-cc02748e9cf6"
+  },
+  {
+    "id": "c2807098-875e-4638-97c0-9124330a2c53",
+    "project_name": "Home Ing",
+    "start_date": "2/11/2022",
+    "finish_date": "11/15/2021",
+    "client": "Halvorson Inc",
+    "active": false,
+    "employee": [
+      {
+        "id": "f1802d13-ab5c-4e90-b233-6fa39a727b8a",
+        "role": "QA",
+        "rate": 20
+      },
+      {
+        "id": "4ae42428-2209-4d7d-97da-b62098f23553",
+        "role": "PM",
+        "rate": 30
+      },
+      {
+        "id": "095756a3-932e-440c-9f39-332735bc10b6",
+        "role": "DEV",
+        "rate": 50
+      }
+    ],
+    "admin_id": "19815820-e9b7-467f-a3a2-a1d1de60a941"
+  },
+  {
+    "id": "166771eb-7073-4ea3-a12a-673b8db5dad3",
+    "project_name": "Konklux",
+    "start_date": "8/27/2021",
+    "finish_date": "2/9/2022",
+    "client": "Price, Altenwerth and Smith",
+    "active": false,
+    "employee": [
+      { "id": "15d6b35f-2896-45a2-812f-5472f54875b9", "role": "TL", "rate": 50 }
+    ],
+    "admin_id": "7287823d-75c8-433e-b24e-434f2a3c50e7"
+  },
+  {
+    "id": "5e74a6ec-62d7-4807-a752-365cf189adc5",
+    "project_name": "Latlux",
+    "start_date": "11/15/2021",
+    "finish_date": "10/13/2021",
+    "client": "Smith-Spinka",
+    "active": false,
+    "employee": [
+      {
+        "id": "b4f51fec-e150-4b93-8950-eec45c86a043",
+        "role": "TL",
+        "rate": 40
+      },
+      { "id": "5eb1c8c9-3122-46ad-aa69-4fcb85563ac7", "role": "QA", "rate": 40 }
+    ],
+    "admin_id": "e767d3c4-e606-40fe-8242-130cee514874"
+  },
+  {
+    "id": "fcf35573-ca16-4a82-b6a4-da986edc14fa",
+    "project_name": "Fintone",
+    "start_date": "11/28/2021",
+    "finish_date": "11/4/2021",
+    "client": "MacGyver, Schuppe and Bergstrom",
+    "active": false,
+    "employee": [
+      { "id": "56e87a3b-65dd-4097-88d1-e69b1ac5ad4f", "role": "PM", "rate": 50 }
+    ],
+    "admin_id": "c0b89896-430b-4fb2-b9bf-e60cbb8790b5"
+  },
+  {
+    "id": "7f3da17b-a2ec-4fed-9c95-13049871b5cf",
+    "project_name": "Zamit",
+    "start_date": "10/17/2021",
+    "finish_date": "1/28/2022",
+    "client": "Macejkovic-Halvorson",
+    "active": true,
+    "employee": [
+      { "id": "71dea86b-b1dc-43d1-9bea-860c8264267a", "role": "QA", "rate": 20 }
+    ],
+    "admin_id": "900b30ef-c35d-4f54-a65a-ba98d969070e"
+  },
+  {
+    "id": "1a32bb4d-7e4a-457c-9959-5fed2c866c7e",
+    "project_name": "Domainer",
+    "start_date": "3/31/2022",
+    "finish_date": "3/15/2022",
+    "client": "Ankunding, Larson and Tillman",
+    "active": true,
+    "employee": [
+      {
+        "id": "1ff1c082-4ee1-4d44-9e0d-3bba58cfdc8c",
+        "role": "DEV",
+        "rate": 30
+      },
+      { "id": "d8a5adf8-2ecd-414f-8b31-1b532709ed47", "role": "QA", "rate": 20 }
+    ],
+    "admin_id": "72455d11-73d4-44eb-92db-fa09d843bef9"
+  },
+  {
+    "id": "b45e8a85-3eca-42c5-a4d1-2cf34e6aef2c",
+    "project_name": "Treeflex",
+    "start_date": "6/23/2021",
+    "finish_date": "4/5/2022",
+    "client": "Morissette-Renner",
+    "active": false,
+    "employee": [
+      {
+        "id": "7b1f450b-bb79-4c46-ab5a-ccbab4c6494d",
+        "role": "PM",
+        "rate": 30
+      },
+      { "id": "ffb3d3f4-837c-4d38-97fc-334acabb317c", "role": "TL", "rate": 30 }
+    ],
+    "admin_id": "e6cea73c-c5b4-4422-be3b-bb498f324fe6"
+  },
+  {
+    "id": "2550da35-bcbd-4224-8814-1222d11cc44b",
+    "project_name": "Zontrax",
+    "start_date": "1/24/2022",
+    "finish_date": "8/16/2021",
+    "client": "Jones-Bednar",
+    "active": false,
+    "employee": [
+      { "id": "07556fd0-d6f1-4e95-8012-42dfb41c05c2", "role": "TL", "rate": 20 }
+    ],
+    "admin_id": "5742d625-c478-4caa-ae73-7aafe41d358f"
+  },
+  {
+    "id": "580c8883-4c4e-41e4-915d-9b8a24662d4e",
+    "project_name": "Fix San",
+    "start_date": "12/31/2021",
+    "finish_date": "11/28/2021",
+    "client": "Crona-Ebert",
+    "active": false,
+    "employee": [
+      {
+        "id": "8aa63ce6-fbcb-43be-9f9a-1d6874262883",
+        "role": "PM",
+        "rate": 40
+      },
+      {
+        "id": "deaf952d-2392-4611-88d5-9dcf7296d2be",
+        "role": "PM",
+        "rate": 20
+      },
+      {
+        "id": "5f53e976-27c7-487c-b294-d739ffd56030",
+        "role": "DEV",
+        "rate": 20
+      }
+    ],
+    "admin_id": "3cc31fd7-35a8-4148-894f-7f98fd59e067"
+  },
+  {
+    "id": "de0b04f8-9fcc-40e4-aa21-0963e78c8237",
+    "project_name": "Stringtough",
+    "start_date": "1/24/2022",
+    "finish_date": "5/7/2021",
+    "client": "Nicolas-Schimmel",
+    "active": true,
+    "employee": [
+      {
+        "id": "e6126318-9afd-4145-a882-86486a576e30",
+        "role": "DEV",
+        "rate": 40
+      },
+      {
+        "id": "43e5aa56-c201-4970-83f5-1554b56f65a6",
+        "role": "TL",
+        "rate": 50
+      },
+      {
+        "id": "78e5a488-44b8-4792-82b0-a1251e4adde2",
+        "role": "DEV",
+        "rate": 20
+      }
+    ],
+    "admin_id": "81cc03e2-319d-4388-b694-64de7d28647b"
+  },
+  {
+    "id": "5861cfc4-95bd-46fb-a316-578f95c83b78",
+    "project_name": "Aerified",
+    "start_date": "8/22/2021",
+    "finish_date": "5/14/2021",
+    "client": "Shields, Torphy and Grady",
+    "active": true,
+    "employee": [
+      {
+        "id": "4ec5f576-eca0-47f0-85dd-11babdae0f6e",
+        "role": "DEV",
+        "rate": 40
+      },
+      { "id": "788ab265-3bba-4340-a44e-c8af481b1c9d", "role": "TL", "rate": 30 }
+    ],
+    "admin_id": "66e383a4-2c9a-4857-aba7-1087be7db1a3"
+  },
+  {
+    "id": "ba200c89-7f60-4e6a-a2d7-bdaa1a0bf21f",
+    "project_name": "Tres-Zap",
+    "start_date": "8/8/2021",
+    "finish_date": "8/6/2021",
+    "client": "Turner Group",
+    "active": true,
+    "employee": [
+      {
+        "id": "51f43410-a32e-4fee-9f00-adb6858192d8",
+        "role": "DEV",
+        "rate": 40
+      },
+      {
+        "id": "3e203598-0c3a-4d94-a611-7a0fb321aad3",
+        "role": "QA",
+        "rate": 20
+      },
+      { "id": "e41e0cf1-3c5a-4a53-85e5-047b3ea24e07", "role": "PM", "rate": 50 }
+    ],
+    "admin_id": "d837ea86-989f-4678-849c-c11f08e8e180"
+  },
+  {
+    "id": "e87ce7dc-8801-4f49-b0a2-3a49a5239e0b",
+    "project_name": "Alpha",
+    "start_date": "8/20/2021",
+    "finish_date": "4/7/2022",
+    "client": "Thiel and Sons",
+    "active": false,
+    "employee": [
+      {
+        "id": "cf93871a-5154-46fc-a24b-a002f22de4ef",
+        "role": "DEV",
+        "rate": 40
+      },
+      {
+        "id": "624fcc02-55fb-43c0-9acc-16618ac50796",
+        "role": "PM",
+        "rate": 30
+      },
+      { "id": "bd3f003a-03e9-4c23-b667-470cbe35f2bd", "role": "PM", "rate": 20 }
+    ],
+    "admin_id": "4bb9f36b-24dd-423a-9b4a-a4a2a533416f"
+  },
+  {
+    "id": "4b93cf98-9ebc-4419-a03c-2a063d325717",
+    "project_name": "Stim",
+    "start_date": "12/15/2021",
+    "finish_date": "4/6/2022",
+    "client": "Ziemann Group",
+    "active": false,
+    "employee": [
+      {
+        "id": "af633c9a-ba4c-46d8-bd9b-8e4ea9c61d23",
+        "role": "TL",
+        "rate": 30
+      },
+      {
+        "id": "80509647-54a9-4637-ac9a-e8d481f9e487",
+        "role": "PM",
+        "rate": 50
+      },
+      {
+        "id": "01b0e81e-3fce-45fa-acf9-8dabfc7409eb",
+        "role": "DEV",
+        "rate": 50
+      },
+      { "id": "296dc62c-0602-467b-929a-7a1a86bbce26", "role": "PM", "rate": 20 }
+    ],
+    "admin_id": "d483ce3b-1b00-4026-bc0d-584429e04e6a"
+  },
+  {
+    "id": "6179cc67-5f73-452d-9afc-78b544bca19d",
+    "project_name": "Asoka",
+    "start_date": "6/25/2021",
+    "finish_date": "12/4/2021",
+    "client": "Gusikowski LLC",
+    "active": true,
+    "employee": [
+      {
+        "id": "f040f325-cad7-4659-bc4e-f59961f6a53c",
+        "role": "QA",
+        "rate": 20
+      },
+      {
+        "id": "0ffc2132-c19d-408e-900b-e0573568740e",
+        "role": "DEV",
+        "rate": 20
+      },
+      {
+        "id": "9d914736-4c01-4fa0-9286-c2317e8473ee",
+        "role": "DEV",
+        "rate": 50
+      },
+      {
+        "id": "95ff0e5b-2b38-4995-8573-515dc92f24c6",
+        "role": "DEV",
+        "rate": 50
+      }
+    ],
+    "admin_id": "ad872841-9a06-46e0-bc02-7a693374adf9"
+  },
+  {
+    "id": "18a454b3-992b-4366-97c3-0591678f1d1c",
+    "project_name": "Lotlux",
+    "start_date": "6/26/2021",
+    "finish_date": "1/3/2022",
+    "client": "Maggio-Dickens",
+    "active": true,
+    "employee": [
+      {
+        "id": "1e15bf0f-c274-4e57-bc4c-41502fec35a8",
+        "role": "DEV",
+        "rate": 50
+      },
+      {
+        "id": "e97832cc-3097-46d8-bf28-2a55f5327aab",
+        "role": "DEV",
+        "rate": 40
+      }
+    ],
+    "admin_id": "7c15162f-a0d4-4233-9a18-e6203d4f91e4"
+  },
+  {
+    "id": "bf52d46d-c782-4921-b260-eebf0b1d3c27",
+    "project_name": "Voyatouch",
+    "start_date": "9/6/2021",
+    "finish_date": "7/31/2021",
+    "client": "Legros-Daniel",
+    "active": true,
+    "employee": [
+      {
+        "id": "2f42741f-8209-45a6-abcc-5d17405df213",
+        "role": "TL",
+        "rate": 40
+      },
+      {
+        "id": "92248a18-c426-481f-8994-9d63531e7a3c",
+        "role": "QA",
+        "rate": 50
+      },
+      {
+        "id": "23a5fc9e-292d-49d0-bef8-c7728701c274",
+        "role": "PM",
+        "rate": 50
+      },
+      { "id": "85445fc0-78dc-4c68-96df-38793734a53f", "role": "PM", "rate": 20 }
+    ],
+    "admin_id": "2fd66006-ffd8-4307-907d-e07ae24dc767"
+  },
+  {
+    "id": "58c20252-fd7c-450a-bbfc-2380fdf70e30",
+    "project_name": "Namfix",
+    "start_date": "12/6/2021",
+    "finish_date": "1/8/2022",
+    "client": "Auer Inc",
+    "active": false,
+    "employee": [
+      {
+        "id": "8c19ab6c-da81-457e-a4e9-7676ac5e77d0",
+        "role": "TL",
+        "rate": 30
+      },
+      {
+        "id": "b7d4d280-8b31-4333-b58b-be92407cd808",
+        "role": "DEV",
+        "rate": 40
+      },
+      {
+        "id": "8df6eb6e-3aa6-40bb-8c00-e7e91a7b2c1d",
+        "role": "DEV",
+        "rate": 30
+      },
+      { "id": "660f485b-86b2-426c-a745-b6f7ad915fe2", "role": "QA", "rate": 30 }
+    ],
+    "admin_id": "0c405aae-5b2e-4e77-afb7-cec6d031aa5f"
+  },
+  {
+    "id": "4432cec1-f4e7-4b74-b88f-58d12926f423",
+    "project_name": "Quo Lux",
+    "start_date": "8/1/2021",
+    "finish_date": "10/19/2021",
+    "client": "Hyatt-O'Keefe",
+    "active": true,
+    "employee": [
+      {
+        "id": "66a5aa2e-a55e-40e3-9d87-bac3c88c1315",
+        "role": "DEV",
+        "rate": 30
+      },
+      {
+        "id": "f27084b4-5330-4719-8934-9491b651c0fc",
+        "role": "PM",
+        "rate": 50
+      },
+      {
+        "id": "80ef2b7e-d830-46b8-8445-07778942c00a",
+        "role": "QA",
+        "rate": 20
+      },
+      {
+        "id": "80b480ac-7347-4123-a782-989874bc5000",
+        "role": "DEV",
+        "rate": 20
+      }
+    ],
+    "admin_id": "21dc920b-0b77-465b-aa1c-15fb9de069fc"
+  },
+  {
+    "id": "4e5deff1-6033-4468-8678-8aa4e13f8282",
+    "project_name": "Konklux",
+    "start_date": "8/18/2021",
+    "finish_date": "10/16/2021",
+    "client": "Ankunding, Hettinger and Mante",
+    "active": true,
+    "employee": [
+      {
+        "id": "3ecd9248-a2f8-4b66-9e1a-fc39f2dc1b25",
+        "role": "QA",
+        "rate": 40
+      },
+      {
+        "id": "575f1b56-4ed2-4d09-9d0b-ff028a356d15",
+        "role": "PM",
+        "rate": 20
+      },
+      {
+        "id": "cfe38a56-ef6b-4c09-9c88-3e4deff6aa80",
+        "role": "DEV",
+        "rate": 30
+      }
+    ],
+    "admin_id": "10f88623-a64e-474c-b276-0a6e5eb568be"
+  },
+  {
+    "id": "86fe23ac-2825-4ba2-b23c-00e36e5b1acb",
+    "project_name": "Sonair",
+    "start_date": "10/10/2021",
+    "finish_date": "7/24/2021",
+    "client": "Volkman, Kassulke and Feest",
+    "active": true,
+    "employee": [
+      {
+        "id": "7457bc02-6477-4b58-9b7c-4b05e9543233",
+        "role": "PM",
+        "rate": 30
+      },
+      {
+        "id": "f9b7c91e-4ebf-4d1e-8220-acba2c9b7eb1",
+        "role": "TL",
+        "rate": 20
+      },
+      { "id": "44dde156-39fb-4bf0-b962-8d8bf2643061", "role": "PM", "rate": 50 }
+    ],
+    "admin_id": "c64c6f42-90b4-480a-bb73-59b4914e51bc"
+  },
+  {
+    "id": "eee55365-ac98-4e87-8ee8-57240bc0da5b",
+    "project_name": "Keylex",
+    "start_date": "10/7/2021",
+    "finish_date": "1/26/2022",
+    "client": "Harber and Sons",
+    "active": true,
+    "employee": [
+      {
+        "id": "a89cb275-6fc1-43a7-bd2e-c333c1f2def9",
+        "role": "TL",
+        "rate": 30
+      },
+      {
+        "id": "2aaacf0a-1f6a-4639-9d80-dcdab981f7a1",
+        "role": "TL",
+        "rate": 50
+      },
+      { "id": "b2974456-6732-4dc5-9b26-7c04c017b296", "role": "QA", "rate": 50 }
+    ],
+    "admin_id": "a4f9c489-d9e0-42be-82ee-6e4c477e67d6"
+  },
+  {
+    "id": "d7f9af67-af57-4856-9e43-d031af5cacb2",
+    "project_name": "Mat Lam Tam",
+    "start_date": "5/13/2021",
+    "finish_date": "11/6/2021",
+    "client": "Beier and Sons",
+    "active": true,
+    "employee": [
+      {
+        "id": "cdfe9017-63af-4581-80a2-8211cb50ae8b",
+        "role": "QA",
+        "rate": 30
+      },
+      {
+        "id": "6dc5eef8-121f-4939-b4f0-a87352e4402f",
+        "role": "DEV",
+        "rate": 50
+      },
+      {
+        "id": "cf07e821-905c-44b3-9150-e4906b02c18d",
+        "role": "PM",
+        "rate": 30
+      },
+      { "id": "d0d81cdb-305c-4756-8936-611dfcb5e032", "role": "TL", "rate": 30 }
+    ],
+    "admin_id": "7c414d37-b277-49e3-ba3d-bfec7866fa7b"
+  }
+]
