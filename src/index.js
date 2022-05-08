@@ -3,11 +3,12 @@ import express from 'express';
 
 // use "require" to import JSON files
 const admins = require('./data/admins.json');
+const superAdminRouter = require('./resources/super-admins');
 
 const app = express();
-const port = process.env.PORT || 3000;
-
 app.use(express.json());
+const port = process.env.PORT || 3000;
+app.use('/super-admins', superAdminRouter);
 
 app.get('/', async (req, res) => {
   res.send('Hello World!');
