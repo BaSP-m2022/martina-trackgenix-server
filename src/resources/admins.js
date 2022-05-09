@@ -49,6 +49,7 @@ adminsRoutes.put('/:id', (req, res) => {
         adminToEdit.phone = updAdmin.phone ? updAdmin.phone : adminToEdit.phone;
         adminToEdit.email = updAdmin.email ? updAdmin.email : adminToEdit.email;
         adminToEdit.password = updAdmin.password ? updAdmin.password : adminToEdit.password;
+        adminToEdit.active = updAdmin.active ? updAdmin.active : adminToEdit.active;
 
         fileSystem.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
           if (err) {
@@ -63,7 +64,7 @@ adminsRoutes.put('/:id', (req, res) => {
   }
 });
 
-// Get admin
+// Get admin by Id
 adminsRoutes.get('/:id', (req, res) => {
   const found = admins.some((admin) => admin.id === parseInt(req.params.id, 10));
   if (found) {
@@ -93,7 +94,7 @@ adminsRoutes.delete('/:id', (req, res) => {
   return res.status(400).json({ msg: `Not an admin with id: ${req.params.id}` });
 });
 
-// Get all admins
+// Get all admins by filters
 adminsRoutes.get('/', (req, res) => {
   const adminId = admins.filter((admin) => admin.id === parseInt(req.query.id, 10));
   const adminFirstName = admins.some((admin) => admin.first_name === req.query.first_name);
