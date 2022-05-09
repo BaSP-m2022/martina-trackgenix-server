@@ -401,10 +401,10 @@
     },
     {
         "id": 51,
-        "first_name": "Maximo",
-        "last_name": "Coseti",
+        "first_name": "Emilio",
+        "last_name": "revena",
         "email": "maximo@unesco.org",
         "password": "maximo12445",
-        "active": true
+        "active": false
     }
 ]
