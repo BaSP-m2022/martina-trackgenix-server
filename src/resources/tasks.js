@@ -3,9 +3,8 @@ const fileSystem = require('fs');
 const tasks = require('../data/tasks.json');
 
 const router = express.Router();
-
 // Obtain whole list of tasks
-router.get('/', (req, res) => {
+router.get('/getAll', (req, res) => {
   res.send(tasks);
 });
 // Create a task
@@ -24,14 +23,18 @@ router.post('/', (req, res) => {
     res.send('Task data is incomplete');
   }
 });
-// Obtain a task by id
-router.get('/:id', (req, res) => {
-  const requiredTask = parseInt(req.params.id, 10);
-  const foundTask = tasks.find((task) => task.id === requiredTask);
-  if (foundTask) {
-    res.send(foundTask);
+// Obtain a task by description and by id
+router.get('/', (req, res) => {
+  const requiredTaskId = parseInt(req.query.id, 10);
+  const foundTaskId = tasks.some((task) => task.id === requiredTaskId);
+  const requiredTask = req.query.description;
+  const foundTaskDesc = tasks.some((description) => description.description === requiredTask);
+  if (requiredTaskId && foundTaskId) {
+    res.json(tasks.filter((task) => task.id === requiredTaskId));
+  } else if (requiredTask && foundTaskDesc) {
+    res.json(tasks.filter((description) => description.description === requiredTask));
   } else {
-    res.send(`Task ${req.params.id} was not found`);
+    res.json({ msg: `${req.query.description} was not found` });
   }
 });
 // Delete a task
@@ -50,4 +53,28 @@ router.delete('/:id', (req, res) => {
     });
   }
 });
+// Edit a task
+router.put('/:id', (req, res) => {
+  const requiredTask = parseInt(req.params.id, 10);
+  const foundTask = tasks.find((task) => task.id === requiredTask);
+  if (foundTask) {
+    const taskData = req.body;
+    tasks.forEach((data) => {
+      const updTask = data;
+      if (updTask.id === requiredTask) {
+        updTask.description = taskData.description ? taskData.description : data.description;
+        fileSystem.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send(`Task id: ${req.params.id} edited`);
+          }
+        });
+      }
+    });
+  } else {
+    res.send(`There is no task id: ${req.params.id}`);
+  }
+});
+
 module.exports = router;
