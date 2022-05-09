@@ -24,5 +24,14 @@ router.post('/', (req, res) => {
     res.send('Task data is incomplete');
   }
 });
-
+// Obtain a task by id
+router.get('/:id', (req, res) => {
+  const requiredTask = parseInt(req.params.id, 10);
+  const foundTask = tasks.find((task) => task.id === requiredTask);
+  if (foundTask) {
+    res.send(foundTask);
+  } else {
+    res.send(`Task ${requiredTask} was not found`);
+  }
+});
 module.exports = router;
