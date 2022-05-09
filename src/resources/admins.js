@@ -94,6 +94,31 @@ adminsRoutes.delete('/:id', (req, res) => {
 });
 
 // Get all admins
-adminsRoutes.get('/', (req, res) => res.json(admins));
+adminsRoutes.get('/', (req, res) => {
+  const adminId = admins.filter((admin) => admin.id === parseInt(req.query.id, 10));
+  const adminFirstName = admins.some((admin) => admin.first_name === req.query.first_name);
+  const adminLastName = admins.some((admin) => admin.last_name === req.query.last_name);
+  const adminPhone = admins.some((admin) => admin.phone === req.query.phone);
+  const adminEmail = admins.some((admin) => admin.email === req.query.email);
+  const adminPassword = admins.some((admin) => admin.password === req.query.password);
+  const adminActive = admins.some((admin) => JSON.stringify(admin.active) === req.query.active);
+  if (adminId.length > 0) {
+    res.json(adminId);
+  } else if (adminFirstName) {
+    res.json(admins.filter((admin) => admin.first_name === req.query.first_name));
+  } else if (adminLastName) {
+    res.json(admins.filter((admin) => admin.last_name === req.query.last_name));
+  } else if (adminPhone) {
+    res.json(admins.filter((admin) => admin.phone === req.query.phone));
+  } else if (adminEmail) {
+    res.json(admins.filter((admin) => admin.email === req.query.email));
+  } else if (adminPassword) {
+    res.json(admins.filter((admin) => admin.password === req.query.password));
+  } else if (adminActive) {
+    res.json(admins.filter((admin) => JSON.stringify(admin.active) === req.query.active));
+  } else {
+    res.json(admins);
+  }
+});
 
 export default adminsRoutes;
