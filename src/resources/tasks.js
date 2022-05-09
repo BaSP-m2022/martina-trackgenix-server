@@ -31,7 +31,23 @@ router.get('/:id', (req, res) => {
   if (foundTask) {
     res.send(foundTask);
   } else {
-    res.send(`Task ${requiredTask} was not found`);
+    res.send(`Task ${req.params.id} was not found`);
+  }
+});
+// Delete a task
+router.delete('/:id', (req, res) => {
+  const requiredTask = parseInt(req.params.id, 10);
+  const foundTask = tasks.filter((task) => task.id !== requiredTask);
+  if (foundTask.length === tasks.length) {
+    res.send(`Could not delete task id: ${req.params.id} because it was not found`);
+  } else {
+    fileSystem.writeFile('src/data/tasks.json', JSON.stringify(foundTask), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(`Task id: ${req.params.id} deleted`);
+      }
+    });
   }
 });
 module.exports = router;
