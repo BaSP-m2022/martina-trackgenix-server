@@ -644,5 +644,18 @@
       { "id": "0faf36cf-c539-484a-9ef3-87f31d3b4d15", "role": "PM", "rate": 50 }
     ],
     "admin_id": "ffecbdb4-98b0-421d-ae76-0fdc865333ee"
+  },
+  {
+    "id": "bd74c4d1-107f-48c0-b03a-post09052022",
+    "project_name": "postest",
+    "start_date": "1/9/2022",
+    "finish_date": "12/16/2021",
+    "client": "Stanton LLC",
+    "active": true,
+    "employee": [
+      { "id": "0472562a-7b30-4373-8699-8fa422c6ff9a", "role": "QA", "rate": 50 },
+      { "id": "0faf36cf-c539-484a-9ef3-87f31d3b4d15", "role": "PM", "rate": 50 }
+    ],
+    "admin_id": "ffecbdb4-98b0-421d-ae76-0fdc865333ee"
   }
 ]
