@@ -1,50 +1,50 @@
-const express = require('express');
+import { Router } from 'express';
+import { writeFile } from 'fs';
+import projects from '../data/projects.json';
 
-const router = express.Router();
-const fileSystem = require('fs');
-const project = require('../data/projects.json');
+const projectsRouter = Router();
 
-router.get('/getAll', (req, res) => {
-  res.send(project);
+projectsRouter.get('/getAll', (req, res) => {
+  res.send(projects);
 });
 
-router.get('/', (req, res) => {
+projectsRouter.get('/', (req, res) => {
   const projectId = req.query.id;
-  const filterId = project.some((projects) => projects.id === projectId);
+  const filterId = projects.some((project) => project.id === projectId);
   const projectName = req.query.project_name;
-  const filterName = project.some((projects) => projects.project_name === projectName);
+  const filterName = projects.some((project) => project.project_name === projectName);
   const projectDate = req.query.start_date;
-  const filterDate = project.some((projects) => projects.start_date === projectDate);
+  const filterDate = projects.some((project) => project.start_date === projectDate);
   const projectClient = req.query.client;
-  const filterClient = project.some((projects) => projects.client === projectClient);
+  const filterClient = projects.some((project) => project.client === projectClient);
   const projectActive = req.query.active;
-  const filterAct = project.some((projects) => JSON.stringify(projects.active) === projectActive);
+  const filterAct = projects.some((project) => JSON.stringify(project.active) === projectActive);
   const projectAdmin = req.query.admin_id;
-  const filterAdmin = project.some((projects) => projects.admin_id === projectAdmin);
+  const filterAdmin = projects.some((project) => project.admin_id === projectAdmin);
   if (projectId && filterId) {
-    res.json(project.filter((projects) => projects.id === projectId));
+    res.json(projects.filter((project) => project.id === projectId));
   } else if (projectName && filterName) {
-    res.json(project.filter((projects) => projects.project_name === projectName));
+    res.json(projects.filter((project) => project.project_name === projectName));
   } else if (projectDate && filterDate) {
-    res.json(project.filter((projects) => projects.start_date === projectDate));
+    res.json(projects.filter((project) => project.start_date === projectDate));
   } else if (projectActive && filterAct) {
-    res.json(project.filter((projects) => JSON.stringify(projects.active) === projectActive));
+    res.json(projects.filter((project) => JSON.stringify(project.active) === projectActive));
   } else if (projectClient && filterClient) {
-    res.json(project.filter((projects) => projects.client === projectClient));
+    res.json(projects.filter((project) => project.client === projectClient));
   } else if (projectAdmin && filterAdmin) {
-    res.json(project.filter((projects) => projects.admin_id === projectAdmin));
+    res.json(projects.filter((project) => project.admin_id === projectAdmin));
   } else {
     res.send('Project not found');
   }
 });
 
-router.delete('/delete/:id', (req, res) => {
-  const projectId = req.params.id;
-  const filterProject = project.filter((projects) => projects.id !== projectId);
-  if (project.length === filterProject.length) {
+projectsRouter.delete('/:id', (req, res) => {
+  const projectId = parseInt(req.params.id, 10);
+  const filterProject = projects.filter((project) => project.id !== projectId);
+  if (projects.length === filterProject.length) {
     res.send('The project is not delete because it was not found');
   }
-  fileSystem.writeFile('src/data/projects.json', JSON.stringify(filterProject), (error) => {
+  writeFile('src/data/projects.json', JSON.stringify(filterProject), (error) => {
     if (error) {
       res.send(error);
     } else {
@@ -53,4 +53,4 @@ router.delete('/delete/:id', (req, res) => {
   });
 });
 
-module.exports = router;
+export default projectsRouter;
