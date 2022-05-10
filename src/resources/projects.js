@@ -38,23 +38,6 @@ router.get('/', (req, res) => {
   }
 });
 
-router.post('/add', (req, res) => {
-  const projectData = req.body;
-  if (projectData.project_name && projectData.start_date && projectData.client
-      && projectData.admin_id) {
-    project.push(projectData);
-    fileSystem.writeFile('src/data/projects.json', JSON.stringify(project), (error) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send('Project created');
-      }
-    });
-  } else {
-    res.send('Project not crated missing information');
-  }
-});
-
 router.delete('/delete/:id', (req, res) => {
   const projectId = req.params.id;
   const filterProject = project.filter((projects) => projects.id !== projectId);
