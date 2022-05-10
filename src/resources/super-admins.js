@@ -28,8 +28,7 @@ router.put('/:id', (req, res) => {
     superAdmins.forEach((superAdmin) => {
       const sa = superAdmin;
       if (sa.id === parseInt(req.params.id, 10)) {
-        sa.active = superAdminData.active === true ? superAdminData.active : sa.active;
-        sa.active = superAdminData.active === false ? superAdminData.active : sa.active;
+        sa.active = superAdminData.active === sa.active ? sa.active : superAdminData.active;
         sa.first_name = superAdminData.first_name ? superAdminData.first_name : sa.first_name;
         sa.last_name = superAdminData.last_name ? superAdminData.last_name : sa.last_name;
         sa.email = superAdminData.email ? superAdminData.email : sa.email;
