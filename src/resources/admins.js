@@ -18,7 +18,7 @@ adminsRoutes.post('/', (req, res) => {
   };
   const existingAdmin = admins.some((admin) => admin.id === parseInt(req.body.id, 10));
   if (existingAdmin) {
-    return res.send(400).json({ msg: 'Admin with that id already exists' });
+    return res.status(400).json({ msg: 'Admin with that id already exists' });
   }
   if (!newAdmin.id || !newAdmin.first_name || !newAdmin.last_name || !newAdmin.phone
       || !newAdmin.email || !newAdmin.password) {
