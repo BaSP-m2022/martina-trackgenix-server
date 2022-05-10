@@ -1,16 +1,17 @@
-const express = require('express');
-const fs = require('fs');
+import { Router } from 'express';
+import { writeFile } from 'fs';
+
 const timeSheets = require('../data/time-sheets.json');
 
-const router = express.Router();
+const timeSheetRouter = Router();
 
-router.get('/', (req, res) => {
+timeSheetRouter.get('/', (req, res) => {
   res.send(timeSheets);
 });
 
-router.get('/timeSheetId/:id', (req, res) => {
-  const toTimeSheet = parseInt(req.params.id, 10);
-  const defTimeSheet = timeSheets.find((number) => number.timesheet_id === toTimeSheet);
+timeSheetRouter.get('/:id', (req, res) => {
+  const timesheetParamsId = parseInt(req.params.id, 10);
+  const defTimeSheet = timeSheets.find((number) => number.timesheet_id === timesheetParamsId);
   if (defTimeSheet) {
     res.send(defTimeSheet);
   } else {
@@ -18,8 +19,31 @@ router.get('/timeSheetId/:id', (req, res) => {
   }
 });
 
+timeSheetRouter.get('/', (req, res) => {
+  const tryProjectId = req.query.project_id;
+  const allProjectId = timeSheets.filter(
+    (number) => JSON.stringify(number.project_id) === tryProjectId,
+  );
+  if (allProjectId.length > 0) {
+    res.send(allProjectId);
+  } else {
+    res.send(`No project with Id number of ${tryProjectId} found`);
+  }
+});
+
+timeSheetRouter.get('/', (req, res) => {
+  const tryEmployeeId = req.query.employee_id;
+  const allEmployeeId = timeSheets.filter((number) => JSON.stringify(number.employee_id)
+      === tryEmployeeId);
+  if (allEmployeeId.length > 0) {
+    res.send(allEmployeeId);
+  } else {
+    res.send(`No employee with Id number of ${tryEmployeeId} found`);
+  }
+});
+
 // eslint-disable-next-line consistent-return
-router.post('/', (req, res) => {
+timeSheetRouter.post('/', (req, res) => {
   const newTimeSheet = {
     timesheet_id: req.body.timesheet_id,
     employee_id: req.body.employee_id,
@@ -33,48 +57,70 @@ router.post('/', (req, res) => {
     return res.status(400).json({ msg: 'Please complete every field needed' });
   }
 
-  timeSheets.push(newTimeSheet);
-  fs.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+  timeSheetRouter.push(newTimeSheet);
+  writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
     if (err) {
       res.send(err);
     } else {
-      res.send('User created');
+      res.send('TimeSheet created');
     }
   });
   res.json(timeSheets);
 });
 
-module.exports = router;
-
-router.put('/modify/:id', (req, res) => {
-  const toTimeSheet = parseInt(req.params.id, 10);
-  const defTimeSheet = timeSheets.find((number) => number.timesheet_id === toTimeSheet);
+timeSheetRouter.put('/:id', (req, res) => {
+  const timesheetParamsId = parseInt(req.params.id, 10);
+  const defTimeSheet = timeSheets.find((number) => number.timesheet_id === timesheetParamsId);
   if (defTimeSheet) {
     const updTimeSheet = req.body;
     timeSheets.forEach((number) => {
-      if (number.timesheet_id === toTimeSheet) {
-        // eslint-disable-next-line no-param-reassign
-        number.timesheet_id = updTimeSheet.timesheet_id
+      if (number.timesheet_id === timesheetParamsId) {
+        const timesheet = number;
+        timesheet.timesheet_id = updTimeSheet.timesheet_id
           ? updTimeSheet.timesheet_id : number.timesheet_id;
-        // eslint-disable-next-line no-param-reassign
-        number.employee_id = updTimeSheet.employee_id
+        timesheet.employee_id = updTimeSheet.employee_id
           ? updTimeSheet.employee_id : number.employee_id;
-        // eslint-disable-next-line no-param-reassign
-        number.project_id = updTimeSheet.project_id
+        timesheet.project_id = updTimeSheet.project_id
           ? updTimeSheet.project_id : number.project_id;
-        // eslint-disable-next-line no-param-reassign
-        number.task_description = updTimeSheet.task_description
+        timesheet.task_description = updTimeSheet.task_description
           ? updTimeSheet.task_description : number.task_description;
-        // eslint-disable-next-line no-param-reassign
-        number.hs_worked = updTimeSheet.hs_worked
+        timesheet.hs_worked = updTimeSheet.hs_worked
           ? updTimeSheet.hs_worked : number.hs_worked;
-        // eslint-disable-next-line no-param-reassign
-        number.date = updTimeSheet.date
+        timesheet.date = updTimeSheet.date
           ? updTimeSheet.date : number.date;
-        res.json({ msg: 'Member updated', number });
+        res.json({ msg: 'Timesheet updated', number });
       }
+      writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send('TimeSheet modified');
+        }
+      });
     });
   } else {
     res.send('TimeSheet ID not found');
   }
 });
+
+timeSheetRouter.delete('/:id', (req, res) => {
+  const timesheetParamsId = parseInt(req.params.id, 10);
+  const defTimeSheet = timeSheets.some((number) => number.timesheet_id === timesheetParamsId);
+  if (defTimeSheet) {
+    res.json({
+      msg: 'TimeSheet deleted',
+      timeSheets: timeSheets.filter((number) => number.timesheet_id !== timesheetParamsId),
+    });
+    writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('TimeSheet deleted');
+      }
+    });
+  } else {
+    res.status(400).json({ msg: `There is no timesheet with the Id ${timesheetParamsId}` });
+  }
+});
+
+export default timeSheetRouter;
