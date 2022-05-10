@@ -3,11 +3,11 @@ import express from 'express';
 import superAdminRoutes from './resources/super-admins';
 import adminsRoutes from './resources/admins';
 
-// use "require" to import JSON files
-
 const app = express();
-app.use(express.json());
 const port = process.env.PORT || 3000;
+
+app.use(express.json());
+
 app.use('/super-admins', superAdminRoutes);
 
 app.use('/admins', adminsRoutes);
