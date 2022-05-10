@@ -49,7 +49,8 @@ adminsRoutes.put('/:id', (req, res) => {
         adminToEdit.phone = updAdmin.phone ? updAdmin.phone : adminToEdit.phone;
         adminToEdit.email = updAdmin.email ? updAdmin.email : adminToEdit.email;
         adminToEdit.password = updAdmin.password ? updAdmin.password : adminToEdit.password;
-        adminToEdit.active = updAdmin.active ? updAdmin.active : adminToEdit.active;
+        adminToEdit.active = updAdmin.active === adminToEdit.active ? adminToEdit.active
+          : updAdmin.active;
 
         fileSystem.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
           if (err) {
