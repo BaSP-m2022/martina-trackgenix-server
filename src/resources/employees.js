@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const employees = require('../data/employees.json');
 
-router.get('/getAll', (req, res) => {
+router.get('/', (req, res) => {
   res.send(employees);
 });
 
@@ -31,23 +31,23 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/', (req, res) => {
-  const employeeName = req.query.first_name;
+router.get('/first_name/:first_name', (req, res) => {
+  const employeeName = req.params.first_name;
   const filterName = employees.filter((fName) => fName.first_name === employeeName);
   if (filterName.length > 0) {
     res.send(filterName);
   } else {
-    res.send(`There are no ${employeeName}`);
+    res.send(`No exist ${employeeName}`);
   }
 });
 
-router.get('/', (req, res) => {
-  const employeeLastName = req.query.last_name;
+router.get('/last_name/:last_name', (req, res) => {
+  const employeeLastName = req.params.last_name;
   const filterLastName = employees.filter((lName) => lName.last_name === employeeLastName);
   if (filterLastName.length > 0) {
     res.send(filterLastName);
   } else {
-    res.send(`There are no ${employeeLastName}`);
+    res.send(`No exist ${employeeLastName}`);
   }
 });
 
