@@ -21,9 +21,8 @@ timeSheetRouter.get('/:id', (req, res) => {
 
 timeSheetRouter.get('/', (req, res) => {
   const tryProjectId = req.query.project_id;
-  const allProjectId = timeSheets.filter(
-    (number) => JSON.stringify(number.project_id) === tryProjectId,
-  );
+  const allProjectId = timeSheets.filter((number) => JSON.stringify(number.project_id)
+    === tryProjectId);
   if (allProjectId.length > 0) {
     res.send(allProjectId);
   } else {
@@ -34,7 +33,7 @@ timeSheetRouter.get('/', (req, res) => {
 timeSheetRouter.get('/', (req, res) => {
   const tryEmployeeId = req.query.employee_id;
   const allEmployeeId = timeSheets.filter((number) => JSON.stringify(number.employee_id)
-      === tryEmployeeId);
+    === tryEmployeeId);
   if (allEmployeeId.length > 0) {
     res.send(allEmployeeId);
   } else {
