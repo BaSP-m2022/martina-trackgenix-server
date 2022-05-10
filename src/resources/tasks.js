@@ -9,7 +9,7 @@ tasksRouter.get('/', (req, res) => {
   res.send(tasks);
 });
 
-// Obtain a task by description and by id
+// Obtain task by id
 tasksRouter.get('/:id', (req, res) => {
   const requiredTask = parseInt(req.params.id, 10);
   const foundTask = tasks.find((task) => task.id === requiredTask);
