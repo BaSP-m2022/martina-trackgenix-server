@@ -2,15 +2,15 @@ import { Router } from 'express';
 import { writeFile } from 'fs';
 import tasks from '../data/tasks.json';
 
-const tasksRouter = Router();
+const tasksRoutes = Router();
 
 // Obtain whole list of tasks
-tasksRouter.get('/', (req, res) => {
+tasksRoutes.get('/', (req, res) => {
   res.send(tasks);
 });
 
 // Obtain task by id
-tasksRouter.get('/:id', (req, res) => {
+tasksRoutes.get('/:id', (req, res) => {
   const requiredTask = parseInt(req.params.id, 10);
   const foundTask = tasks.find((task) => task.id === requiredTask);
   if (requiredTask && foundTask) {
@@ -21,7 +21,7 @@ tasksRouter.get('/:id', (req, res) => {
 });
 
 // Create a task
-tasksRouter.post('/', (req, res) => {
+tasksRoutes.post('/', (req, res) => {
   const taskData = req.body;
   if (taskData.id && taskData.description) {
     tasks.push(taskData);
@@ -38,7 +38,7 @@ tasksRouter.post('/', (req, res) => {
 });
 
 // Delete a task
-tasksRouter.delete('/:id', (req, res) => {
+tasksRoutes.delete('/:id', (req, res) => {
   const requiredTask = parseInt(req.params.id, 10);
   const foundTask = tasks.filter((task) => task.id !== requiredTask);
   if (foundTask.length === tasks.length) {
@@ -55,7 +55,7 @@ tasksRouter.delete('/:id', (req, res) => {
 });
 
 // Edit a task
-tasksRouter.put('/:id', (req, res) => {
+tasksRoutes.put('/:id', (req, res) => {
   const requiredTask = parseInt(req.params.id, 10);
   const foundTask = tasks.find((task) => task.id === requiredTask);
   if (foundTask) {
@@ -78,4 +78,4 @@ tasksRouter.put('/:id', (req, res) => {
   }
 });
 
-export default tasksRouter;
+export default tasksRoutes;
