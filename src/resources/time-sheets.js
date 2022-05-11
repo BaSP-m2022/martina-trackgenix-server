@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { writeFile } from 'fs';
+import fileSystem from 'fs';
 
 const timeSheets = require('../data/time-sheets.json');
 
@@ -20,22 +20,20 @@ timeSheetRouter.get('/:id', (req, res) => {
 });
 
 timeSheetRouter.get('/', (req, res) => {
-  const tryProjectId = req.query.project_id;
-  const allProjectId = timeSheets.filter((number) => JSON.stringify(number.project_id)
-    === tryProjectId);
+  const tryProjectId = parseInt(req.query.project_id, 10);
+  const allProjectId = timeSheets.filter((number) => number.project_id === tryProjectId);
   if (allProjectId.length > 0) {
-    res.send(allProjectId);
+    res.json(allProjectId);
   } else {
     res.send(`No project with Id number of ${tryProjectId} found`);
   }
 });
 
 timeSheetRouter.get('/', (req, res) => {
-  const tryEmployeeId = req.query.employee_id;
-  const allEmployeeId = timeSheets.filter((number) => JSON.stringify(number.employee_id)
-    === tryEmployeeId);
+  const tryEmployeeId = parseInt(req.query.employee_id, 10);
+  const allEmployeeId = timeSheets.filter((number) => number.employee_id === tryEmployeeId);
   if (allEmployeeId.length > 0) {
-    res.send(allEmployeeId);
+    res.json(allEmployeeId);
   } else {
     res.send(`No employee with Id number of ${tryEmployeeId} found`);
   }
@@ -56,8 +54,8 @@ timeSheetRouter.post('/', (req, res) => {
     return res.status(400).json({ msg: 'Please complete every field needed' });
   }
 
-  timeSheetRouter.push(newTimeSheet);
-  writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+  timeSheets.push(newTimeSheet);
+  fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
     if (err) {
       res.send(err);
     } else {
@@ -89,7 +87,7 @@ timeSheetRouter.put('/:id', (req, res) => {
           ? updTimeSheet.date : number.date;
         res.json({ msg: 'Timesheet updated', number });
       }
-      writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+      fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
         if (err) {
           res.send(err);
         } else {
@@ -110,7 +108,7 @@ timeSheetRouter.delete('/:id', (req, res) => {
       msg: 'TimeSheet deleted',
       timeSheets: timeSheets.filter((number) => number.timesheet_id !== timesheetParamsId),
     });
-    writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+    fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
       if (err) {
         res.send(err);
       } else {
