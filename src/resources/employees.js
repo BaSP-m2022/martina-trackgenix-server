@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { writeFile } from 'fs';
+import { FileSystem } from 'fs';
 import employees, { find, filter, push } from '../data/employees.json';
 
 const employeesRouter = Router();
@@ -17,8 +17,6 @@ employeesRouter.get('/:id', (req, res) => {
     res.send('User not found');
   }
 });
-
-// Filters
 
 employeesRouter.get('/', (req, res) => {
   const employeeStatus = req.query.active;
@@ -53,7 +51,7 @@ employeesRouter.get('/last_name/:last_name', (req, res) => {
 employeesRouter.post('/add', (req, res) => {
   const employeeData = req.body;
   push(employeeData);
-  writeFile('src/data/employees.json', JSON.stringify(employees), (err) => {
+  FileSystem.writeFile('src/data/employees.json', JSON.stringify(employees), (err) => {
     if (err) {
       res.send(err);
     } else {
@@ -68,13 +66,40 @@ employeesRouter.delete('/delete/:id', (req, res) => {
   if (!filterEmployees) {
     res.send('User does not exist, impossible to delete.');
   } else {
-    writeFile('src/data/employees.json', JSON.stringify(filterEmployees), (err) => {
+    FileSystem.writeFile('src/data/employees.json', JSON.stringify(filterEmployees), (err) => {
       if (err) {
         res.send(err);
       } else {
         res.send('User removed');
       }
     });
+  }
+});
+
+employeesRouter.put('/:id', (req, res) => {
+  const emp1 = employees.some((employee) => employee.id === parseInt(req.params.id, 10));
+  if (emp1) {
+    const employeeData = req.body;
+    employees.forEach((employee) => {
+      const emp = employee;
+      if (emp.id === parseInt(req.params.id, 10)) {
+        emp.first_name = employeeData.first_name ? employeeData.first_name : emp.first_name;
+        emp.last_name = employeeData.last_name ? employeeData.last_name : emp.last_name;
+        emp.phone = employeeData.phone ? employeeData.phone : emp.phone;
+        emp.email = employeeData.email ? employeeData.email : emp.email;
+        emp.password = employeeData.password ? employeeData.password : emp.password;
+        emp.active = employeeData.active === emp.active ? emp.active : employeeData.active;
+        FileSystem.writeFile('src/data/employees.json', JSON.stringify(employee), (err) => {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send('Your employee is edit ');
+          }
+        });
+      }
+    });
+  } else {
+    res.send(`No employee with the id ${req.params.id}`);
   }
 });
 
