@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { FileSystem } from 'fs';
+import FileSystem from 'fs';
 import employees, { find, filter, push } from '../data/employees.json';
 
 const employeesRouter = Router();
