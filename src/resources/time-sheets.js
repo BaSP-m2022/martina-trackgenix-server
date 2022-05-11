@@ -108,7 +108,8 @@ timeSheetRouter.delete('/:id', (req, res) => {
       msg: 'TimeSheet deleted',
       timeSheets: timeSheets.filter((number) => number.timesheet_id !== timesheetParamsId),
     });
-    fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+    const filteredTS = timeSheets.filter((number) => number.timesheet_id !== timesheetParamsId);
+    fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(filteredTS), (err) => {
       if (err) {
         res.send(err);
       } else {
