@@ -9,7 +9,7 @@ timeSheetRouter.get('/', (req, res) => {
   res.send(timeSheets);
 });
 
-timeSheetRouter.get('/:id', (req, res) => {
+timeSheetRouter.get('/getById/:id', (req, res) => {
   const timesheetParamsId = parseInt(req.params.id, 10);
   const defTimeSheet = timeSheets.find((number) => number.timesheet_id === timesheetParamsId);
   if (defTimeSheet) {
@@ -19,7 +19,7 @@ timeSheetRouter.get('/:id', (req, res) => {
   }
 });
 
-timeSheetRouter.get('/', (req, res) => {
+timeSheetRouter.get('/getProject', (req, res) => {
   const tryProjectId = parseInt(req.query.project_id, 10);
   const allProjectId = timeSheets.filter((number) => number.project_id === tryProjectId);
   if (allProjectId.length > 0) {
@@ -29,7 +29,7 @@ timeSheetRouter.get('/', (req, res) => {
   }
 });
 
-timeSheetRouter.get('/', (req, res) => {
+timeSheetRouter.get('/getEmployee', (req, res) => {
   const tryEmployeeId = parseInt(req.query.employee_id, 10);
   const allEmployeeId = timeSheets.filter((number) => number.employee_id === tryEmployeeId);
   if (allEmployeeId.length > 0) {
