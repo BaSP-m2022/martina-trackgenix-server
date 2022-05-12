@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import FileSystem from 'fs';
-import employees, { find, filter, push } from '../data/employees.json';
+import employees from '../data/employees.json';
 
 const employeesRouter = Router();
 
@@ -10,7 +10,7 @@ employeesRouter.get('/', (req, res) => {
 
 employeesRouter.get('/:id', (req, res) => {
   const employeeId = parseInt(req.params.id, 10);
-  const employee = find((employeeElement) => employeeElement.id === employeeId);
+  const employee = employees.find((employeeElement) => employeeElement.id === employeeId);
   if (employee) {
     res.send(employee);
   } else {
@@ -20,7 +20,7 @@ employeesRouter.get('/:id', (req, res) => {
 
 employeesRouter.get('/', (req, res) => {
   const employeeStatus = req.query.active;
-  const filterStatus = filter((emp) => JSON.stringify(emp.active) === employeeStatus);
+  const filterStatus = employees.filter((emp) => JSON.stringify(emp.active) === employeeStatus);
   if (filterStatus.length > 0) {
     res.send(filterStatus);
   } else {
@@ -30,7 +30,7 @@ employeesRouter.get('/', (req, res) => {
 
 employeesRouter.get('/first_name/:first_name', (req, res) => {
   const employeeName = req.params.first_name;
-  const filterName = filter((fName) => fName.first_name === employeeName);
+  const filterName = employees.filter((fName) => fName.first_name === employeeName);
   if (filterName.length > 0) {
     res.send(filterName);
   } else {
@@ -40,7 +40,7 @@ employeesRouter.get('/first_name/:first_name', (req, res) => {
 
 employeesRouter.get('/last_name/:last_name', (req, res) => {
   const employeeLastName = req.params.last_name;
-  const filterLastName = filter((lName) => lName.last_name === employeeLastName);
+  const filterLastName = employees.filter((lName) => lName.last_name === employeeLastName);
   if (filterLastName.length > 0) {
     res.send(filterLastName);
   } else {
@@ -50,7 +50,7 @@ employeesRouter.get('/last_name/:last_name', (req, res) => {
 
 employeesRouter.post('/add', (req, res) => {
   const employeeData = req.body;
-  push(employeeData);
+  employees.push(employeeData);
   FileSystem.writeFile('src/data/employees.json', JSON.stringify(employees), (err) => {
     if (err) {
       res.send(err);
@@ -62,7 +62,7 @@ employeesRouter.post('/add', (req, res) => {
 
 employeesRouter.delete('/delete/:id', (req, res) => {
   const employeeId = req.params.id;
-  const filterEmployees = filter((employee) => employee.id === employeeId);
+  const filterEmployees = employees.filter((employee) => employee.id === employeeId);
   if (!filterEmployees) {
     res.send('User does not exist, impossible to delete.');
   } else {
