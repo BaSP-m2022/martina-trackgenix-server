@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { writeFile } from 'fs';
+import fileSystem from 'fs';
 import projects from '../data/projects.json';
 
 const projectsRoutes = Router();
@@ -11,7 +11,7 @@ projectsRoutes.get('/getAll', (req, res) => {
 projectsRoutes.post('/add', (req, res) => {
   const projectsData = req.body;
   projects.push(projectsData);
-  writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
+  fileSystem.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
     if (err) {
       res.send(err);
     } else {
@@ -34,20 +34,20 @@ projectsRoutes.put('/:id', (req, res) => {
         updPro.client = proData.client ? proData.client : project.client;
         updPro.active = proData.active === updPro.active ? project.active : proData.active;
         updPro.admin_id = proData.admin_id ? proData.admin_id : project.admin_id;
-        updPro.employee.length = proData.employee.length ? proData.employee : project.employee;
-        writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
+        fileSystem.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
           if (err) {
             res.send(err);
           } else {
             res.send(`Project ${req.params.id} edited`);
           }
         });
-      } else {
-        res.send(`Project with id: ${req.params.id} does not exit`);
       }
     });
+  } else {
+    res.send(`Project with id: ${req.params.id} does not exist`);
   }
 });
+
 projectsRoutes.get('/:id', (req, res) => {
   const found = projects.some((project) => project.id === parseInt(req.params.id, 10));
   if (found) {
@@ -85,7 +85,7 @@ projectsRoutes.delete('/:id', (req, res) => {
   if (projects.length === filterProject.length) {
     res.send('The project is not delete because it was not found');
   }
-  writeFile('src/data/projects.json', JSON.stringify(filterProject), (error) => {
+  fileSystem.writeFile('src/data/projects.json', JSON.stringify(filterProject), (error) => {
     if (error) {
       res.send(error);
     } else {
