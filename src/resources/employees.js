@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import FileSystem from 'fs';
+import fileSystem from 'fs';
 import employees from '../data/employees.json';
 
-const employeesRouter = Router();
+const employeesRoutes = Router();
 
-employeesRouter.get('/', (req, res) => {
+employeesRoutes.get('/', (req, res) => {
   res.send(employees);
 });
 
-employeesRouter.get('/:id', (req, res) => {
+employeesRoutes.get('/:id', (req, res) => {
   const employeeId = parseInt(req.params.id, 10);
   const employee = employees.find((employeeElement) => employeeElement.id === employeeId);
   if (employee) {
@@ -18,7 +18,7 @@ employeesRouter.get('/:id', (req, res) => {
   }
 });
 
-employeesRouter.get('/', (req, res) => {
+employeesRoutes.get('/', (req, res) => {
   const employeeStatus = req.query.active;
   const filterStatus = employees.filter((emp) => JSON.stringify(emp.active) === employeeStatus);
   if (filterStatus.length > 0) {
@@ -28,7 +28,7 @@ employeesRouter.get('/', (req, res) => {
   }
 });
 
-employeesRouter.get('/first_name/:first_name', (req, res) => {
+employeesRoutes.get('/first_name/:first_name', (req, res) => {
   const employeeName = req.params.first_name;
   const filterName = employees.filter((fName) => fName.first_name === employeeName);
   if (filterName.length > 0) {
@@ -38,7 +38,7 @@ employeesRouter.get('/first_name/:first_name', (req, res) => {
   }
 });
 
-employeesRouter.get('/last_name/:last_name', (req, res) => {
+employeesRoutes.get('/last_name/:last_name', (req, res) => {
   const employeeLastName = req.params.last_name;
   const filterLastName = employees.filter((lName) => lName.last_name === employeeLastName);
   if (filterLastName.length > 0) {
@@ -48,25 +48,31 @@ employeesRouter.get('/last_name/:last_name', (req, res) => {
   }
 });
 
-employeesRouter.post('/add', (req, res) => {
+employeesRoutes.post('/add', (req, res) => {
   const employeeData = req.body;
-  employees.push(employeeData);
-  FileSystem.writeFile('src/data/employees.json', JSON.stringify(employees), (err) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send('New user created');
-    }
-  });
+  if (employeeData.id && employeeData.first_name
+    && employeeData.last_name && employeeData.phone
+     && employeeData.email && employeeData.password) {
+    employees.push(employeeData);
+    fileSystem.writeFile('src/data/employees.json', JSON.stringify(employees), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(`New user created ${JSON.stringify(employeeData)}`);
+      }
+    });
+  } else {
+    res.send('User data is incomplete');
+  }
 });
 
-employeesRouter.delete('/delete/:id', (req, res) => {
+employeesRoutes.delete('/delete/:id', (req, res) => {
   const employeeId = req.params.id;
   const filterEmployees = employees.filter((employee) => employee.id === employeeId);
   if (!filterEmployees) {
     res.send('User does not exist, impossible to delete.');
   } else {
-    FileSystem.writeFile('src/data/employees.json', JSON.stringify(filterEmployees), (err) => {
+    fileSystem.writeFile('src/data/employees.json', JSON.stringify(filterEmployees), (err) => {
       if (err) {
         res.send(err);
       } else {
@@ -76,7 +82,7 @@ employeesRouter.delete('/delete/:id', (req, res) => {
   }
 });
 
-employeesRouter.put('/:id', (req, res) => {
+employeesRoutes.put('/:id', (req, res) => {
   const emp1 = employees.some((employee) => employee.id === parseInt(req.params.id, 10));
   if (emp1) {
     const employeeData = req.body;
@@ -89,7 +95,7 @@ employeesRouter.put('/:id', (req, res) => {
         emp.email = employeeData.email ? employeeData.email : emp.email;
         emp.password = employeeData.password ? employeeData.password : emp.password;
         emp.active = employeeData.active === emp.active ? emp.active : employeeData.active;
-        FileSystem.writeFile('src/data/employees.json', JSON.stringify(employee), (err) => {
+        fileSystem.writeFile('src/data/employees.json', JSON.stringify(employee), (err) => {
           if (err) {
             res.send(err);
           } else {
@@ -103,4 +109,4 @@ employeesRouter.put('/:id', (req, res) => {
   }
 });
 
-export default employeesRouter;
+export default employeesRoutes;
