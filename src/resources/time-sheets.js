@@ -39,7 +39,6 @@ timeSheetRouter.get('/getEmployee', (req, res) => {
   }
 });
 
-// eslint-disable-next-line consistent-return
 timeSheetRouter.post('/', (req, res) => {
   const newTimeSheet = {
     timesheet_id: req.body.timesheet_id,
@@ -51,18 +50,20 @@ timeSheetRouter.post('/', (req, res) => {
   };
   if (!newTimeSheet.timesheet_id || !newTimeSheet.employee_id || !newTimeSheet.project_id
     || !newTimeSheet.task_description || !newTimeSheet.hs_worked || !newTimeSheet.date) {
-    return res.status(400).json({ msg: 'Please complete every field needed' });
+    res.status(400).json({ msg: 'Please complete every field needed' });
+  } else if (timeSheets.filter((number) => number.timesheet_id === newTimeSheet.timesheet_id)) {
+    res.send(`Timesheet ID ${newTimeSheet.timesheet_id} already exists`);
+  } else {
+    timeSheets.push(newTimeSheet);
+    fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send('TimeSheet created');
+      }
+    });
+    res.json(timeSheets);
   }
-
-  timeSheets.push(newTimeSheet);
-  fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send('TimeSheet created');
-    }
-  });
-  res.json(timeSheets);
 });
 
 timeSheetRouter.put('/:id', (req, res) => {
