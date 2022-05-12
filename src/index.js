@@ -1,24 +1,27 @@
 // use "import" to import libraries
 import express from 'express';
 import timeSheetsRoutes from './resources/time-sheets';
-
-// use "require" to import JSON files
-const admins = require('./data/admins.json');
+import employeesRoutes from './resources/employees';
+import projectsRoutes from './resources/projects';
+import tasksRoutes from './resources/tasks';
+import superAdminRoutes from './resources/super-admins';
+import adminsRoutes from './resources/admins';
 
 const app = express();
 const port = process.env.PORT || 3000;
-
 app.use(express.json());
 app.use('/time-sheets', timeSheetsRoutes);
 
+app.use('/employees', employeesRoutes);
+app.use('/projects', projectsRoutes);
+app.use('/tasks', tasksRoutes);
+
+app.use('/super-admins', superAdminRoutes);
+
+app.use('/admins', adminsRoutes);
+
 app.get('/', async (req, res) => {
   res.send('Hello World!');
-});
-
-app.get('/admins', (req, res) => {
-  res.status(200).json({
-    data: admins,
-  });
 });
 
 app.listen(port, () => {
