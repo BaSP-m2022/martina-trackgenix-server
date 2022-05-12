@@ -2,13 +2,13 @@ import { Router } from 'express';
 import { writeFile } from 'fs';
 import projects from '../data/projects.json';
 
-const projectsRouter = Router();
+const projectsRoutes = Router();
 
-projectsRouter.get('/getAll', (req, res) => {
+projectsRoutes.get('/getAll', (req, res) => {
   res.send(projects);
 });
 
-projectsRouter.post('/add', (req, res) => {
+projectsRoutes.post('/add', (req, res) => {
   const projectsData = req.body;
   projects.push(projectsData);
   writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
@@ -20,7 +20,7 @@ projectsRouter.post('/add', (req, res) => {
   });
 });
 
-projectsRouter.put('/:id', (req, res) => {
+projectsRoutes.put('/:id', (req, res) => {
   const projectId = parseInt(req.params.id, 10);
   const found = projects.find((project) => project.id === projectId);
   if (found) {
@@ -49,4 +49,4 @@ projectsRouter.put('/:id', (req, res) => {
   }
 });
 
-export default projectsRouter;
+export default projectsRoutes;
