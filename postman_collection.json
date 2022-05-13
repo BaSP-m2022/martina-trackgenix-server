@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "9b61d41a-462b-4ec3-8e68-d0ae80fa62d4",
+		"name": "postman-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "super-admin",
+			"item": []
+		},
+		{
+			"name": "admin",
+			"item": []
+		},
+		{
+			"name": "employees",
+			"item": []
+		},
+		{
+			"name": "tasks",
+			"item": []
+		},
+		{
+			"name": "time-sheet",
+			"item": []
+		},
+		{
+			"name": "projects",
+			"item": []
+		}
+	]
+}
