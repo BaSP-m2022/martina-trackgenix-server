@@ -1,13 +1,20 @@
 import { Router } from 'express';
 import fileSystem from 'fs';
+import { model } from 'mongoose';
 
 const timeSheets = require('../data/time-sheets.json');
 
 const timeSheetRouter = Router();
-
-timeSheetRouter.get('/', (req, res) => {
-  res.send(timeSheets);
-});
+const getAllTimeSheets = async (req, res) => {
+  try {
+    const allTimeSheets = await model.timeSheet.find({});
+    res.status(200).json({ allTimeSheets });
+  } catch (error) {
+    res.status(500).jso({
+      msg: 'There was an error',
+    });
+  }
+};
 
 timeSheetRouter.get('/getById/:id', (req, res) => {
   const timesheetParamsId = parseInt(req.params.id, 10);
@@ -122,4 +129,6 @@ timeSheetRouter.delete('/:id', (req, res) => {
   }
 });
 
-export default timeSheetRouter;
+export default {
+  getAllTimeSheets,
+};
