@@ -1,14 +1,11 @@
 import { Router } from 'express';
 import { writeFile } from 'fs';
 import tasks from '../data/tasks.json';
+import Task from '../models/Tasks';
 
 const tasksRoutes = Router();
 
 // Obtain whole list of tasks
-tasksRoutes.get('/', (req, res) => {
-  res.send(tasks);
-});
-
 // Obtain task by id
 tasksRoutes.get('/:id', (req, res) => {
   const requiredTask = parseInt(req.params.id, 10);
@@ -55,27 +52,22 @@ tasksRoutes.delete('/:id', (req, res) => {
 });
 
 // Edit a task
-tasksRoutes.put('/:id', (req, res) => {
-  const requiredTask = parseInt(req.params.id, 10);
-  const foundTask = tasks.find((task) => task.id === requiredTask);
-  if (foundTask) {
-    const taskData = req.body;
-    tasks.forEach((data) => {
-      const updTask = data;
-      if (updTask.id === requiredTask) {
-        updTask.description = taskData.description ? taskData.description : data.description;
-        writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
-          if (err) {
-            res.send(err);
-          } else {
-            res.send(`Task id: ${req.params.id} edited`);
-          }
-        });
-      }
+const createNewTask = async (req, res) => {
+  try {
+    const newTask = new Task({
+      description: req.body.description,
     });
-  } else {
-    res.send(`There is no task id: ${req.params.id}`);
+    const results = await newTask.save();
+    return res.status(200).json({
+      message: 'task created',
+      results,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: 'error has ocurred',
+      error: true,
+    });
   }
-});
+};
 
-export default tasksRoutes;
+export default { createNewTask };
