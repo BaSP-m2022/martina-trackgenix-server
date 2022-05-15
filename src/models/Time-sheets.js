@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose.Schema;
+const { Schema } = mongoose;
 
 const timeSheetSchema = new Schema({
   employee_id: {
@@ -19,10 +19,10 @@ const timeSheetSchema = new Schema({
     type: Number,
     required: true,
   },
-  date: {
+  timesheetDate: {
     type: Date,
     required: true,
   },
 });
 
-export default mongoose.model('time-sheet', timeSheetSchema);
+export default mongoose.model('TimesSheet', timeSheetSchema);

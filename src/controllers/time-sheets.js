@@ -1,16 +1,16 @@
 import { Router } from 'express';
 import fileSystem from 'fs';
-import { model } from 'mongoose';
+import TimeSheet from '../models/Time-sheets';
 
 const timeSheets = require('../data/time-sheets.json');
 
 const timeSheetRouter = Router();
 const getAllTimeSheets = async (req, res) => {
   try {
-    const allTimeSheets = await model.timeSheet.find({});
+    const allTimeSheets = await TimeSheet.find({});
     res.status(200).json({ allTimeSheets });
   } catch (error) {
-    res.status(500).jso({
+    res.status(500).json({
       msg: 'There was an error',
     });
   }
@@ -46,32 +46,23 @@ timeSheetRouter.get('/getEmployee', (req, res) => {
   }
 });
 
-timeSheetRouter.post('/', (req, res) => {
-  const newTimeSheet = {
-    timesheet_id: req.body.timesheet_id,
-    employee_id: req.body.employee_id,
-    project_id: req.body.project_id,
-    task_description: req.body.task_description,
-    hs_worked: req.body.hs_worked,
-    date: req.body.date,
-  };
-  if (!newTimeSheet.timesheet_id || !newTimeSheet.employee_id || !newTimeSheet.project_id
-    || !newTimeSheet.task_description || !newTimeSheet.hs_worked || !newTimeSheet.date) {
-    res.status(400).json({ msg: 'Please complete every field needed' });
-  } else if (timeSheets.filter((number) => number.timesheet_id === newTimeSheet.timesheet_id)) {
-    res.send(`Timesheet ID ${newTimeSheet.timesheet_id} already exists`);
-  } else {
-    timeSheets.push(newTimeSheet);
-    fileSystem.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send('TimeSheet created');
-      }
+const createNewTimeSheet = async (req, res) => {
+  try {
+    const newTimeSheet = new TimeSheet({
+      employee_id: req.body.employee_id,
+      project_id: req.body.project_id,
+      task_description: req.body.task_description,
+      hs_worked: req.body.hs_worked,
+      timesheetDate: new Date(req.body.timesheetDate),
     });
-    res.json(timeSheets);
+    const success = await newTimeSheet.save();
+    return res.status(201).json(success);
+  } catch (error) {
+    return res.json({
+      msg: 'An error ocurred',
+    });
   }
-});
+};
 
 timeSheetRouter.put('/:id', (req, res) => {
   const timesheetParamsId = parseInt(req.params.id, 10);
@@ -131,4 +122,5 @@ timeSheetRouter.delete('/:id', (req, res) => {
 
 export default {
   getAllTimeSheets,
+  createNewTimeSheet,
 };
