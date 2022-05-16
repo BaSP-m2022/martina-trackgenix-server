@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const validateNewTask = (req, res, next) => {
   const newTaskSchema = Joi.object({
-    description: Joi.string().min(20).max(80).required(),
+    description: Joi.string().min(12).max(80).required(),
   });
   const validation = newTaskSchema.validate(req.body);
   if (validation.error) {
