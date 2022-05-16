@@ -3,12 +3,19 @@ import fileSystem from 'fs';
 
 const superAdmins = require('../data/super-admins.json');
 
-const superAdminRoutes = Router();
+const superAdControllers = Router();
 
-superAdminRoutes.post('/', (req, res) => {
+superAdControllers.post('/', (req, res) => {
   const superAdminData = req.body;
-  if (superAdminData.id && superAdminData.first_name && superAdminData.last_name && superAdminData
-    && superAdminData.email && superAdminData.password && superAdminData.active) {
+  if (
+    superAdminData.id &&
+    superAdminData.first_name &&
+    superAdminData.last_name &&
+    superAdminData &&
+    superAdminData.email &&
+    superAdminData.password &&
+    superAdminData.active
+  ) {
     superAdmins.push(superAdminData);
     fileSystem.writeFile('src/data/super-admins.json', JSON.stringify(superAdmins), (err) => {
       if (err) {
@@ -22,7 +29,7 @@ superAdminRoutes.post('/', (req, res) => {
   }
 });
 
-superAdminRoutes.put('/:id', (req, res) => {
+superAdControllers.put('/:id', (req, res) => {
   const found = superAdmins.some((superAdmin) => superAdmin.id === parseInt(req.params.id, 10));
   if (found) {
     const superAdminData = req.body;
@@ -48,7 +55,7 @@ superAdminRoutes.put('/:id', (req, res) => {
   }
 });
 
-superAdminRoutes.delete('/:id', (req, res) => {
+superAdControllers.delete('/:id', (req, res) => {
   const superAdminId = parseInt(req.params.id, 10);
   const filterSuperAdmins = superAdmins.filter((superAdmin) => superAdmin.id !== superAdminId);
   if (filterSuperAdmins.length === superAdmins.length) {
@@ -64,7 +71,7 @@ superAdminRoutes.delete('/:id', (req, res) => {
   }
 });
 
-superAdminRoutes.get('/', (req, res) => {
+superAdControllers.get('/', (req, res) => {
   const superAdminId = parseInt(req.query.id, 10);
   const foundId = superAdmins.some((superAdmin) => superAdmin.id === superAdminId);
   const superAdminName = req.query.first_name;
@@ -86,4 +93,4 @@ superAdminRoutes.get('/', (req, res) => {
   }
 });
 
-export default superAdminRoutes;
+export default superAdControllers;
