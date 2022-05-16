@@ -1,9 +1,9 @@
 import express from 'express';
-import adminsRoutes from './admins';
+import adminRoutes from './admins';
 
 const router = express.Router();
 
 router
-  .use('/admins', adminsRoutes);
+  .use('/admins', adminRoutes);
 
 export default router;
