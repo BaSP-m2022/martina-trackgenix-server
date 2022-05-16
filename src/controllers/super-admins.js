@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import fileSystem from 'fs';
+import models from '../models/Super-admins';
 
 const superAdmins = require('../data/super-admins.json');
 
@@ -21,7 +22,11 @@ superAdControllers.post('/', (req, res) => {
       if (err) {
         res.send(err);
       } else {
-        res.send('Super admin created');
+        res.status(201).json({
+          message: 'Super admin created',
+          data: undefined,
+          error: false,
+        });
       }
     });
   } else {
