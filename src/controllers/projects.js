@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import fileSystem from 'fs';
 import projects from '../data/projects.json';
+import Projects from '../models/Projects';
 
 const projectsRoutes = Router();
 
@@ -20,31 +21,42 @@ projectsRoutes.post('/add', (req, res) => {
   });
 });
 
-projectsRoutes.put('/:id', (req, res) => {
-  const projectId = parseInt(req.params.id, 10);
-  const found = projects.find((project) => project.id === projectId);
-  if (found) {
-    const proData = req.body;
-    projects.forEach((project) => {
-      const updPro = project;
-      if (updPro.id === projectId) {
-        updPro.project_name = proData.project_name ? proData.project_name : project.project_name;
-        updPro.start_date = proData.start_date ? proData.start_date : project.start_date;
-        updPro.finish_date = proData.finish_date ? proData.finish_date : project.finish_date;
-        updPro.client = proData.client ? proData.client : project.client;
-        updPro.active = proData.active === updPro.active ? project.active : proData.active;
-        updPro.admin_id = proData.admin_id ? proData.admin_id : project.admin_id;
-        fileSystem.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
-          if (err) {
-            res.send(err);
-          } else {
-            res.send(`Project ${req.params.id} edited`);
-          }
-        });
-      }
+// EDIT PROJECT BY ID
+projectsRoutes.put('/:id', async (req, res) => {
+  try {
+    const projectId = parseInt(req.params.id, 10);
+    const foundProject = await Projects.findOne({ id: projectId });
+    if (foundProject) {
+      const proData = req.body;
+
+      foundProject.project_name = proData.project_name
+        ? proData.project_name : foundProject.project_name;
+      foundProject.start_date = proData.start_date ? proData.start_date : foundProject.start_date;
+      foundProject.finish_date = proData.finish_date
+        ? proData.finish_date : foundProject.finish_date;
+      foundProject.client = proData.client ? proData.client : foundProject.client;
+      foundProject.active = proData.active === foundProject.active
+        ? foundProject.active : proData.active;
+      foundProject.admin_id = proData.admin_id ? proData.admin_id : foundProject.admin_id;
+
+      await foundProject.save();
+      return res.status(201).json({
+        message: 'Project edited',
+        data: foundProject,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: 'Project not found',
+      data: undefined,
+      error: true,
     });
-  } else {
-    res.send(`Project with id: ${req.params.id} does not exist`);
+  } catch (err) {
+    return res.status(400).json({
+      message: err,
+      data: undefined,
+      error: true,
+    });
   }
 });
 
@@ -79,19 +91,31 @@ projectsRoutes.get('/', (req, res) => {
   }
 });
 
-projectsRoutes.delete('/:id', (req, res) => {
-  const projectId = parseInt(req.params.id, 10);
-  const filterProject = projects.filter((project) => project.id !== projectId);
-  if (projects.length === filterProject.length) {
-    res.send('The project is not delete because it was not found');
-  }
-  fileSystem.writeFile('src/data/projects.json', JSON.stringify(filterProject), (error) => {
-    if (error) {
-      res.send(error);
-    } else {
-      res.send('Project deleted');
+// DELETE PROYECT
+projectsRoutes.delete('/:id', async (req, res) => {
+  try {
+    const projectId = parseInt(req.params.id, 10);
+    const filterProject = projects.filter((project) => project.id !== projectId);
+    if (projects.length === filterProject.length) {
+      await filterProject.save();
+      return res.status(201).json({
+        message: 'Project deleted',
+        data: filterProject,
+        error: false,
+      });
     }
-  });
+    return res.status(404).json({
+      message: 'Project not found',
+      data: undefined,
+      error: true,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: err,
+      data: undefined,
+      error: true,
+    });
+  }
 });
 
 export default projectsRoutes;
