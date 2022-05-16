@@ -1,6 +1,9 @@
 // use "import" to import libraries
 import express from 'express';
 import mongoose from 'mongoose';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import bodyParser from 'body-parser';
+import router from './routes';
 import timeSheetsRoutes from './controllers/time-sheets';
 import employeesRoutes from './controllers/employees';
 import projectsRoutes from './controllers/projects';
@@ -23,14 +26,20 @@ mongoose.connect(
   'mongodb+srv://martinamoser:martinaBaSP@basp-database.bhpgy.mongodb.net/BaSP-database?retryWrites=true&w=majority',
   (error) => {
     if (error) {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(':círculo_rojo: Database error: ', error);
     } else {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(':círculo_verde_grande: Database connected');
     }
   },
 );
+
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(router);
 
 app.get('/', async (req, res) => {
   res.send('Hello World!');
