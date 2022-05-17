@@ -8,8 +8,11 @@ const projectsSchema = new Schema({
   finish_date: { type: Date, required: false },
   client: { type: String, required: true },
   active: { type: Boolean, required: true },
-  employees: { type: [Object], required: true },
-  admin_id: { type: Number, required: true },
+  employees: [{
+    role: { type: String, required: true, enum: ['DEV', 'PM', 'QA', 'TL'] },
+    rate: { type: String, required: true },
+  }],
+  admin_id: { type: String, required: true },
 });
 
 export default mongoose.model('Projects', projectsSchema);
