@@ -28,7 +28,7 @@ mongoose.connect(
       // eslint-disable-next-line no-console
       console.log(':círculo_verde_grande: Database connected');
     }
-  }
+  },
 );
 
 app.get('/', async (req, res) => {
