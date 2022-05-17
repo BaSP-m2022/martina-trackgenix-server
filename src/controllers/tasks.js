@@ -1,6 +1,5 @@
 import Models from '../models/Tasks';
 
-// Obtain whole list of tasks
 const getAllTasks = async (req, res) => {
   try {
     const allTasks = await Models.find({});
@@ -28,7 +27,6 @@ const getTaskById = async (req, res) => {
   }
 };
 
-// Create a task
 const updateTask = async (req, res) => {
   try {
     if (!req.params) {
@@ -77,24 +75,7 @@ const deleteTask = async (req, res) => {
     });
   }
 };
-// Delete a task
-// tasksRoutes.delete('/:id', (req, res) => {
-//   const requiredTask = parseInt(req.params.id, 10);
-//   const foundTask = tasks.filter((task) => task.id !== requiredTask);
-//   if (foundTask.length === tasks.length) {
-//     res.send(`Could not delete task id: ${req.params.id} because it was not found`);
-//   } else {
-//     writeFile('src/data/tasks.json', JSON.stringify(foundTask), (err) => {
-//       if (err) {
-//         res.send(err);
-//       } else {
-//         res.send(`Task id: ${req.params.id} deleted`);
-//       }
-//     });
-//   }
-// });
 
-// Edit a task
 const createNewTask = async (req, res) => {
   try {
     const newTask = new Models({
