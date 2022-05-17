@@ -7,7 +7,7 @@ const validatedAdmin = (req, res, next) => {
     phone: Joi.string().min(10).max(13).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
-    active: Joi.boolean().valid(true, false).required(),
+    active: Joi.boolean().required(),
   });
 
   const validation = newAdmin.validate(req.body);

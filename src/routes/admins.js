@@ -8,7 +8,7 @@ router
   .post('/', adminsValidation, adminsController.createAdmin)
   .get('/', adminsController.getAllAdmins)
   .get('/getByName', adminsController.getAdminByName)
-  .get('/getBySurname', adminsController.getAdminBySurname)
+  .get('/getBySurname', adminsController.getAdminByLastName)
   .get('/:id', adminsController.getAdminById)
   .put('/:id', adminsValidation, adminsController.updateAdmin)
   .delete('/:id', adminsController.deleteAdmin);

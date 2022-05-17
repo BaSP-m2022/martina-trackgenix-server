@@ -90,7 +90,7 @@ const getAdminByName = async (req, res) => {
 };
 
 // Get admin by last name
-const getAdminBySurname = async (req, res) => {
+const getAdminByLastName = async (req, res) => {
   try {
     const surname = await Admin.findOne({ lastName: req.query.lastName });
     if (surname) {
@@ -176,7 +176,7 @@ export default {
   getAllAdmins,
   getAdminById,
   getAdminByName,
-  getAdminBySurname,
+  getAdminByLastName,
   updateAdmin,
   deleteAdmin,
 };
