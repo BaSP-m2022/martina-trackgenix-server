@@ -1,12 +1,13 @@
-import ProjectsSchema from '../models/Projects';
+import Project from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
   try {
-    const allProjects = await ProjectsSchema.find({});
+    const allProjects = await Project.find({});
 
     return res.status(200).json(allProjects);
   } catch (err) {
     return res.status(400).json({
+
       message: 'An error has occurred',
     });
   }
@@ -14,7 +15,7 @@ const getAllProjects = async (req, res) => {
 
 const createProject = async (req, res) => {
   try {
-    const project = new ProjectsSchema({
+    const project = new Project({
 
       project_name: req.body.project_name,
       start_date: req.body.start_date,
@@ -25,7 +26,9 @@ const createProject = async (req, res) => {
       admin_id: req.body.admin_id,
     });
     await project.save();
+
     return res.status(201).json({
+
       message: 'Project created',
       data: project,
       error: false,

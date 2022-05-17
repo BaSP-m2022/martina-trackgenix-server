@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const projectsSchema = new Schema({
+const project = new Schema({
   project_name: { type: String, required: true },
   start_date: { type: Date, required: true },
   finish_date: { type: Date, required: false },
@@ -16,4 +16,4 @@ const projectsSchema = new Schema({
   admin_id: { type: String, required: true },
 });
 
-export default mongoose.model('Projects', projectsSchema);
+export default mongoose.model('Projects', project);
