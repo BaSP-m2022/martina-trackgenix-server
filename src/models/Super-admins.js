@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const superAdSchema = new Schema({
+const superAdminSchema = new Schema({
   firstName: {
     type: String,
     require: true,
@@ -25,4 +25,4 @@ const superAdSchema = new Schema({
   },
 });
 
-export default mongoose.model('super-admins', superAdSchema);
+export default mongoose.model('superAdmins', superAdminSchema);
