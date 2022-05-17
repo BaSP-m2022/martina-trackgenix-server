@@ -25,35 +25,7 @@
 			"name": "time-sheet",
 			"item": [
 				{
-					"name": "timesheet_id is not allowed",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " {\r\n    \"timesheet_id\": 5,\r\n    \"employee_id\": 19,\r\n    \"project_id\": 3,\r\n    \"task_description\": \"Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in qua    fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.\",\r\n    \"hs_worked\": 5,\r\n    \"timesheetDate\": \"2022-05-02\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/time-sheet/",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"time-sheet",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "time sheet created",
+					"name": "Create New",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -81,7 +53,7 @@
 					"response": []
 				},
 				{
-					"name": "time sheet deleted",
+					"name": "Delete",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -100,26 +72,7 @@
 					"response": []
 				},
 				{
-					"name": "Time sheet not found",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/time-sheet/62810b4757120dced6746522",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"time-sheet",
-								"62810b4757120dced6746522"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "whole time sheet list",
+					"name": "Get all",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -139,7 +92,7 @@
 					"response": []
 				},
 				{
-					"name": "time sheet by id",
+					"name": "Get by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -159,27 +112,7 @@
 					"response": []
 				},
 				{
-					"name": "time sheet not found",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/time-sheet/62813d1bfc0938a8b99187fc",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"time-sheet",
-								"62813d1bfc0938a8b99187fc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "time sheet by project_id",
+					"name": "Get by project Id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -200,28 +133,7 @@
 					"response": []
 				},
 				{
-					"name": "time sheet not foun by project id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/time-sheet/get-timesheet-project/34",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"time-sheet",
-								"get-timesheet-project",
-								"34"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "time sheet by date",
+					"name": "Get by date",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -242,21 +154,28 @@
 					"response": []
 				},
 				{
-					"name": "time sheet not found by date",
+					"name": "Update",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employee_id\": 7,\r\n    \"project_id\": 5,\r\n    \"task_description\": \"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.Pellentesque viverra pede ac diam. Craspellentesque volutpat dui.\",\r\n    \"hs_worked\": 1,\r\n    \"timesheetDate\": \"2022-05-05T03:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/time-sheet/get-timesheet-date/2021-05-04T03:00:00.000Z",
-							"protocol": "http",
+							"raw": "localhost:3000/time-sheet/62813d1bfc0938a8b99187ff",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"time-sheet",
-								"get-timesheet-date",
-								"2021-05-04T03:00:00.000Z"
+								"62813d1bfc0938a8b99187ff"
 							]
 						}
 					},

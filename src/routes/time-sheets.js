@@ -9,8 +9,8 @@ router
   .get('/:id', timeSheetController.getTimeSheetById)
   .get('/get-timesheet-project/:project_id', timeSheetController.getTimeSheetProject)
   .get('/get-timesheet-date/:timesheetDate', timeSheetController.getTimeSheetDate)
-  .post('/', timeSheetValidation.validateNewTimesheet, timeSheetController.createNewTimeSheet)
-  .put('/:id', timeSheetValidation.validateUpdateTimesheet, timeSheetController.updateTimeSheet)
+  .post('/', timeSheetValidation, timeSheetController.createNewTimeSheet)
+  .put('/:id', timeSheetValidation, timeSheetController.updateTimeSheet)
   .delete('/:id', timeSheetController.deleteTimeSheet);
 
 export default router;
