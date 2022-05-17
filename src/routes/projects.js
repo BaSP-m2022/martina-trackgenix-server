@@ -5,7 +5,7 @@ import ProjectsValidation from '../validations/projects';
 const router = express.Router();
 
 router
-  .get('/', ProjectsController.getAllTimeSheets)
-  .post('/', ProjectsValidation.validateNewTimesheet, ProjectsController.createNewTimeSheet);
+  .put('/:id', ProjectsValidation, ProjectsController.upDateProject)
+  .delete('/:id', ProjectsController.deleteProject);
 
 export default router;

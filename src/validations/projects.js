@@ -1,20 +1,23 @@
 import Joi from 'joi';
 
 const validateProject = (req, res, next) => {
-  const newProjectSchema = Joi.object({
-    project_name: Joi.string().min(5).max(20).required(),
-    start_date: Joi.date().min(3).max(100).required(),
-    finish_date: Joi.date().min(3).max(100).required(),
-    client: Joi.string().min(10).max(50).required(),
-    active: Joi.boolean().required(),
-    employees: Joi.object().Joi.object().keys({
-      employee_id: Joi.number().min(1).required(),
-      role: Joi.string().min(5).max(50).required(),
-      rate: Joi.number().required(),
-    }),
+  const employeeProjectSchema = Joi.object({
+    id: Joi.number().optional(),
+    role: Joi.string().valid('DEV', 'PM', 'QA', 'TL').required(),
+    rate: Joi.string().required(),
   });
 
-  const validation = newProjectSchema.validate(req.body);
+  const editProjectSchema = Joi.object({
+    project_name: Joi.string().min(5).max(20).optional(),
+    start_date: Joi.date().optional(),
+    finish_date: Joi.date().optional(),
+    client: Joi.string().min(10).max(50).optional(),
+    active: Joi.boolean().optional(),
+    employees: Joi.array().items(employeeProjectSchema),
+    admin_id: Joi.string().min(1).max(50).required(),
+  });
+
+  const validation = editProjectSchema.validate(req.body);
   if (validation.error) {
     return res.status(400).json({
       msg: 'Error during the request or validation',
@@ -24,4 +27,4 @@ const validateProject = (req, res, next) => {
   return next();
 };
 
-export default { validateProject };
+export default validateProject;

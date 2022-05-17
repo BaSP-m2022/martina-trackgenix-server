@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9b61d41a-462b-4ec3-8e68-d0ae80fa62d4",
+		"_postman_id": "b7c04cc4-fe02-4abd-9e6d-3a35bf6a3422",
 		"name": "postman-collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -27,7 +27,85 @@
 		},
 		{
 			"name": "projects",
-			"item": []
+			"item": [
+				{
+					"name": "Edit dy Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\"project_name\": \"Fly me to the starts\",\r\n        \"start_date\": \"5-12-1981\",\r\n        \"finish_date\": \"10-13-1974\",\r\n        \"client\": \"Frank Sinatra\",\r\n        \"employees\":[\r\n            {\r\n                \"role\": \"DEV\",\r\n                \"rate\": \"10\"\r\n            },\r\n            {\r\n                \"role\": \"QA\",\r\n                \"rate\": \"45\"\r\n            },\r\n            {\r\n                \"role\": \"TL\",\r\n                \"rate\": \"80\"\r\n            },\r\n            {\r\n                \"role\": \"DEV\",\r\n                \"rate\": \"200\"\r\n            }\r\n          ],  \r\n        \"admin_id\": \"13\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects/6283b548cd44998f83152280",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"6283b548cd44998f83152280"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6283ba18cd44998f831522a4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
