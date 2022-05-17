@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9b61d41a-462b-4ec3-8e68-d0ae80fa62d4",
+		"_postman_id": "7d7a47d4-76ad-46ea-a0ed-fc0dedb91684",
 		"name": "postman-collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,156 @@
 		},
 		{
 			"name": "employees",
-			"item": []
+			"item": [
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Martin\",\r\n    \"last_name\": \"Didoli\",\r\n    \"phone\": \"1234567\",\r\n    \"email\": \"hola@gmail.com\",\r\n    \"password\": \"asd123\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Juan Cruz\",\r\n    \"last_name\": \"Bonelli\",\r\n    \"phone\": \"7654321\",\r\n    \"email\":\"chau@gmail.com\",\r\n    \"password\":\"contrasena\",\r\n    \"active\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees/628407263debaf079ad1eab6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"628407263debaf079ad1eab6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees/628406f23debaf079ad1eab4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"628406f23debaf079ad1eab4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees/6284073b3debaf079ad1eab8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"6284073b3debaf079ad1eab8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "tasks",
