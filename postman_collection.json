@@ -11,7 +11,284 @@
 		},
 		{
 			"name": "admin",
-			"item": []
+			"item": [
+                {
+                    "name": "Get whole Admins list",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Find Admin by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/6282fbb8a8d4f972babba8ae",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "6282fbb8a8d4f972babba8ae"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Find Admin by ID error",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/6282fbb8a8d4f972babba8a0",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "6282fbb8a8d4f972babba8a0"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Find Admin by Name",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/getByName?firstName=Laura",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "getByName"
+                            ],
+                            "query": [
+                                {
+                                    "key": "firstName",
+                                    "value": "Laura"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Find Admin by name error",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/getByName?firstName=Lauras",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "getByName"
+                            ],
+                            "query": [
+                                {
+                                    "key": "firstName",
+                                    "value": "Lauras"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get whole Admins list error",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/g",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "g"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Find Admin by last name",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/getBySurname?lastName=Brussa",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "getBySurname"
+                            ],
+                            "query": [
+                                {
+                                    "key": "lastName",
+                                    "value": "Brussa"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Find Admin by last name error",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/getBySurname?lastName=Brus",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "getBySurname"
+                            ],
+                            "query": [
+                                {
+                                    "key": "lastName",
+                                    "value": "Brus"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create a new Admin error",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"firstName\": \"Evelyn\",\r\n    \"lastName\": \"Heredia\",\r\n    \"phone\": 680002514,\r\n    \"email\": \"evelyn@mailito.com\",\r\n    \"password\": \"ngh78a\",\r\n    \"active\": \"true\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "localhost:3000/admins",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "New admin created",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"firstName\": \"Evelyn\",\r\n    \"lastName\": \"Heredia\",\r\n    \"phone\": \"68000251402\",\r\n    \"email\": \"evelyn@mailito.com\",\r\n    \"password\": \"ngh78a\",\r\n    \"active\": \"true\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "localhost:3000/admins",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Admin updated",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"firstName\": \"Belén\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "localhost:3000/admins/62832528d46ab862374347d0",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "62832528d46ab862374347d0"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete an Admin",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3000/admins/6282fbb8a8d4f972babba8ae",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "admins",
+                                "6282fbb8a8d4f972babba8ae"
+                            ]
+                        }
+                    },
+                    "response": []
+                }    
+            ]
 		},
 		{
 			"name": "employees",

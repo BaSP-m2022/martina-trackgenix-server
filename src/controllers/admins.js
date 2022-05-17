@@ -30,7 +30,7 @@ const createAdmin = async (req, res) => {
 // Get whole list of admins
 const getAllAdmins = async (req, res) => {
   try {
-    const allAdmins = await Models.find();
+    const allAdmins = await Models.find({});
 
     return res.status(200).json({
       message: 'Admins whole list',
@@ -49,9 +49,8 @@ const getAllAdmins = async (req, res) => {
 // Get admin by id
 const getAdminById = async (req, res) => {
   try {
-    if (req.params.id) {
-      const admin = await Models.findById(req.params.id);
-
+    const admin = await Models.findById(req.params.id);
+    if (admin) {
       return res.status(200).json({
         message: 'Admin found',
         data: admin,
@@ -73,14 +72,38 @@ const getAdminById = async (req, res) => {
 };
 
 // Get admin by first name
-const getAdminByQuery = async (req, res) => {
+const getAdminByName = async (req, res) => {
   try {
-    if (req.query) {
-      const admin = await Models.findOneAndUpdate(req.query);
-
+    const name = await Models.findOne({ firstName: req.query.firstName });
+    if (name) {
       return res.status(200).json({
         message: 'Admin found',
-        data: admin,
+        data: name,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: 'Admin not found',
+      data: req.query,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error has ocurred',
+      data: error,
+      error: true,
+    });
+  }
+};
+
+// Get admin by last name
+const getAdminBySurname = async (req, res) => {
+  try {
+    const surname = await Models.findOne({ lastName: req.query.lastName });
+    if (surname) {
+      return res.status(200).json({
+        message: 'Admin found',
+        data: surname,
         error: false,
       });
     }
@@ -117,7 +140,7 @@ const updateAdmin = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Admin has not been found',
-        data: result,
+        data: `id: ${req.params.id}`,
         error: true,
       });
     }
@@ -137,23 +160,17 @@ const updateAdmin = async (req, res) => {
 // Delete an admin
 const deleteAdmin = async (req, res) => {
   try {
-    if (!req.params.id) {
+    const result = await Models.findByIdAndDelete(req.params.id);
+    if (!result) {
       return res.status(404).json({
         message: 'Admin has not been found',
         data: req.params.id,
         error: true,
       });
     }
-    const result = await Models.findByIdAndDelete(req.params.id);
-    if (!result) {
-      return res.status(404).json({
-        message: 'Admin has not been found',
-        data: result,
-        error: true,
-      });
-    }
     return res.status(204).json({
       message: 'The admin has been successfully deleted',
+      data: result,
       error: false,
     });
   } catch (error) {
@@ -169,7 +186,8 @@ export default {
   createAdmin,
   getAllAdmins,
   getAdminById,
-  getAdminByQuery,
+  getAdminByName,
+  getAdminBySurname,
   updateAdmin,
   deleteAdmin,
 };
