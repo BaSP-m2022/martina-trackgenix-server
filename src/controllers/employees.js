@@ -1,8 +1,9 @@
-import EmployeeModel from '../models/Employees';
+import Employee from '../models/Employees';
 
 const getAllEmployees = async (req, res) => {
   try {
-    const AllEmployees = await EmployeeModel.find({});
+    const AllEmployees = await Employee.find({});
+
     return res.status(200).json({
       msg: 'All employees successfully shown',
       data: AllEmployees,
@@ -20,20 +21,20 @@ const getAllEmployees = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   try {
     if (req.params.id) {
-      const oneEmployee = await EmployeeModel.findById(req.params.id);
+      const oneEmployee = await Employee.findById(req.params.id);
       return res.status(200).json({
         msg: 'Employee successfully shown',
         data: oneEmployee,
         error: false,
       });
     }
-    return res.status(400).json({
-      msg: 'Missing Id Parameter',
+    return res.status(404).json({
+      msg: 'Id was not found',
       data: undefined,
       error: true,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(400).json({
       msg: 'There was an error',
       data: undefined,
       error: true,
@@ -43,22 +44,15 @@ const getEmployeeById = async (req, res) => {
 
 const createEmployee = async (req, res) => {
   try {
-    const oneEmployee = new EmployeeModel({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      phone: req.body.phone,
-      email: req.body.email,
-      password: req.body.password,
-      active: req.body.active,
-    });
-    const result = await oneEmployee.save();
+    const oneEmployee = req.body;
+    const newEmployee = await Employee.create(oneEmployee);
     return res.status(201).json({
-      msg: 'Employee created',
-      data: result,
+      message: 'Employee created',
+      data: newEmployee,
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(400).json({
       msg: 'There was an error',
       data: undefined,
       error: true,
@@ -69,13 +63,14 @@ const createEmployee = async (req, res) => {
 const editEmployee = async (req, res) => {
   try {
     if (!req.params) {
-      return res.status(400).json({
+      return res.status(404).json({
         msg: 'Missing Parameter',
         data: undefined,
         error: true,
       });
     }
-    const result = await EmployeeModel.findByIdAndUpdate(
+
+    const result = await Employee.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
@@ -104,13 +99,13 @@ const editEmployee = async (req, res) => {
 const deleteEmployee = async (req, res) => {
   try {
     if (!req.params.id) {
-      return res.status(400).json({
+      return res.status(404).json({
         msg: 'Missing parameter',
         data: undefined,
         error: true,
       });
     }
-    const result = await EmployeeModel.findByIdAndDelete(req.params.id);
+    const result = await Employee.findByIdAndDelete(req.params.id);
     if (!result) {
       return res.status(404).json({
         msg: 'Employee requested was not found',
@@ -118,15 +113,11 @@ const deleteEmployee = async (req, res) => {
         error: true,
       });
     }
-    return res.status(204).json({
-      msg: 'Employee requested was deleted',
-      data: result,
-      error: false,
-    });
+    return res.status(204).json();
   } catch (error) {
     return res.json(400).json({
       msg: 'There was an error',
-      data: undefined,
+      data: error,
       error: true,
     });
   }
