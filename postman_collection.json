@@ -1,145 +1,251 @@
 {
-	"info": {
-		"_postman_id": "db40b5dd-53ba-496c-a25d-11f38e1ade0a",
-		"name": "postman-collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "super-admin",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " {\r\n        \"firstName\": \"luca\",\r\n        \"lastName\": \"Hanby\",\r\n        \"email\": \"phanby2@ovh.net\",\r\n        \"password\": \"ojota2020\",\r\n        \"active\": true\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/super-admins",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"super-admins"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/super-admins",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"super-admins"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/super-admins/628393412c4a2506f1b62dd6",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"super-admins",
-								"628393412c4a2506f1b62dd6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get By  ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/super-admins/628393412c4a2506f1b62dd6",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"super-admins",
-								"628393412c4a2506f1b62dd6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"firstName\": \"jjlopez\",\r\n        \"lastName\": \"Hanby\",\r\n        \"email\": \"phanby2@ovh.net\",\r\n        \"password\": \"ojota2020\",\r\n        \"active\": true\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/super-admins/",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"super-admins",
-								""
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "admin",
-			"item": []
-		},
-		{
-			"name": "employees",
-			"item": []
-		},
-		{
-			"name": "tasks",
-			"item": []
-		},
-		{
-			"name": "time-sheet",
-			"item": []
-		},
-		{
-			"name": "projects",
-			"item": []
-		}
-	]
+  "info": {
+    "_postman_id": "db40b5dd-53ba-496c-a25d-11f38e1ade0a",
+    "name": "postman-collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "super-admin",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n        \"firstName\": \"luca\",\r\n        \"lastName\": \"Hanby\",\r\n        \"email\": \"phanby2@ovh.net\",\r\n        \"password\": \"ojota2020\",\r\n        \"active\": true\r\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/super-admins",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["super-admins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/super-admins",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["super-admins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/super-admins/628393412c4a2506f1b62dd6",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["super-admins", "628393412c4a2506f1b62dd6"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get By  ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/super-admins/628393412c4a2506f1b62dd6",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["super-admins", "628393412c4a2506f1b62dd6"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n        \"firstName\": \"jjlopez\",\r\n        \"lastName\": \"Hanby\",\r\n        \"email\": \"phanby2@ovh.net\",\r\n        \"password\": \"ojota2020\",\r\n        \"active\": true\r\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/super-admins/",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["super-admins", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/admins",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/admins/6282fbce7904f9cd3d42e9f4",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admins", "6282fbce7904f9cd3d42e9f4"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/admins/getByName?firstName=Wilbert",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admins", "getByName"],
+              "query": [
+                {
+                  "key": "firstName",
+                  "value": "Wilbert"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Last Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/admins/getBySurname?lastName=Sustin",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admins", "getBySurname"],
+              "query": [
+                {
+                  "key": "lastName",
+                  "value": "Sustin"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create New",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Juanas\",\r\n    \"phone\": \"1234567890\",\r\n    \"email\": \"evelyn@mailito.com\",\r\n    \"password\": \"ngh78a23\",\r\n    \"active\": \"true\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/admins",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Betiana\",\r\n    \"lastName\": \"Ramos\",\r\n    \"phone\": \"7214831817\",\r\n    \"email\": \"vcassella4@de.vu\",\r\n    \"password\": \"yNNUHqZ\",\r\n    \"active\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/admins/6282fbea29c691993df06bd6",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admins", "6282fbea29c691993df06bd6"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/admins/6282fc9640f3451a1327f51c",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["admins", "6282fc9640f3451a1327f51c"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "employees",
+      "item": []
+    },
+    {
+      "name": "tasks",
+      "item": []
+    },
+    {
+      "name": "time-sheet",
+      "item": []
+    },
+    {
+      "name": "projects",
+      "item": []
+    }
+  ]
 }

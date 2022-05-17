@@ -11,6 +11,7 @@ const getAllSuperAdmin = async (req, res) => {
   } catch (error) {
     return res.status(404).json({
       message: 'An error has occurred',
+      data: undefined,
       error: true,
     });
   }
@@ -23,6 +24,7 @@ const getSuperAdminById = async (req, res) => {
       return res.status(404).json({
         message: 'Id not found',
         data: req.params.id,
+        error: true,
       });
     }
     return res.status(200).json({
@@ -57,6 +59,7 @@ const createSuperAdmin = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: 'An error has occurred',
+      data: undefined,
       error: false,
     });
   }
@@ -69,6 +72,7 @@ const updateSuperAdmin = async (req, res) => {
       return res.status(404).json({
         message: 'Super Admin not found',
         data: 'req.params.id',
+        error: true,
       });
     }
     return res.status(201).json({
@@ -79,6 +83,7 @@ const updateSuperAdmin = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: 'An error has occurred',
+      data: undefined,
       error: true,
     });
   }
@@ -90,15 +95,19 @@ const deleteSuperAdmin = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Super Admin not found',
+        data: undefined,
+        error: true,
       });
     }
     return res.status(204).json({
       message: 'Super Admin has been successfully deleted',
+      data: undefined,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
       message: 'An error has occurred',
+      data: undefined,
       error: true,
     });
   }
