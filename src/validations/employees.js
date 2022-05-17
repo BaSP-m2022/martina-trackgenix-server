@@ -9,6 +9,7 @@ const validateCreation = (req, res, next) => {
     password: Joi.string().min(6).required(),
     active: Joi.boolean().required(),
   });
+
   const checkValidation = employeeTestSchema.validate(req.body);
   if (checkValidation.error) {
     return res.status(400).json({
