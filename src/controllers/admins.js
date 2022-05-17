@@ -92,11 +92,11 @@ const getAdminByName = async (req, res) => {
 // Get admin by last name
 const getAdminByLastName = async (req, res) => {
   try {
-    const surname = await Admin.findOne({ lastName: req.query.lastName });
-    if (surname) {
+    const lastName = await Admin.findOne({ lastName: req.query.lastName });
+    if (lastName) {
       return res.status(200).json({
         message: 'Admin found',
-        data: surname,
+        data: lastName,
         error: false,
       });
     }

@@ -2,11 +2,11 @@ import Joi from 'joi';
 
 const validatedAdmin = (req, res, next) => {
   const newAdmin = Joi.object({
-    firstName: Joi.string().min(3).max(18).required(),
-    lastName: Joi.string().min(3).max(18).required(),
+    firstName: Joi.string().min(3).required(),
+    lastName: Joi.string().min(3).required(),
     phone: Joi.string().min(10).max(13).required(),
     email: Joi.string().email().required(),
-    password: Joi.string().min(6).required(),
+    password: Joi.string().min(8).required(),
     active: Joi.boolean().required(),
   });
 

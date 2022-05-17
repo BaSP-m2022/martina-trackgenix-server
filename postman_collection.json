@@ -106,7 +106,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Juanas\",\r\n    \"phone\": \"68000251402\",\r\n    \"email\": \"evelyn@mailito.com\",\r\n    \"password\": \"ngh78a\",\r\n    \"active\": \"true\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Juanas\",\r\n    \"phone\": \"1234567890\",\r\n    \"email\": \"evelyn@mailito.com\",\r\n    \"password\": \"ngh78a23\",\r\n    \"active\": \"true\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
