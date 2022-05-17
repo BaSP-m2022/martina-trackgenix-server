@@ -5,9 +5,9 @@ import employeesValidation from '../validations/employees';
 const router = express.Router();
 
 router.get('/', employeesController.getAllEmployees);
-router.get('/', employeesValidation.validateCreation, employeesController.createEmployee);
 router.get('/:id', employeesController.getEmployeeById);
-router.put('/:id', employeesController.updateEmployee);
+router.get('/', employeesValidation.validateCreation, employeesController.createEmployee);
+router.put('/:id', employeesController.editEmployee);
 router.delete('/:id', employeesController.deleteEmployee);
 
 export default router;
