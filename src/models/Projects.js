@@ -9,6 +9,7 @@ const projectsSchema = new Schema({
   client: { type: String, required: true },
   active: { type: Boolean, required: true },
   employees: [{
+    id: { type: Number },
     role: { type: String, required: true, enum: ['DEV', 'PM', 'QA', 'TL'] },
     rate: { type: String, required: true },
   }],

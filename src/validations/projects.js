@@ -2,9 +2,11 @@ import Joi from 'joi';
 
 const validateCreation = (req, res, next) => {
   const employeeProjectSchema = Joi.object({
+    id: Joi.number().optional(),
     role: Joi.string().valid('DEV', 'PM', 'QA', 'TL').required(),
     rate: Joi.string().required(),
   });
+
   const projectValidation = Joi.object({
     project_name: Joi.string().min(1).max(50).required(),
     start_date: Joi.date().required(),
@@ -14,6 +16,7 @@ const validateCreation = (req, res, next) => {
     employees: Joi.array().items(employeeProjectSchema),
     admin_id: Joi.string().min(1).max(50).required(),
   });
+
   const validate = projectValidation.validate(req.body);
   if (validate.error) {
     return res.status(400).json({
@@ -24,4 +27,4 @@ const validateCreation = (req, res, next) => {
   return next();
 };
 
-export default { validateCreation };
+export default validateCreation;
