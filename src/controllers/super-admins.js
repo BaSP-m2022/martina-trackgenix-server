@@ -68,6 +68,7 @@ const updateSuperAdmin = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Super Admin not found',
+        data: 'req.params.id',
       });
     }
     return res.status(201).json({
