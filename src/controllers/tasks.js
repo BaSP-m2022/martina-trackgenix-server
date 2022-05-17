@@ -1,8 +1,8 @@
-import Models from '../models/Tasks';
+import Task from '../models/Tasks';
 
 const getAllTasks = async (req, res) => {
   try {
-    const allTasks = await Models.find({});
+    const allTasks = await Task.find({});
     res.status(200).json({
       message: 'Tasks found',
       data: allTasks,
@@ -20,7 +20,7 @@ const getAllTasks = async (req, res) => {
 const getTaskById = async (req, res) => {
   try {
     if (req.params.id) {
-      const task = await Models.findById(req.params.id);
+      const task = await Task.findById(req.params.id);
       return res.status(200).json({
         message: 'task found',
         data: task,
@@ -50,12 +50,12 @@ const updateTask = async (req, res) => {
         error: true,
       });
     }
-    const taskData = await Models.findByIdAndUpdate(
+    const taskData = await Task.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
     );
-    if (taskData) {
+    if (!taskData) {
       return res.status(404).json({
         message: 'The task has not been found',
         data: undefined,
@@ -78,14 +78,7 @@ const updateTask = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   try {
-    if (!req.params.id) {
-      return res.status(404).json({
-        message: 'task id not found',
-        data: undefined,
-        error: true,
-      });
-    }
-    const taskData = await Models.findByIdAndDelete(req.params.id);
+    const taskData = await Task.findByIdAndDelete(req.params.id);
     if (!taskData) {
       return res.status(404).json({
         message: 'task not found',
@@ -105,10 +98,10 @@ const deleteTask = async (req, res) => {
 
 const createNewTask = async (req, res) => {
   try {
-    const newTask = new Models({
+    const newTaskData = new Task({
       description: req.body.description,
     });
-    const taskData = await newTask.save();
+    const taskData = await newTaskData.save();
     return res.status(201).json({
       message: 'task created',
       data: taskData,
@@ -124,5 +117,9 @@ const createNewTask = async (req, res) => {
 };
 
 export default {
-  getAllTasks, getTaskById, createNewTask, updateTask, deleteTask,
+  getAllTasks,
+  getTaskById,
+  createNewTask,
+  updateTask,
+  deleteTask,
 };

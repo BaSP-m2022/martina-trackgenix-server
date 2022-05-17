@@ -181,7 +181,8 @@
 		},
 		{
 			"name": "tasks",
-			"item": [{
+			"item": [
+                {
                 "name": "Get all tasks",
                 "protocolProfileBehavior": {
                     "disableBodyPruning": true
