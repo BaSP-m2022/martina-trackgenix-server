@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7d7a47d4-76ad-46ea-a0ed-fc0dedb91684",
+		"_postman_id": "acad84e4-57a7-4a0f-bfce-d4b41ad4eb4e",
 		"name": "postman-collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,169 @@
 		},
 		{
 			"name": "admin",
-			"item": []
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins/6282fbce7904f9cd3d42e9f4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6282fbce7904f9cd3d42e9f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins/getByName?firstName=Wilbert",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"getByName"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "Wilbert"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Last Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins/getBySurname?lastName=Sustin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"getBySurname"
+							],
+							"query": [
+								{
+									"key": "lastName",
+									"value": "Sustin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Maria\",\r\n    \"lastName\": \"Juanas\",\r\n    \"phone\": \"1234567890\",\r\n    \"email\": \"evelyn@mailito.com\",\r\n    \"password\": \"ngh78a23\",\r\n    \"active\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Betiana\",\r\n    \"lastName\": \"Ramos\",\r\n    \"phone\": \"7214831817\",\r\n    \"email\": \"vcassella4@de.vu\",\r\n    \"password\": \"yNNUHqZ\",\r\n    \"active\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/6282fbea29c691993df06bd6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6282fbea29c691993df06bd6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins/6282fc9640f3451a1327f51c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6282fc9640f3451a1327f51c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "employees",
