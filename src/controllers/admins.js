@@ -72,6 +72,32 @@ const getAdminById = async (req, res) => {
   }
 };
 
+// Get admin by first name
+const getAdminByQuery = async (req, res) => {
+  try {
+    if (req.query) {
+      const admin = await Models.findOneAndUpdate(req.query);
+
+      return res.status(200).json({
+        message: 'Admin found',
+        data: admin,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: 'Admin not found',
+      data: req.query,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error has ocurred',
+      data: error,
+      error: true,
+    });
+  }
+};
+
 // Edit an admin
 const updateAdmin = async (req, res) => {
   try {
@@ -128,7 +154,6 @@ const deleteAdmin = async (req, res) => {
     }
     return res.status(204).json({
       message: 'The admin has been successfully deleted',
-      data: undefined,
       error: false,
     });
   } catch (error) {
@@ -144,6 +169,7 @@ export default {
   createAdmin,
   getAllAdmins,
   getAdminById,
+  getAdminByQuery,
   updateAdmin,
   deleteAdmin,
 };
