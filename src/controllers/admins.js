@@ -3,14 +3,7 @@ import Admin from '../models/Admins';
 // Create a new admin
 const createAdmin = async (req, res) => {
   try {
-    const adminData = new Admin({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      phone: req.body.phone,
-      email: req.body.email,
-      password: req.body.password,
-      active: req.body.active,
-    });
+    const adminData = req.body;
 
     const newAdmin = await Admin.create(adminData);
     return res.status(201).json({
@@ -168,11 +161,7 @@ const deleteAdmin = async (req, res) => {
         error: true,
       });
     }
-    return res.status(204).json({
-      message: 'The admin has been successfully deleted',
-      data: result,
-      error: false,
-    });
+    return res.status(204).json();
   } catch (error) {
     return res.json({
       message: 'An error has ocurred',
