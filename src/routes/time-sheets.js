@@ -7,9 +7,10 @@ const router = express.Router();
 router
   .get('/', timeSheetController.getAllTimeSheets)
   .get('/:id', timeSheetController.getTimeSheetById)
-  .get('/Project', timeSheetController.getTimeSheetProject)
+  .get('/get-timesheet-project/:project_id', timeSheetController.getTimeSheetProject)
+  .get('/get-timesheet-date/:timesheetDate', timeSheetController.getTimeSheetDate)
   .post('/', timeSheetValidation.validateNewTimesheet, timeSheetController.createNewTimeSheet)
   .put('/:id', timeSheetValidation.validateUpdateTimesheet, timeSheetController.updateTimeSheet)
-  .delete('/:id', timeSheetController.deleteTimeSheeet);
+  .delete('/:id', timeSheetController.deleteTimeSheet);
 
 export default router;

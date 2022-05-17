@@ -1,9 +1,5 @@
-import { Router } from 'express';
 import TimeSheet from '../models/Time-sheets';
 
-const timeSheets = require('../data/time-sheets.json');
-
-const timeSheetRouter = Router();
 const getAllTimeSheets = async (req, res) => {
   try {
     const allTimeSheets = await TimeSheet.find({});
@@ -42,7 +38,7 @@ const getTimeSheetById = async (req, res) => {
 const getTimeSheetProject = async (req, res) => {
   try {
     const success = await TimeSheet.findOne({
-      project_id: parseInt(req.query.project_id, 10),
+      project_id: req.params.project_id,
     });
     if (!success) {
       return res.status(404).json({
@@ -61,15 +57,27 @@ const getTimeSheetProject = async (req, res) => {
   }
 };
 
-timeSheetRouter.get('/getEmployee', (req, res) => {
-  const tryEmployeeId = parseInt(req.query.employee_id, 10);
-  const allEmployeeId = timeSheets.filter((number) => number.employee_id === tryEmployeeId);
-  if (allEmployeeId.length > 0) {
-    res.json(allEmployeeId);
-  } else {
-    res.send(`No employee with Id number of ${tryEmployeeId} found`);
+const getTimeSheetDate = async (req, res) => {
+  try {
+    const success = await TimeSheet.findOne({
+      timesheetDate: new Date(req.params.timesheetDate),
+    });
+    if (!success) {
+      return res.status(404).json({
+        message: 'Time sheet not found',
+      });
+    }
+    return res.status(200).json({
+      message: 'Here is the time sheet  of the date you are looking for:',
+      success,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error ocurred',
+      error,
+    });
   }
-});
+};
 
 const createNewTimeSheet = async (req, res) => {
   try {
@@ -117,7 +125,7 @@ const updateTimeSheet = async (req, res) => {
   }
 };
 
-const deleteTimeSheeet = async (req, res) => {
+const deleteTimeSheet = async (req, res) => {
   try {
     const success = await TimeSheet.findByIdAndDelete(req.params.id);
     if (!success) {
@@ -141,7 +149,8 @@ export default {
   getAllTimeSheets,
   createNewTimeSheet,
   updateTimeSheet,
-  deleteTimeSheeet,
+  deleteTimeSheet,
   getTimeSheetById,
   getTimeSheetProject,
+  getTimeSheetDate,
 };
