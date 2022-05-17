@@ -4,10 +4,11 @@ import tasksValidation from '../validations/tasks';
 
 const router = express.Router();
 
-router.get('/', tasksController.getAllTasks);
-router.get('/:id', tasksController.getTaskById);
-router.put('/:id', tasksValidation.validateNewTask, tasksController.updateTask);
-router.post('/', tasksValidation.validateNewTask, tasksController.createNewTask);
-router.delete('/:id', tasksController.deleteTask);
+router
+  .get('/', tasksController.getAllTasks)
+  .get('/:id', tasksController.getTaskById)
+  .put('/:id', tasksValidation.validateNewTask, tasksController.updateTask)
+  .post('/', tasksValidation.validateNewTask, tasksController.createNewTask)
+  .delete('/:id', tasksController.deleteTask);
 
 export default router;
