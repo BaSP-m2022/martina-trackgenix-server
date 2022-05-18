@@ -15,7 +15,7 @@ const projectsSchema = new mongoose.Schema({
 
   employees: Object,
 
-  admin_id: String,
+  admin_id: Number,
 });
 
 module.exports = mongoose.model('Projects', projectsSchema);
