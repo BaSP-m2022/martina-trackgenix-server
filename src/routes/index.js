@@ -1,4 +1,5 @@
 import express from 'express';
+import employeeRoutes from './employees';
 import superAdminRoutes from './super-admins';
 import timeSheetRoutes from './time-sheets';
 import taskRoutes from './tasks';
@@ -12,6 +13,7 @@ router
   .use('/time-sheet', timeSheetRoutes)
   .use('/tasks', taskRoutes)
   .use('/admins', adminRoutes)
-  .use('/super-admins', superAdminRoutes);
+  .use('/super-admins', superAdminRoutes)
+  .use('/employees', employeeRoutes);
 
 export default router;

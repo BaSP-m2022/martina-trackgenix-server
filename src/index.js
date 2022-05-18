@@ -1,13 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
-import employeesRoutes from './controllers/employees';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('/employees', employeesRoutes);
 app.use(router);
 
 mongoose.connect(
