@@ -616,15 +616,18 @@
       "name": "projects",
       "item": [
         {
-          "name": "New Request",
+          "name": "Get All",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": ""
+            }
           },
           "response": []
         },
         {
-          "name": "Add a project",
+          "name": "Create New",
           "request": {
             "method": "POST",
             "header": [],
@@ -643,6 +646,14 @@
               "port": "3000",
               "path": ["projects", ""]
             }
+          },
+          "response": []
+        },
+        {
+          "name": "Get By Id",
+          "request": {
+            "method": "GET",
+            "header": []
           },
           "response": []
         }
