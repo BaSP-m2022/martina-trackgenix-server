@@ -15,29 +15,20 @@ const getAllProjects = async (req, res) => {
 
 const createProject = async (req, res) => {
   try {
-    const project = new Project({
-
-      project_name: req.body.project_name,
-      start_date: req.body.start_date,
-      finish_date: req.body.finish_date,
-      client: req.body.client,
-      active: req.body.active,
-      employees: req.body.employees,
-      admin_id: req.body.admin_id,
-    });
-    await project.save();
+    const project = req.body;
+    const newProject = await Project.create(project);
 
     return res.status(201).json({
 
       message: 'Project created',
-      data: project,
+      data: newProject,
       error: false,
     });
   } catch (error) {
-    return res.json({
-
-      message: 'An error has occured',
-      error: error.details[0].message,
+    return res.status(400).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      error: true,
     });
   }
 };
