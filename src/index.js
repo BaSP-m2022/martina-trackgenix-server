@@ -1,13 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
-import projectsRoutes from './controllers/projects';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('/projects', projectsRoutes);
 app.use(router);
 
 mongoose.connect(
