@@ -1,14 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes';
-import employeesRoutes from './controllers/employees';
 import projectsRoutes from './controllers/projects';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('/employees', employeesRoutes);
 app.use('/projects', projectsRoutes);
 app.use(router);
 
