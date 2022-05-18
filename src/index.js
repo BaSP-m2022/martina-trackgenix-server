@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import router from './routes';
 import employeesRoutes from './controllers/employees';
 import projectsRoutes from './controllers/projects';
-import superAdminRoutes from './controllers/super-admins';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,17 +10,16 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/employees', employeesRoutes);
 app.use('/projects', projectsRoutes);
-app.use('/super-admins', superAdminRoutes);
 app.use(router);
 
 mongoose.connect(
   'mongodb+srv://martinamoser:martinaBaSP@basp-database.bhpgy.mongodb.net/BaSP-database?retryWrites=true&w=majority',
   (error) => {
     if (error) {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(':círculo_rojo: Database error: ', error);
     } else {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(':círculo_verde_grande: Database connected');
     }
   },
