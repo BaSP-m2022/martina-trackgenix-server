@@ -20,6 +20,7 @@ const validateCreation = (req, res, next) => {
   const validate = projectValidation.validate(req.body);
   if (validate.error) {
     return res.status(400).json({
+
       msg: 'An error occurred during the validation of the request.',
       error: validate.error.details[0].message,
     });
