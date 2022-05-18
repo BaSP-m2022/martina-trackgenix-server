@@ -1,21 +1,19 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const projectsSchema = new mongoose.Schema({
-  id: String,
+const { Schema } = mongoose;
 
-  project_name: String,
-
-  start_date: Date,
-
-  finish_date: Date,
-
-  client: String,
-
-  active: Boolean,
-
-  employees: Object,
-
-  admin_id: Number,
+const project = new Schema({
+  project_name: { type: String, required: true },
+  start_date: { type: Date, required: true },
+  finish_date: { type: Date, required: false },
+  client: { type: String, required: true },
+  active: { type: Boolean, required: true },
+  employees: [{
+    id: { type: Number, required: true },
+    role: { type: String, required: true, enum: ['DEV', 'PM', 'QA', 'TL'] },
+    rate: { type: String, required: true },
+  }],
+  admin_id: { type: Number, required: true },
 });
 
-module.exports = mongoose.model('Projects', projectsSchema);
+export default mongoose.model('Project', project);

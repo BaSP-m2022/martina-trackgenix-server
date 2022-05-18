@@ -6,6 +6,9 @@ const router = express.Router();
 
 router
   .put('/:id', ProjectsValidation, ProjectsController.upDateProject)
-  .delete('/:id', ProjectsController.deleteProject);
+  .delete('/:id', ProjectsController.deleteProject)
+  .get('/', ProjectsController.getAllProjects)
+  .post('/', ProjectsValidation, ProjectsController.createProject)
+  .get('/:id', ProjectsController.getProjectById);
 
 export default router;
