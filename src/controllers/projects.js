@@ -1,10 +1,9 @@
-import Projects from '../models/Projects';
+import Project from '../models/Projects';
 
 // EDIT PROJECT BY ID
-// eslint-disable-next-line consistent-return
 const upDateProject = async (req, res) => {
   try {
-    const result = await Projects.findByIdAndUpdate(
+    const result = await Project.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
@@ -37,34 +36,14 @@ const upDateProject = async (req, res) => {
   }
 };
 
-/* if (!result) {
-      return res.status(404).json({
-        message: 'Project not found',
-        data: req.params.id,
-        error: true,
-      });
-    }
-    return res.status(201).json({
-      message: 'Project edited',
-      data: result,
-      error: false,
-    });
-  } catch (error) {
-    return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error.message,
-      error: true,
-    });
-  }
-}; */
-
 // DELETE PROYECT
 const deleteProject = async (req, res) => {
   try {
-    const deltProject = await Projects.findByIdAndDelete(req.params.id);
+    const deltProject = await Project.findByIdAndDelete(req.params.id);
     if (!deltProject) {
       return res.status(404).json({
         message: 'Project not found',
+        data: undefined,
         error: true,
       });
     }
@@ -72,6 +51,7 @@ const deleteProject = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: 'An error ocurred',
+      data: error,
       error: true,
     });
   }
