@@ -1,25 +1,50 @@
 {
   "info": {
     "_postman_id": "85e3d084-a29f-4e46-9a6d-e8363f96df4f",
-    "name": "MyCollection",
+    "name": "postman-collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "New Request",
-      "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
+      "name": "super-admin",
+      "item": []
     },
     {
-      "name": "Add a project",
-      "request": {
-        "method": "POST",
-        "header": []
-      },
-      "response": []
+      "name": "admin",
+      "item": []
+    },
+    {
+      "name": "employees",
+      "item": []
+    },
+    {
+      "name": "tasks",
+      "item": []
+    },
+    {
+      "name": "time-sheet",
+      "item": []
+    },
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Add a project",
+          "request": {
+            "method": "POST",
+            "header": []
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
