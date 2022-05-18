@@ -40,7 +40,7 @@ const getTimeSheetById = async (req, res) => {
   }
 };
 
-const getTimeSheetProject = async (req, res) => {
+const getTimeSheetByProject = async (req, res) => {
   try {
     const timeSheetByProject = await TimeSheet.findOne({
       project_id: req.params.project_id,
@@ -66,7 +66,7 @@ const getTimeSheetProject = async (req, res) => {
   }
 };
 
-const getTimeSheetDate = async (req, res) => {
+const getTimeSheetByDate = async (req, res) => {
   try {
     const timeSheetByDate = await TimeSheet.findOne({
       timesheetDate: new Date(req.params.timesheetDate),
@@ -165,6 +165,6 @@ export default {
   updateTimeSheet,
   deleteTimeSheet,
   getTimeSheetById,
-  getTimeSheetProject,
-  getTimeSheetDate,
+  getTimeSheetByProject,
+  getTimeSheetByDate,
 };

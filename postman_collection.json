@@ -181,7 +181,153 @@
 		},
 		{
 			"name": "tasks",
-			"item": []
+			"item": [
+                {
+                "name": "Get all tasks",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/tasks/",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "tasks",
+                            ""
+                        ]
+                    }
+                },
+                "response": []
+            },
+            {
+                "name": "Get task by ID",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/tasks/62828172880b00918e52add3",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "tasks",
+                            "62828172880b00918e52add3"
+                        ]
+                    }
+                },
+                "response": []
+            },
+            {
+                "name": "Create new task",
+                "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\r\n    \"description\": \"daphnis duis at velit eu est congees\" \r\n}\r\n",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/tasks/",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "tasks",
+                            ""
+                        ]
+                    }
+                },
+                "response": []
+            },
+            {
+                "name": "Delete task by ID",
+                "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/tasks/628280bf880b00918e52adcf",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "tasks",
+                            "628280bf880b00918e52adcf"
+                        ]
+                    }
+                },
+                "response": []
+            },
+            {
+                "name": "Update task",
+                "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\r\n    \"description\": \"aguante led zeppelin\"\r\n}",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/tasks/62828143880b00918e52add1",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "tasks",
+                            "62828143880b00918e52add1"
+                        ]
+                    }
+                },
+                "response": []
+            }]
 		},
 		{
 			"name": "time-sheet",

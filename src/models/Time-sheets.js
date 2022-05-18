@@ -25,4 +25,4 @@ const timeSheetSchema = new Schema({
   },
 });
 
-export default mongoose.model('TimesSheet', timeSheetSchema);
+export default mongoose.model('TimeSheet', timeSheetSchema);
