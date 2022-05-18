@@ -2,11 +2,11 @@ import Employee from '../models/Employees';
 
 const getAllEmployees = async (req, res) => {
   try {
-    const AllEmployees = await Employee.find({});
+    const allEmployees = await Employee.find({});
 
     return res.status(200).json({
       msg: 'All employees successfully shown',
-      data: AllEmployees,
+      data: allEmployees,
       error: false,
     });
   } catch (error) {

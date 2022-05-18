@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const validateCreation = (req, res, next) => {
-  const employeeTestSchema = Joi.object({
+  const employeeSchema = Joi.object({
     first_name: Joi.string().min(3).max(30).required(),
     last_name: Joi.string().min(3).max(30).required(),
     phone: Joi.string().min(7).max(7).required(),
@@ -10,7 +10,7 @@ const validateCreation = (req, res, next) => {
     active: Joi.boolean().required(),
   });
 
-  const checkValidation = employeeTestSchema.validate(req.body);
+  const checkValidation = employeeSchema.validate(req.body);
   if (checkValidation.error) {
     return res.status(400).json({
       msg: 'Missing Parameter',
