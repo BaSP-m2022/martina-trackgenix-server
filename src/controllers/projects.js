@@ -1,7 +1,7 @@
 import Project from '../models/Projects';
 
 // EDIT PROJECT BY ID
-const upDateProject = async (req, res) => {
+const updateProject = async (req, res) => {
   try {
     const result = await Project.findByIdAndUpdate(
       req.params.id,
@@ -121,6 +121,6 @@ export default {
   getAllProjects,
   createProject,
   getProjectById,
-  upDateProject,
+  updateProject,
   deleteProject,
 };
