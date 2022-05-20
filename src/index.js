@@ -7,12 +7,12 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const MONGO_DB = process.env.DATABASE_URL;
+const URL = process.env.DATABASE_URL;
 
 app.use(express.json());
 app.use(router);
 
-mongoose.connect(MONGO_DB, (error) => {
+mongoose.connect(URL, (error) => {
   if (error) {
     // eslint-disable-next-line no-console
     console.log(':círculo_rojo: Database error: ', error);
