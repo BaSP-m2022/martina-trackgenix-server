@@ -4,7 +4,7 @@
   "description": "app_name is a system that provides Human Resources services to companies.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --forceExit",
     "start": "nodemon --exec npm run babel-node -- src/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -25,10 +25,14 @@
     "node": "14.x"
   },
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.18.0",
+    "jest": "^28.1.0",
     "joi": "^17.6.0",
+    "mongodb-memory-server": "^8.5.2",
     "mongoose": "^6.3.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
