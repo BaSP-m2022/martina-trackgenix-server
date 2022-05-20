@@ -1,3 +1,6 @@
+import Projects from '../models/Projects';
+import Employees from '../models/Employees';
+import Tasks from '../models/Tasks';
 import TimeSheet from '../models/Time-sheets';
 
 const getAllTimeSheets = async (req, res) => {
@@ -96,7 +99,7 @@ const createNewTimeSheet = async (req, res) => {
   try {
     const timeSheetData = req.body;
 
-    const newTimeSheet = await TimeSheet.create(timeSheetData);
+    const newTimeSheet = await TimeSheet.create(timeSheetData).populate(Projects, Employees, Tasks);
     return res.status(201).json({
       message: 'Time sheet created',
       data: newTimeSheet,

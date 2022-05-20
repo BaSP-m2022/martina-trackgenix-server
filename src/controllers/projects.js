@@ -1,3 +1,4 @@
+import Employees from '../models/Employees';
 import Project from '../models/Projects';
 
 // EDIT PROJECT BY ID
@@ -101,7 +102,7 @@ const getProjectById = async (req, res) => {
 const createProject = async (req, res) => {
   try {
     const project = req.body;
-    const newProject = await Project.create(project);
+    const newProject = await Project.create(project).populate(Employees);
 
     return res.status(201).json({
       message: 'Project created',
