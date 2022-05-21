@@ -1,4 +1,3 @@
-import Employees from '../models/Employees';
 import Project from '../models/Projects';
 
 // EDIT PROJECT BY ID
@@ -60,7 +59,7 @@ const deleteProject = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
   try {
-    const allProjects = await Project.find({});
+    const allProjects = await Project.find({}).populate('employees');
     return res.status(200).json({
       message: 'Project',
       data: allProjects,
@@ -77,7 +76,7 @@ const getAllProjects = async (req, res) => {
 
 const getProjectById = async (req, res) => {
   try {
-    const ProjectById = await Project.findOne(req.param.id);
+    const ProjectById = await Project.findOne(req.param.id).populate('employees');
     if (!getProjectById) {
       return res.status(404).json({
         message: 'Project not found',
@@ -102,7 +101,7 @@ const getProjectById = async (req, res) => {
 const createProject = async (req, res) => {
   try {
     const project = req.body;
-    const newProject = await Project.create(project).populate(Employees);
+    const newProject = await Project.create(project);
 
     return res.status(201).json({
       message: 'Project created',

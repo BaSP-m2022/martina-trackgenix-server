@@ -12,7 +12,7 @@ const project = new Schema({
     id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'employees',
+      ref: 'employee',
     },
     role: {
       type: String,

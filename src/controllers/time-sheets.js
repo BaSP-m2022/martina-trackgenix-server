@@ -1,11 +1,8 @@
-import Projects from '../models/Projects';
-import Employees from '../models/Employees';
-import Tasks from '../models/Tasks';
 import TimeSheet from '../models/Time-sheets';
 
 const getAllTimeSheets = async (req, res) => {
   try {
-    const allTimeSheets = await TimeSheet.find({});
+    const allTimeSheets = await TimeSheet.find({}).populate('employees projects tasks');
 
     return res.status(200).json({
       message: 'Here is all the list',
@@ -23,7 +20,7 @@ const getAllTimeSheets = async (req, res) => {
 
 const getTimeSheetById = async (req, res) => {
   try {
-    const timeSheetById = await TimeSheet.findById(req.params.id);
+    const timeSheetById = await TimeSheet.findById(req.params.id).populate('employees projects tasks');
     if (!timeSheetById) {
       return res.status(404).json({
         message: 'Time sheet id not found',
@@ -47,7 +44,7 @@ const getTimeSheetByProject = async (req, res) => {
   try {
     const timeSheetByProject = await TimeSheet.findOne({
       project_id: req.params.project_id,
-    });
+    }).populate('projects');
     if (!timeSheetByProject) {
       return res.status(404).json({
         message: 'Time sheet not found',
@@ -99,7 +96,7 @@ const createNewTimeSheet = async (req, res) => {
   try {
     const timeSheetData = req.body;
 
-    const newTimeSheet = await TimeSheet.create(timeSheetData).populate(Projects, Employees, Tasks);
+    const newTimeSheet = await TimeSheet.create(timeSheetData);
     return res.status(201).json({
       message: 'Time sheet created',
       data: newTimeSheet,
