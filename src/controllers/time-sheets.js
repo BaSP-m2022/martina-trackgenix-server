@@ -2,7 +2,19 @@ import TimeSheet from '../models/Time-sheets';
 
 const getAllTimeSheets = async (req, res) => {
   try {
-    const allTimeSheets = await TimeSheet.find({}).populate('employees projects tasks');
+    const allTimeSheets = await TimeSheet.find({})
+      .populate({
+        path: 'employees',
+        select: 'employee_id',
+      })
+      .populate({
+        path: 'projects',
+        select: 'project_id',
+      })
+      .populate({
+        path: 'tasks',
+        select: 'task_id',
+      });
 
     return res.status(200).json({
       message: 'Here is all the list',
