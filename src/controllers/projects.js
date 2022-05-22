@@ -61,7 +61,7 @@ const getAllProjects = async (req, res) => {
   try {
     const allProjects = await Project.find({});
     return res.status(200).json({
-      message: 'Project',
+      message: 'Project found',
       data: allProjects,
       error: false,
     });
