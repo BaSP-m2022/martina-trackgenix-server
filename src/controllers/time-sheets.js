@@ -6,14 +6,17 @@ const getAllTimeSheets = async (req, res) => {
       .populate({
         path: 'employees',
         select: 'employee_id',
+        populate: { path: 'employee', model: 'Employees', select: 'id' },
       })
       .populate({
         path: 'projects',
         select: 'project_id',
+        populate: { path: 'project', model: 'Projects', select: 'id' },
       })
       .populate({
         path: 'tasks',
         select: 'task_id',
+        populate: { path: 'task', model: 'Tasks', select: 'id' },
       });
 
     return res.status(200).json({
