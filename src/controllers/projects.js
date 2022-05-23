@@ -17,13 +17,13 @@ const updateProject = async (req, res) => {
     }
     if (!result) {
       return res.status(404).json({
-        message: 'Admin has not been found',
+        message: 'Project has not been found',
         data: `id: ${req.params.id}`,
         error: true,
       });
     }
     return res.status(200).json({
-      message: 'Admin has been successfully updated',
+      message: 'Project has been successfully updated',
       data: result,
       error: false,
     });
