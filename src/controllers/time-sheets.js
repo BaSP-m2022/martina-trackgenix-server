@@ -3,20 +3,24 @@ import TimeSheet from '../models/Time-sheets';
 const getAllTimeSheets = async (req, res) => {
   try {
     const allTimeSheets = await TimeSheet.find({})
-      .populate({
-        path: 'employees',
-        select: 'employee_id',
-        populate: { path: 'employee', model: 'Employees', select: 'id' },
+      .populate('employees', {
+        first_name: 1,
+        last_name: 1,
+        phone: 1,
+        email: 1,
+        password: 1,
+        active: 1,
       })
-      .populate({
-        path: 'projects',
-        select: 'project_id',
-        populate: { path: 'project', model: 'Projects', select: 'id' },
+      .populate('projects', {
+        project_name: 1,
+        start_date: 1,
+        finish_date: 1,
+        client: 1,
+        active: 1,
+        employees: 1,
       })
-      .populate({
-        path: 'tasks',
-        select: 'task_id',
-        populate: { path: 'task', model: 'Tasks', select: 'id' },
+      .populate('tasks', {
+        description: 1,
       });
 
     return res.status(200).json({
