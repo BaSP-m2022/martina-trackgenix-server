@@ -2,9 +2,9 @@ import Joi from 'joi';
 
 const validateTimesheet = (req, res, next) => {
   const newTimeSheetSchema = Joi.object({
-    employee_id: Joi.string().min(1).max(25).required(),
-    project_id: Joi.string().min(1).max(25).required(),
-    task_id: Joi.string().min(1).max(25).required(),
+    employee: Joi.string().min(1).max(25).required(),
+    project: Joi.string().min(1).max(25).required(),
+    task: Joi.string().min(1).max(25).required(),
     hs_worked: Joi.number().required(),
     timesheetDate: Joi.date().required(),
   });

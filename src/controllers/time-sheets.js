@@ -3,25 +3,12 @@ import TimeSheet from '../models/Time-sheets';
 const getAllTimeSheets = async (req, res) => {
   try {
     const allTimeSheets = await TimeSheet.find({})
-      .populate('employees', {
-        first_name: 1,
-        last_name: 1,
-        phone: 1,
-        email: 1,
-        password: 1,
-        active: 1,
-      })
-      .populate('projects', {
-        project_name: 1,
-        start_date: 1,
-        finish_date: 1,
-        client: 1,
-        active: 1,
-        employees: 1,
-      })
-      .populate('tasks', {
-        description: 1,
-      });
+      .populate('employee', [
+        'first_name',
+        'last_name',
+      ])
+      .populate('project', 'project_name')
+      .populate('task', 'description');
 
     return res.status(200).json({
       message: 'Here is all the list',
@@ -39,7 +26,13 @@ const getAllTimeSheets = async (req, res) => {
 
 const getTimeSheetById = async (req, res) => {
   try {
-    const timeSheetById = await TimeSheet.findById(req.params.id).populate('employees projects tasks');
+    const timeSheetById = await TimeSheet.findById(req.params.id)
+      .populate('employees', [
+        'first_name',
+        'last_name',
+      ])
+      .populate('project', 'project_name')
+      .populate('task', 'description');
     if (!timeSheetById) {
       return res.status(404).json({
         message: 'Time sheet id not found',
