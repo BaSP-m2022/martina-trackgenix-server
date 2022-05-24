@@ -22,7 +22,7 @@ const getTaskById = async (req, res) => {
     if (req.params.id) {
       const task = await Task.findById(req.params.id);
       return res.status(200).json({
-        message: 'task found',
+        message: 'Task found',
         data: task,
         error: false,
       });
@@ -50,11 +50,7 @@ const updateTask = async (req, res) => {
         error: true,
       });
     }
-    const taskData = await Task.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true },
-    );
+    const taskData = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!taskData) {
       return res.status(404).json({
         message: 'The task has not been found',
