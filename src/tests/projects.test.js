@@ -37,6 +37,7 @@ const mockRequestBodyIncomplete = {
 };
 
 let projectId;
+
 describe('Test GET /projects', () => {
   test('Response should return a 200 status', async () => {
     const response = await request(app).get('/projects').send();
