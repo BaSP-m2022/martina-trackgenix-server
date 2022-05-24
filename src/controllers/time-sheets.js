@@ -9,7 +9,6 @@ const getAllTimeSheets = async (req, res) => {
       ])
       .populate('project', 'project_name')
       .populate('task', 'description');
-
     return res.status(200).json({
       message: 'Here is all the list',
       data: allTimeSheets,
