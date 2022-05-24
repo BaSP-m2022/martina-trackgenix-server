@@ -80,7 +80,7 @@ describe('Test POST /projects', () => {
   });
 });
 describe('Test PUT /projects', () => {
-  test('Project should be updated, error should be false and message equal to Project has been successfully updated', async () => {
+  test('Response should return a 200 status, error false, and message has been successfully updated', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send(mockRequestBody);
 
     expect(response.status).toBe(200);
@@ -88,18 +88,18 @@ describe('Test PUT /projects', () => {
     expect(response.body.message).toBe('Project has been successfully updated');
   });
 
-  test('should not update an employee when body is empty', async () => {
+  test('should NOT update a Project when body is empty', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send();
     expect(response.status).toBe(400);
   });
 
-  test('project should not be updated when a field is missing', async () => {
+  test('Response should return a 400 status, error true if at least one required field is empty', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send(mockRequestBodyIncomplete);
 
     expect(response.status).toBe(400);
   });
 
-  test('Response status should be 404 when project id is wrong', async () => {
+  test('Response should return a 404 status, error true, and message Project not found if the ID is inexistent', async () => {
     const response = await request(app).put('/projects/628578f0b38934591452aa2e').send({
       project_name: 'The Little pepe',
       start_date: '1943-01-06T03:00:00.000Z',
@@ -118,6 +118,7 @@ describe('Test PUT /projects', () => {
 
     expect(response.status).toBe(404);
     expect(response.body.message).toBe('Project has not been found');
+    expect(response.error).toBeTruthy();
   });
 });
 
