@@ -119,6 +119,17 @@ describe('PUT /:id', () => {
     expect(response.status).toBe(400);
   });
 
+  test('password field should be valid', async () => {
+    const response = await request(app).post('/super-admins').send({
+      firstName: 'Lautaro',
+      lastName: 'Acosta',
+      email: 'lautaroeacosta23@gmail.com',
+      password: 12345678933,
+      active: true,
+    });
+    expect(response.status).toBe(400);
+  });
+
   test('email field should be valid', async () => {
     const response = await request(app).post('/super-admins').send({
       firstName: 'Lautaro',
