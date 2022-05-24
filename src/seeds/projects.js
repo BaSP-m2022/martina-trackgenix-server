@@ -11,22 +11,8 @@ export default [{
     {
       role: 'DEV',
       rate: '10',
-      _id: '6283baefcd44998f831522ab',
-    },
-    {
-      role: 'QA',
-      rate: '50',
-      _id: '6283baefcd44998f831522ac',
-    },
-    {
-      role: 'TL',
-      rate: '60',
-      _id: '6283baefcd44998f831522ad',
-    },
-    {
-      role: 'DEV',
-      rate: '85',
-      _id: '6283baefcd44998f831522ae',
+      _id: 12,
     },
   ],
+  admin_id: '43',
 }];

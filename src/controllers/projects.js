@@ -36,7 +36,7 @@ const updateProject = async (req, res) => {
   }
 };
 
-// DELETE PROYECT
+// DELETE PROJECT
 const deleteProject = async (req, res) => {
   try {
     const deltProject = await Project.findByIdAndDelete(req.params.id);

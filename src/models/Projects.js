@@ -13,7 +13,7 @@ const project = new Schema({
     role: { type: String, required: true, enum: ['DEV', 'PM', 'QA', 'TL'] },
     rate: { type: String, required: true },
   }],
-  admin_id: { type: Number, required: true },
+  admin_id: { type: String, required: true },
 });
 
 export default mongoose.model('Project', project);
