@@ -6,6 +6,36 @@ import app from '../app';
 beforeAll(async () => {
   await Projects.collection.insertMany(projectSeed);
 });
+
+const mockRequestBody = {
+  project_name: 'The Little Prince',
+  start_date: '1943-01-06T03:00:00.000Z',
+  finish_date: '1943-04-06T03:00:00.000Z',
+  client: 'Antoine de Saint-Exupéry',
+  active: true,
+  employees: [
+    {
+      role: 'DEV',
+      rate: '10',
+      id: '628578f0b38934591452aa2e',
+    },
+  ],
+};
+
+const mockRequestBodyIncomplete = {
+  start_date: '1943-01-06T03:00:00.000Z',
+  finish_date: '1943-04-06T03:00:00.000Z',
+  client: 'Antoine de Saint-Exupéry',
+  active: false,
+  employees: [
+    {
+      role: 'DEV',
+      rate: '10',
+      id: '628578f0b38934591452aa2e',
+    },
+  ],
+};
+
 let projectId;
 describe('Test GET /projects', () => {
   test('Response should return a 200 status', async () => {
@@ -50,21 +80,7 @@ describe('Test POST /projects', () => {
 });
 describe('Test PUT /projects', () => {
   test('Project should be updated, error should be false and message equal to Project has been successfully updated', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
+    const response = await request(app).put(`/projects/${projectId}`).send(mockRequestBody);
 
     expect(response.status).toBe(200);
     expect(response.error).toBeFalsy();
@@ -77,19 +93,7 @@ describe('Test PUT /projects', () => {
   });
 
   test('project should not be updated when a field is missing', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
+    const response = await request(app).put(`/projects/${projectId}`).send(mockRequestBodyIncomplete);
 
     expect(response.status).toBe(400);
   });
