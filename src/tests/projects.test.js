@@ -50,7 +50,7 @@ describe('Test POST /projects', () => {
 });
 
 describe('Test PUT /projects', () => {
-  test('project should be updated', async () => {
+  test('Project should be updated, error should be false and message equal to Project has been successfully updated', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send({
       project_name: 'The Little pepe',
       start_date: '1943-01-06T03:00:00.000Z',
@@ -67,168 +67,20 @@ describe('Test PUT /projects', () => {
     });
 
     expect(response.status).toBe(200);
+    expect(response.error).toBeFalsy();
+    expect(response.body.message).toBe('Project has been successfully updated');
   });
 
-  test('should not update an employee', async () => {
+  test('should not update an employee when body is empty', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send();
     expect(response.status).toBe(400);
   });
 
-  test('response should return error false', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
-
-    expect(response.error).toBeFalsy();
-  });
-
-  test('Response should return message Project has been successfully updated', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
-
-    expect(response.body.message).toBe('Project has been successfully updated');
-  });
-
-  test('project name should be required', async () => {
+  test('project should not be updated when a field is missing', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send({
       start_date: '1943-01-06T03:00:00.000Z',
       finish_date: '1943-04-06T03:00:00.000Z',
       client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
-
-    expect(response.status).toBe(400);
-  });
-
-  test('A valid start date should be required', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: 'shbdnfmn',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
-
-    expect(response.status).toBe(400);
-  });
-
-  test('Employee id should be required', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-        },
-      ],
-    });
-
-    expect(response.status).toBe(400);
-  });
-
-  test('Employee rate should be required', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
-
-    expect(response.status).toBe(400);
-  });
-
-  test('Active should be a boolean', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: 'pepito',
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
-
-    expect(response.status).toBe(400);
-  });
-
-  test('Project name should not be longer tha 50 characters', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'gjbaofvbsubksnbipksdnbvoidbn iokdmnbi prnbk mntntmnlgmnlglmmy,',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: '628578f0b38934591452aa2e',
-        },
-      ],
-    });
-
-    expect(response.status).toBe(400);
-  });
-
-  test('Client should not be longer tha 50 characters', async () => {
-    const response = await request(app).put(`/projects/${projectId}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry pjkvbjbviownsbinenidbryknfbiopeabiohd{obhitn',
       active: false,
       employees: [
         {
