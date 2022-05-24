@@ -1,10 +1,10 @@
 import request from 'supertest';
-import Projects from '../models/Projects';
+import Project from '../models/Projects';
 import projectSeed from '../seeds/projects';
 import app from '../app';
 
 beforeAll(async () => {
-  await Projects.collection.insertMany(projectSeed);
+  await Project.collection.insertMany(projectSeed);
 });
 
 const mockRequestBody = {
