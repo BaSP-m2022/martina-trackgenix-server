@@ -3,17 +3,20 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const timeSheetSchema = new Schema({
-  employee_id: {
-    type: Number,
+  employee: {
+    type: Schema.Types.ObjectId,
     required: true,
+    ref: 'Employee',
   },
-  project_id: {
-    type: Number,
+  project: {
+    type: Schema.Types.ObjectId,
     required: true,
+    ref: 'Project',
   },
-  task_description: {
-    type: String,
+  task: {
+    type: Schema.Types.ObjectId,
     required: true,
+    ref: 'Task',
   },
   hs_worked: {
     type: Number,

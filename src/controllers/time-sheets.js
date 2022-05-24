@@ -33,7 +33,7 @@ const getTimeSheetById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      msg: 'An error ocurred',
+      message: 'An error ocurred',
       data: error,
       error: true,
     });
