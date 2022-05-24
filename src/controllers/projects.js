@@ -59,7 +59,7 @@ const deleteProject = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
   try {
-    const allProjects = await Project.find({});
+    const allProjects = await Project.find({}).populate('employees');
     return res.status(200).json({
       message: 'Project',
       data: allProjects,
@@ -76,7 +76,7 @@ const getAllProjects = async (req, res) => {
 
 const getProjectById = async (req, res) => {
   try {
-    const ProjectById = await Project.findOne(req.param.id);
+    const ProjectById = await Project.findOne(req.param.id).populate('employees');
     if (!getProjectById) {
       return res.status(404).json({
         message: 'Project not found',
