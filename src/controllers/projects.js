@@ -1,6 +1,71 @@
 import Project from '../models/Projects';
 
-// EDIT PROJECT BY ID
+const createProject = async (req, res) => {
+  try {
+    const project = req.body;
+    const newProject = await Project.create(project);
+    return res.status(201).json({
+      message: 'Project created',
+      data: newProject,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error has ocurred',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const getAllProjects = async (req, res) => {
+  try {
+    const allProjects = await Project.find({}).populate('employees');
+    return res.status(200).json({
+      message: 'Project found',
+      data: allProjects,
+      error: false,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: 'An error has occurred',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const getProjectById = async (req, res) => {
+  try {
+    if (req.params.id) {
+      const project = await Project.findById(req.params.id).populate('employees');
+      if (!project) {
+        return res.status(404).json({
+          message: 'Project not found',
+          data: undefined,
+          error: true,
+        });
+      }
+      return res.status(200).json({
+        message: 'Project found',
+        data: project,
+        error: false,
+      });
+    }
+    return res.status(400).json({
+      message: 'Invalid params',
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 const updateProject = async (req, res) => {
   try {
     const result = await Project.findByIdAndUpdate(
@@ -17,13 +82,13 @@ const updateProject = async (req, res) => {
     }
     if (!result) {
       return res.status(404).json({
-        message: 'Admin has not been found',
+        message: 'Project has not been found',
         data: `id: ${req.params.id}`,
         error: true,
       });
     }
     return res.status(200).json({
-      message: 'Admin has been successfully updated',
+      message: 'Project has been successfully updated',
       data: result,
       error: false,
     });
@@ -36,11 +101,10 @@ const updateProject = async (req, res) => {
   }
 };
 
-// DELETE PROYECT
 const deleteProject = async (req, res) => {
   try {
-    const deltProject = await Project.findByIdAndDelete(req.params.id);
-    if (!deltProject) {
+    const projectId = await Project.findByIdAndDelete(req.params.id);
+    if (!projectId) {
       return res.status(404).json({
         message: 'Project not found',
         data: undefined,
@@ -57,69 +121,9 @@ const deleteProject = async (req, res) => {
   }
 };
 
-const getAllProjects = async (req, res) => {
-  try {
-    const allProjects = await Project.find({}).populate('employees');
-    return res.status(200).json({
-      message: 'Project',
-      data: allProjects,
-      error: false,
-    });
-  } catch (err) {
-    return res.status(400).json({
-      message: 'An error has occurred',
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
-const getProjectById = async (req, res) => {
-  try {
-    const ProjectById = await Project.findOne(req.param.id).populate('employees');
-    if (!getProjectById) {
-      return res.status(404).json({
-        message: 'Project not found',
-        data: undefined,
-        error: true,
-      });
-    }
-    return res.status(200).json({
-      message: 'Project found',
-      data: ProjectById,
-      error: false,
-    });
-  } catch (err) {
-    return res.status(400).json({
-      message: 'An error has ocurred',
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
-const createProject = async (req, res) => {
-  try {
-    const project = req.body;
-    const newProject = await Project.create(project);
-
-    return res.status(201).json({
-      message: 'Project created',
-      data: newProject,
-      error: false,
-    });
-  } catch (error) {
-    return res.status(400).json({
-      message: 'An error has ocurred',
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
 export default {
-  getAllProjects,
   createProject,
+  getAllProjects,
   getProjectById,
   updateProject,
   deleteProject,
