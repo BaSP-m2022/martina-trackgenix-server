@@ -51,7 +51,7 @@ describe('POST', () => {
   });
 });
 
-describe('GET', () => {
+describe('GET and GET BY ID /:id', () => {
   test('response should return a 200 status', async () => {
     const response = await request(app).get('/super-admins').send();
     expect(response.status).toBe(200);
@@ -66,9 +66,7 @@ describe('GET', () => {
     const response = await request(app).get('/super-admins').send();
     expect(response.body.data.length).toBeGreaterThan(0);
   });
-});
 
-describe('GET BY ID /:id', () => {
   test('response should return a 200 status', async () => {
     const response = await request(app).get(`/super-admins/${superAdmId}`).send();
     expect(response.status).toBe(200);
