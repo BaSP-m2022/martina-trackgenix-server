@@ -27,7 +27,7 @@ const getAllTimeSheets = async (req, res) => {
 const getTimeSheetById = async (req, res) => {
   try {
     const timeSheetById = await TimeSheet.findById(req.params.id)
-      .populate('employees', [
+      .populate('employee', [
         'first_name',
         'last_name',
       ])
@@ -56,7 +56,7 @@ const getTimeSheetByProject = async (req, res) => {
   try {
     const timeSheetByProject = await TimeSheet.findOne({
       project_id: req.params.project_id,
-    }).populate('projects');
+    }).populate('project', 'project_name');
     if (!timeSheetByProject) {
       return res.status(404).json({
         message: 'Time sheet not found',
