@@ -138,7 +138,7 @@ describe('PUT/timeSheet/:id', () => {
   });
 
   test('ERROR status: 400 (EMPTY BODY)', async () => {
-    const response = await request(app).put('/time-sheet').send();
+    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
@@ -168,17 +168,14 @@ describe('PUT/timeSheet/:id', () => {
 });
 
 describe('DELETE/timeSheet/:id', () => {
-  test('should delete', async () => {
+  test('Should delete', async () => {
     const response = await request(app).delete(`/time-sheet/${timeSheetId}`).send();
-    expect(response.statusCode).toBe(200);
-    expect(response.body.error).toBe(false);
-    expect(response.body.data).toEqual(expect.anything());
+    expect(response.statusCode).toBe(204);
   });
   test('It should return status 404 when id is invalid', async () => {
     const response = await request(app).delete('/time-sheet/628b9ce3b619836ba1d215e4').send();
     expect(response.statusCode).toBe(404);
-    expect(response.body.message).toBe('Time-sheet was not found');
+    expect(response.body.message).toBe('Timesheet not found');
     expect(response.body.error).toBe(true);
-    expect(response.body.data).toBe(undefined);
   });
 });
