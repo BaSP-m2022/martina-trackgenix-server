@@ -9,32 +9,24 @@ beforeAll(async () => {
 
 let superAdmId;
 
+const mockReqBody = {
+  firstName: 'Lautaro',
+  lastName: 'Acosta',
+  email: 'lautaroeacosta23@gmail.com',
+  password: 'test12345',
+  active: true,
+};
+
 describe('POST', () => {
   test('should create an super admin', async () => {
-    const response = await request(app).post('/super-admins').send({
-      firstName: 'Lautaro',
-      lastName: 'Acosta',
-      email: 'lautaroeacosta23@gmail.com',
-      password: 'test12345',
-      active: true,
-    });
+    const response = await request(app).post('/super-admins').send(mockReqBody);
     expect(response.status).toBe(201);
+    expect(response.body.message).toEqual('super Admin created');
     // eslint-disable-next-line no-underscore-dangle
     superAdmId = response.body.data._id;
   });
 
-  test('message should indicate the creation of the super admin', async () => {
-    const response = await request(app).post('/super-admins').send({
-      firstName: 'Lautaro',
-      lastName: 'Acosta',
-      email: 'lautaroeacosta23@gmail.com',
-      password: 'test12345',
-      active: true,
-    });
-    expect(response.body.message).toEqual('super Admin created');
-  });
-
-  test('should not create an super admin when one field was not created', async () => {
+  test('should not create an super admin when if one required field is empty', async () => {
     const response = await request(app).post('/super-admins').send({
       firstName: '',
       lastName: 'Acosta',
@@ -96,13 +88,7 @@ describe('PUT /:id', () => {
   });
 
   test('message should indicate the update of the super admin', async () => {
-    const response = await request(app).put(`/super-admins/${superAdmId}`).send({
-      firstName: 'Lautaro',
-      lastName: 'Acosta',
-      email: 'lautaroeacosta23@gmail.com',
-      password: 'test12345',
-      active: true,
-    });
+    const response = await request(app).put(`/super-admins/${superAdmId}`).send(mockReqBody);
     expect(response.body.message).toBe('Super Admin Updated');
   });
 
@@ -145,13 +131,7 @@ describe('PUT /:id', () => {
   });
 
   test('response status 404 when super admin id is wrong', async () => {
-    const response = await request(app).post('/super-admins/558578f0b38934591452aa2e').send({
-      firstName: 'Lautaro',
-      lastName: 'Acosta',
-      email: 'lautaroeacosta23@gmail.com',
-      password: 'test12345',
-      active: true,
-    });
+    const response = await request(app).post('/super-admins/558578f0b38934591452aa2e').send(mockReqBody);
     expect(response.status).toBe(404);
   });
 });
