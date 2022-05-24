@@ -37,22 +37,29 @@ const getAllProjects = async (req, res) => {
 
 const getProjectById = async (req, res) => {
   try {
-    const ProjectById = await Project.findOne(req.param.id);
-    if (!getProjectById) {
-      return res.status(404).json({
-        message: 'Project not found',
-        data: undefined,
-        error: true,
+    if (req.params.id) {
+      const project = await Project.findById(req.params.id);
+      if (!project) {
+        return res.status(404).json({
+          message: 'Project not found',
+          data: undefined,
+          error: true,
+        });
+      }
+      return res.status(200).json({
+        message: 'Project found',
+        data: project,
+        error: false,
       });
     }
-    return res.status(200).json({
-      message: 'Project found',
-      data: ProjectById,
-      error: false,
-    });
-  } catch (err) {
     return res.status(400).json({
-      message: 'An error has ocurred',
+      message: 'Invalid params',
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error,
       data: undefined,
       error: true,
     });
