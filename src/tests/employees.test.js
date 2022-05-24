@@ -9,16 +9,34 @@ beforeAll(async () => {
 
 let employeeId;
 
+const employeeComplete = {
+  first_name: 'Laura',
+  last_name: 'Brussa',
+  phone: '1234567',
+  email: 'laura@brussa.com',
+  password: 'testeo123',
+  active: true,
+};
+
+const employeeIncomplete = {
+  first_name: 'Laura',
+  email: 'laura@brussa.com',
+  password: 'testeo123',
+  active: true,
+};
+
+const employeeUpdate = {
+  first_name: 'Laura',
+  last_name: 'Fernandez',
+  phone: '1234567',
+  email: 'laura@brussa.com',
+  password: 'testeo123',
+  active: true,
+};
+
 describe('POST TEST', () => {
   test('Should create new employee', async () => {
-    const createNewEmployee = await request(app).post('/employees/').send({
-      first_name: 'Laura',
-      last_name: 'Brussa',
-      phone: '1234567',
-      email: 'laura@brussa.com',
-      password: 'testeo123',
-      active: true,
-    });
+    const createNewEmployee = await request(app).post('/employees/').send(employeeComplete);
     expect(createNewEmployee.statusCode).toBe(201);
     expect(createNewEmployee.body.error).toBe(false);
     // eslint-disable-next-line no-underscore-dangle
@@ -26,12 +44,7 @@ describe('POST TEST', () => {
   });
 
   test('Should show me an error 400', async () => {
-    const createEmployeefail = await request(app).post('/employees/').send({
-      first_name: 'Laura',
-      email: 'laura@brussa.com',
-      password: 'testeo123',
-      active: true,
-    });
+    const createEmployeefail = await request(app).post('/employees/').send(employeeIncomplete);
     expect(createEmployeefail.statusCode).toBe(400);
     expect(createEmployeefail.body.error).toBe(true);
   });
@@ -49,32 +62,29 @@ describe('GET TEST', () => {
     const getOneEmployee = await request(app).get(`/employees/${employeeId}`);
     expect(getOneEmployee.statusCode).toBe(200);
     expect(getOneEmployee.body.error).toBe(false);
-    expect(getOneEmployee.body.msg).toBe('Employee successfully shown');
+  });
+  test('Should show me an error 404 ', async () => {
+    const response = await request(app).get('/employees/628af2c4b6824cd901ba98a7');
+    expect(response.statusCode).toBe(404);
+    expect(response.error).toBeTruthy();
+  });
+  test('Should show me an error 404 ', async () => {
+    const response = await request(app).get('/employees/658hjgc4b6828hd901ba97g8');
+    expect(response.statusCode).toBe(500);
+    expect(response.error).toBeTruthy();
   });
 });
 
 describe('PUT TEST', () => {
   test('Should update an employee', async () => {
-    const updateEmployee = await request(app).put(`/employees/${employeeId}`).send({
-      first_name: 'Laura',
-      last_name: 'Fernandez',
-      phone: '1234567',
-      email: 'laura@brussa.com',
-      password: 'testeo123',
-      active: true,
-    });
+    const updateEmployee = await request(app).put(`/employees/${employeeId}`).send(employeeUpdate);
     expect(updateEmployee.statusCode).toBe(200);
     expect(updateEmployee.body.msg).toBe('Employee updated');
     expect(updateEmployee.body.error).toBe(false);
   });
 
   test('Should show me an error 400', async () => {
-    const updateError = await request(app).put(`/employees/${employeeId}`).send({
-      first_name: 'Laura',
-      phone: '1234567',
-      email: 'laura@brussa.com',
-      active: true,
-    });
+    const updateError = await request(app).put(`/employees/${employeeId}`).send(employeeIncomplete);
     expect(updateError.statusCode).toBe(400);
     expect(updateError.body.msg).toBe('Missing Parameter');
     expect(updateError.body.error).toBe(true);

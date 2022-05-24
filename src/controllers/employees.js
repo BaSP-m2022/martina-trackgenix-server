@@ -21,21 +21,28 @@ const getAllEmployees = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   try {
     if (req.params.id) {
-      const oneEmployee = await Employee.findById(req.params.id);
+      const employee = await Employee.findById(req.params.id);
+      if (!employee) {
+        return res.status(404).json({
+          message: 'Employee not found',
+          data: undefined,
+          error: true,
+        });
+      }
       return res.status(200).json({
-        msg: 'Employee successfully shown',
-        data: oneEmployee,
+        message: 'Employee found',
+        data: employee,
         error: false,
       });
     }
-    return res.status(404).json({
-      msg: 'Id was not found',
+    return res.status(400).json({
+      message: 'Invalid params',
       data: undefined,
       error: true,
     });
   } catch (error) {
-    return res.status(400).json({
-      msg: 'There was an error',
+    return res.status(500).json({
+      message: error,
       data: undefined,
       error: true,
     });
