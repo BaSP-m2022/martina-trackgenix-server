@@ -67,6 +67,7 @@ describe('PUT TEST', () => {
     expect(updateEmployee.body.msg).toBe('Employee updated');
     expect(updateEmployee.body.error).toBe(false);
   });
+
   test('Should show me an error 400', async () => {
     const updateError = await request(app).put(`/employees/${employeeId}`).send({
       first_name: 'Laura',
