@@ -123,35 +123,28 @@ describe('PUT/timeSheet/:id', () => {
       hs_worked: 3,
       timesheetDate: '2022-05-02T00:00:00.000+00:00',
     });
-
     expect(response.status).toBe(200);
   });
 
   test('Message should indicate a creation a time-sheet', async () => {
-    const response = await request(app).put('/time-sheet').send({
+    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
       employee: '628407263debaf079ad1eab6',
       project: '6283baefcd44998f831522aa',
       task: '62815f70585ba1dd80f096d9',
       hs_worked: 5,
       timesheetDate: '2022-05-02T00:00:00.000+00:00',
     });
-
-    expect(response.body.message).toBe('Time sheet created');
-  });
-
-  test('Should not created a time-sheet', async () => {
-    const response = await request(app).put('/time-sheet').send();
-    expect(response.status).toBe(400);
+    expect(response.body.message).toBe('Time sheet updated');
   });
 
   test('ERROR status: 400 (EMPTY BODY)', async () => {
-    const response = await request(app).post('/time-sheet').send();
+    const response = await request(app).put('/time-sheet').send();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
 
   test('ERROR status: 400 (WRONG KEY)', async () => {
-    const response = await request(app).put('/time-sheet').send({
+    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
       employee: '628407263debaf079ad1eab6',
       project: '6283baefcd44998f831522aa',
       task: '62815f70585ba1dd80f096d9',
@@ -163,7 +156,7 @@ describe('PUT/timeSheet/:id', () => {
   });
 
   test('ERROR status: 400 (MISSING KEYS)', async () => {
-    const response = await request(app).put('/time-sheet').send({
+    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
       employee: '',
       project: '6283baefcd44998f831522aa',
       task: '62815f70585ba1dd80f096d9',
@@ -174,33 +167,18 @@ describe('PUT/timeSheet/:id', () => {
   });
 });
 
-/*
-describe('DELETE/timeSheet/:id', () => {
-  test(should)
-  const response = await (await request(app).delete(`/time-sheets/${timeSheetId}`)).send();
-  expect{response.status}.toEqual(200);
-});
-
 describe('DELETE/timeSheet/:id', () => {
   test('should delete', async () => {
-    const response = await request(app).delete(`/time-sheets/${timeSheetId}`).send();
+    const response = await request(app).delete(`/time-sheet/${timeSheetId}`).send();
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
     expect(response.body.data).toEqual(expect.anything());
   });
-  test('It should get status 404', async () => {
-    const response = await request(app).delete('/time-sheets/628b9ce3b619836ba1d215e4');
+  test('It should return status 404 when id is invalid', async () => {
+    const response = await request(app).delete('/time-sheet/628b9ce3b619836ba1d215e4').send();
     expect(response.statusCode).toBe(404);
     expect(response.body.message).toBe('Time-sheet was not found');
     expect(response.body.error).toBe(true);
     expect(response.body.data).toBe(undefined);
   });
-  test('It should get status 500', async () => {
-    const response = await request(app).delete('/time-sheets/1');
-    expect(response.statusCode).toBe(500);
-    expect(response.body.message).toBe('Time-sheet could not be deleted');
-    expect(response.body.error).toBe(true);
-    expect(response.body.data).not.toEqual(expect.anything());
-  });
 });
-*/
