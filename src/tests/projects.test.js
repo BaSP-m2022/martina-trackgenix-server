@@ -48,7 +48,6 @@ describe('Test POST /projects', () => {
     projectId = response.body.data._id;
   });
 });
-
 describe('Test PUT /projects', () => {
   test('Project should be updated, error should be false and message equal to Project has been successfully updated', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send({
@@ -59,6 +58,7 @@ describe('Test PUT /projects', () => {
       active: false,
       employees: [
         {
+
           role: 'DEV',
           rate: '10',
           id: '628578f0b38934591452aa2e',
@@ -93,11 +93,38 @@ describe('Test PUT /projects', () => {
 
     expect(response.status).toBe(400);
   });
+
+  test('Response status should be 404 when project id is wrong', async () => {
+    const response = await request(app).put('/projects/628578f0b38934591452aa2e').send({
+      project_name: 'The Little pepe',
+      start_date: '1943-01-06T03:00:00.000Z',
+      finish_date: '1943-04-06T03:00:00.000Z',
+      client: 'Antoine de Saint-Exupéry',
+      active: false,
+      employees: [
+        {
+
+          role: 'DEV',
+          rate: '10',
+          id: '628578f0b38934591452aa2e',
+        },
+      ],
+    });
+
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe('Project has not been found');
+  });
 });
 
 describe('Test DELETE /projects', () => {
   test('should delete a project', async () => {
     const response = await request(app).delete(`/projects/${projectId}`).send();
     expect(response.status).toBe(204);
+  });
+
+  test('Response status should be 404 when project id is wrong', async () => {
+    const response = await request(app).delete('/projects/628578f0b38934591452aa2e').send();
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe('Project not found');
   });
 });
