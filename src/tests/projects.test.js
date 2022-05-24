@@ -1,7 +1,11 @@
 import request from 'supertest';
 import Project from '../models/Projects';
-import projectsSeed from '../seeds/projects';
+import projectSeed from '../seeds/projects';
 import app from '../app';
+
+beforeAll(async () => {
+  await Project.collection.insertMany(projectSeed);
+});
 
 const mockRequestBody = {
   project_name: 'The Little Prince',
@@ -31,10 +35,6 @@ const mockRequestBodyIncomplete = {
     },
   ],
 };
-
-beforeAll(async () => {
-  await Project.collection.insertMany(projectsSeed);
-});
 
 let projectId;
 
@@ -95,5 +95,43 @@ describe('Test GET /projects/:id', () => {
     const response = await request(app).get('/projects/localhost:3000/projects/6283baefcd44998f831522bb3333333333').send();
     expect(response.status).toBe(404);
     expect(response.error).toBeTruthy();
+  });
+});
+
+describe('Test PUT /projects', () => {
+  test('Response should return a 200 status, error false, and message has been successfully updated', async () => {
+    const response = await request(app).put(`/projects/${projectId}`).send(mockRequestBody);
+    expect(response.status).toBe(200);
+    expect(response.error).toBeFalsy();
+    expect(response.body.message).toBe('Project has been successfully updated');
+  });
+
+  test('should NOT update a Project when body is empty', async () => {
+    const response = await request(app).put(`/projects/${projectId}`).send();
+    expect(response.status).toBe(400);
+  });
+
+  test('Response should return a 400 status, error true if at least one required field is empty', async () => {
+    const response = await request(app).put(`/projects/${projectId}`).send(mockRequestBodyIncomplete);
+    expect(response.status).toBe(400);
+  });
+
+  test('Response should return a 404 status, error true, and message Project not found if the ID is inexistent', async () => {
+    const response = await request(app).put('/projects/628578f0b38934591452aa2e').send(mockRequestBody);
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe('Project has not been found');
+  });
+});
+
+describe('Test DELETE /projects', () => {
+  test('should delete a project', async () => {
+    const response = await request(app).delete(`/projects/${projectId}`).send();
+    expect(response.status).toBe(204);
+  });
+
+  test('Response status should be 404 when project id is wrong', async () => {
+    const response = await request(app).delete('/projects/628578f0b38934591452aa2e').send();
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe('Project not found');
   });
 });

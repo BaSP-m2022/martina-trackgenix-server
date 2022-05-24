@@ -17,6 +17,7 @@ const createProject = async (req, res) => {
     });
   }
 };
+
 const getAllProjects = async (req, res) => {
   try {
     const allProjects = await Project.find({}).populate('employees');
@@ -33,6 +34,7 @@ const getAllProjects = async (req, res) => {
     });
   }
 };
+
 const getProjectById = async (req, res) => {
   try {
     if (req.params.id) {
@@ -63,6 +65,7 @@ const getProjectById = async (req, res) => {
     });
   }
 };
+
 const updateProject = async (req, res) => {
   try {
     const result = await Project.findByIdAndUpdate(
@@ -97,6 +100,7 @@ const updateProject = async (req, res) => {
     });
   }
 };
+
 const deleteProject = async (req, res) => {
   try {
     const projectId = await Project.findByIdAndDelete(req.params.id);
@@ -116,6 +120,7 @@ const deleteProject = async (req, res) => {
     });
   }
 };
+
 export default {
   createProject,
   getAllProjects,
