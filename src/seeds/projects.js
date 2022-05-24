@@ -11,8 +11,7 @@ export default [{
     {
       role: 'DEV',
       rate: '10',
-      _id: 12,
+      id: '628578f0b38934591452aa2e',
     },
   ],
-  admin_id: '43',
 }];

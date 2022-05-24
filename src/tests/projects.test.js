@@ -38,10 +38,9 @@ describe('Test POST /projects', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(201);
@@ -50,7 +49,7 @@ describe('Test POST /projects', () => {
   });
 });
 
-describe('Test PUT ', () => {
+describe('Test PUT /projects', () => {
   test('project should be updated', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send({
       project_name: 'The Little pepe',
@@ -62,13 +61,17 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(200);
+  });
+
+  test('should not update an employee', async () => {
+    const response = await request(app).put(`/projects/${projectId}`).send();
+    expect(response.status).toBe(400);
   });
 
   test('response should return error false', async () => {
@@ -82,10 +85,9 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.error).toBeFalsy();
@@ -102,16 +104,15 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.body.message).toBe('Project has been successfully updated');
   });
 
-  test('project name should be require', async () => {
+  test('project name should be required', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send({
       start_date: '1943-01-06T03:00:00.000Z',
       finish_date: '1943-04-06T03:00:00.000Z',
@@ -121,10 +122,9 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(400);
@@ -141,10 +141,9 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(400);
@@ -163,7 +162,6 @@ describe('Test PUT ', () => {
           rate: '10',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(400);
@@ -179,10 +177,9 @@ describe('Test PUT ', () => {
       employees: [
         {
           role: 'DEV',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(400);
@@ -199,10 +196,9 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(400);
@@ -219,10 +215,9 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(400);
@@ -239,33 +234,18 @@ describe('Test PUT ', () => {
         {
           role: 'DEV',
           rate: '10',
-          id: 12,
+          id: '628578f0b38934591452aa2e',
         },
       ],
-      admin_id: '43',
     });
 
     expect(response.status).toBe(400);
   });
+});
 
-  test('Project should not be found', async () => {
-    const projectIdWrong = 'p6283baefcd44998f831522aa';
-    const response = await request(app).put(`/projects/${projectIdWrong}`).send({
-      project_name: 'The Little pepe',
-      start_date: '1943-01-06T03:00:00.000Z',
-      finish_date: '1943-04-06T03:00:00.000Z',
-      client: 'Antoine de Saint-Exupéry',
-      active: false,
-      employees: [
-        {
-          role: 'DEV',
-          rate: '10',
-          id: 12,
-        },
-      ],
-      admin_id: '43',
-    });
-
-    expect(response.status).toBe(404);
+describe('Test DELETE /projects', () => {
+  test('should delete a project', async () => {
+    const response = await request(app).delete(`/projects/${projectId}`).send();
+    expect(response.status).toBe(204);
   });
 });
