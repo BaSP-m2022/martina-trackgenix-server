@@ -20,7 +20,7 @@ const createProject = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
   try {
-    const allProjects = await Project.find({});
+    const allProjects = await Project.find({}).populate('employees');
     return res.status(200).json({
       message: 'Project found',
       data: allProjects,
@@ -38,7 +38,7 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     if (req.params.id) {
-      const project = await Project.findById(req.params.id);
+      const project = await Project.findById(req.params.id).populate('employees');
       if (!project) {
         return res.status(404).json({
           message: 'Project not found',
