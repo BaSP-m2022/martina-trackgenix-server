@@ -39,8 +39,8 @@ const updateProject = async (req, res) => {
 // DELETE PROJECT
 const deleteProject = async (req, res) => {
   try {
-    const deltProject = await Project.findByIdAndDelete(req.params.id);
-    if (!deltProject) {
+    const projectId = await Project.findByIdAndDelete(req.params.id);
+    if (!projectId) {
       return res.status(404).json({
         message: 'Project not found',
         data: undefined,
@@ -76,8 +76,8 @@ const getAllProjects = async (req, res) => {
 
 const getProjectById = async (req, res) => {
   try {
-    const ProjectById = await Project.findOne(req.param.id);
-    if (!getProjectById) {
+    const projectId = await Project.findOne(req.param.id);
+    if (!projectId) {
       return res.status(404).json({
         message: 'Project not found',
         data: undefined,
@@ -86,7 +86,7 @@ const getProjectById = async (req, res) => {
     }
     return res.status(200).json({
       message: 'Project found',
-      data: ProjectById,
+      data: projectId,
       error: false,
     });
   } catch (err) {
