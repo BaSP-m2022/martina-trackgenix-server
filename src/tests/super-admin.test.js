@@ -143,6 +143,17 @@ describe('PUT /:id', () => {
     const response = await request(app).post('/super-admins').send();
     expect(response.status).toBe(400);
   });
+
+  test('response status 404 when super admin id is wrong', async () => {
+    const response = await request(app).post('/super-admins/558578f0b38934591452aa2e').send({
+      firstName: 'Lautaro',
+      lastName: 'Acosta',
+      email: 'lautaroeacosta23@gmail.com',
+      password: 'test12345',
+      active: true,
+    });
+    expect(response.status).toBe(404);
+  });
 });
 
 describe('DELETE /:id', () => {
