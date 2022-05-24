@@ -10,7 +10,7 @@ const project = new Schema({
   active: { type: Boolean, required: true },
   employees: [{
     id: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: 'employee',
     },
