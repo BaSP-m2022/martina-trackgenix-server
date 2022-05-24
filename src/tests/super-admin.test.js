@@ -18,15 +18,16 @@ const mockReqBody = {
 };
 
 describe('POST', () => {
-  test('should create an super admin', async () => {
+  test('should create an super admin, return error false and message super Admin created', async () => {
     const response = await request(app).post('/super-admins').send(mockReqBody);
     expect(response.status).toBe(201);
     expect(response.body.message).toEqual('super Admin created');
+    expect(response.body.error).toBeFalsy();
     // eslint-disable-next-line no-underscore-dangle
     superAdmId = response.body.data._id;
   });
 
-  test('should not create an super admin when if one required field is empty', async () => {
+  test('should not create an super admin if one required field is empty', async () => {
     const response = await request(app).post('/super-admins').send({
       firstName: '',
       lastName: 'Acosta',
@@ -35,23 +36,20 @@ describe('POST', () => {
       active: true,
     });
     expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
   });
 
-  test('should not create super admin', async () => {
+  test('should not create super admin if the body request is empty', async () => {
     const response = await request(app).post('/super-admins').send();
     expect(response.status).toBe(400);
   });
 });
 
-describe('GET and GET BY ID /:id', () => {
-  test('response should return a 200 status', async () => {
+describe('GET and GET BY ID /:id and error: false', () => {
+  test('response should return a 200 status and false error', async () => {
     const response = await request(app).get('/super-admins').send();
     expect(response.status).toBe(200);
-  });
-
-  test('response should return false error', async () => {
-    const response = await request(app).get('/super-admins').send();
-    expect(response.error).toBe(false);
+    expect(response.error).toBeFalsy();
   });
 
   test('response should return at least one super admin', async () => {
@@ -76,20 +74,10 @@ describe('GET and GET BY ID /:id', () => {
 });
 
 describe('PUT /:id', () => {
-  test('response should return a 200 status', async () => {
-    const response = await request(app).put(`/super-admins/${superAdmId}`).send({
-      firstName: 'Lautaro',
-      lastName: 'Acosta',
-      email: 'lautaroeacosta23@gmail.com',
-      password: 'test12345',
-      active: true,
-    });
-    expect(response.status).toBe(201);
-  });
-
-  test('message should indicate the update of the super admin', async () => {
+  test('message should indicate the update of the super admin and return 200 status', async () => {
     const response = await request(app).put(`/super-admins/${superAdmId}`).send(mockReqBody);
     expect(response.body.message).toBe('Super Admin Updated');
+    expect(response.status).toBe(201);
   });
 
   test('should not update the super admin when one field was not completed', async () => {
