@@ -7,31 +7,39 @@ beforeAll(async () => {
   await timeSheet.collection.insertMany(timeSheetSeeds);
 });
 
+const requestBody = {
+  employee: '628407263debaf079ad1eab6',
+  project: '6283baefcd44998f831522aa',
+  task: '62815f70585ba1dd80f096d9',
+  hs_worked: 5,
+  timesheetDate: '2022-05-02T00:00:00.000+00:00',
+};
+
+const requestBodyWrong = {
+  employee: '628407263debaf079ad1eab6',
+  project: '6283baefcd44998f831522aa',
+  task: '62815f70585ba1dd80f096d9',
+  hs_worked: '5',
+  timesheetDate: '02-05-2022-T00:00:00.000+00:00',
+};
+
+const missingField = {
+  employee: '',
+  project: '6283baefcd44998f831522aa',
+  task: '62815f70585ba1dd80f096d9',
+  hs_worked: 5,
+  timesheetDate: '2022-05-02T00:00:00.000+00:00',
+};
+
 let timeSheetId;
 
 describe('Timesheet POST', () => {
   test('Create a timesheet', async () => {
-    const response = await request(app).post('/time-sheet').send({
-      employee: '628407263debaf079ad1eab6',
-      project: '6283baefcd44998f831522aa',
-      task: '62815f70585ba1dd80f096d9',
-      hs_worked: 5,
-      timesheetDate: '2022-05-02T00:00:00.000+00:00',
-    });
+    const response = await request(app).post('/time-sheet').send(requestBody);
     expect(response.status).toBe(201);
+    expect(response.body.message).toBe('Time sheet created');
     // eslint-disable-next-line no-underscore-dangle
     timeSheetId = response.body.data._id;
-  });
-
-  test('Message should indicate a creation a time-sheet', async () => {
-    const response = await request(app).post('/time-sheet').send({
-      employee: '628407263debaf079ad1eab6',
-      project: '6283baefcd44998f831522aa',
-      task: '62815f70585ba1dd80f096d9',
-      hs_worked: 5,
-      timesheetDate: '2022-05-02T00:00:00.000+00:00',
-    });
-    expect(response.body.message).toBe('Time sheet created');
   });
 
   test('Should not created a time-sheet', async () => {
@@ -39,32 +47,20 @@ describe('Timesheet POST', () => {
     expect(response.status).toBe(400);
   });
 
-  test('ERROR status: 400 (Empty Body)', async () => {
+  test('Displays an error message if status code 400 if request body is empty', async () => {
     const response = await request(app).post('/time-sheet').send();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
 
-  test('ERROR status: 400 (Wrong Key)', async () => {
-    const response = await request(app).post('/time-sheet').send({
-      employee: '628407263debaf079ad1eab6',
-      project: '6283baefcd44998f831522aa',
-      task: '62815f70585ba1dd80f096d9',
-      hs_worked: '5',
-      timesheetDate: '02-05-2022-T00:00:00.000+00:00',
-    });
+  test('Displays status code 400 if there is a key error', async () => {
+    const response = await request(app).post('/time-sheet').send(requestBodyWrong);
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
 
-  test('ERROR status: 400 (Missing a field)', async () => {
-    const response = await request(app).post('/time-sheet').send({
-      employee: '',
-      project: '6283baefcd44998f831522aa',
-      task: '62815f70585ba1dd80f096d9',
-      hs_worked: 5,
-      timesheetDate: '2022-05-02T00:00:00.000+00:00',
-    });
+  test('Displays status code 400 if there is a missing field', async () => {
+    const response = await request(app).post('/time-sheet').send(missingField);
     expect(response.statusCode).toBe(400);
   });
 });
@@ -77,7 +73,7 @@ describe('Timesheet GET By ID', () => {
     expect(response.body.error).toBe(false);
   });
 
-  test('ERROR status: 400', async () => {
+  test('Error in the request and cannot return time sheets', async () => {
     const response = await request(app).get('/time-sheet/4').send();
     expect(response.body.message).toBe('An error ocurred');
     expect(response.statusCode).toBe(400);
@@ -145,25 +141,13 @@ describe('PUT/timeSheet/:id', () => {
   });
 
   test('ERROR status: 400 (Wrong Key)', async () => {
-    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
-      employee: '628407263debaf079ad1eab6',
-      project: '6283baefcd44998f831522aa',
-      task: '62815f70585ba1dd80f096d9',
-      hs_worked: '5',
-      timesheetDate: '02-05-2022-T00:00:00.000+00:00',
-    });
+    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send(requestBodyWrong);
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
 
   test('ERROR status: 400 (Missing a field)', async () => {
-    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
-      employee: '',
-      project: '6283baefcd44998f831522aa',
-      task: '62815f70585ba1dd80f096d9',
-      hs_worked: 5,
-      timesheetDate: '2022-05-02T00:00:00.000+00:00',
-    });
+    const response = await request(app).put(`/time-sheet/${timeSheetId}`).send(missingField);
     expect(response.statusCode).toBe(400);
   });
 });
