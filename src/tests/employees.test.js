@@ -12,7 +12,7 @@ let employeeId;
 const employeeComplete = {
   first_name: 'Laura',
   last_name: 'Brussa',
-  phone: '1234567',
+  phone: 1234567,
   email: 'laura@brussa.com',
   password: 'testeo123',
   active: true,
@@ -28,7 +28,7 @@ const employeeIncomplete = {
 const employeeUpdate = {
   first_name: 'Laura',
   last_name: 'Fernandez',
-  phone: '1234567',
+  phone: 1234567,
   email: 'laura@brussa.com',
   password: 'testeo123',
   active: true,
