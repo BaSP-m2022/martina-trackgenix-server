@@ -18,7 +18,6 @@ describe('Timesheet POST', () => {
       hs_worked: 5,
       timesheetDate: '2022-05-02T00:00:00.000+00:00',
     });
-
     expect(response.status).toBe(201);
     // eslint-disable-next-line no-underscore-dangle
     timeSheetId = response.body.data._id;
