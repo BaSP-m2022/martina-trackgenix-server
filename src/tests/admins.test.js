@@ -9,17 +9,33 @@ beforeAll(async () => {
 
 let adminId;
 const nonExistent = '0';
+const mockReqBody = {
+  firstName: 'Wilbert',
+  lastName: 'Sustin',
+  phone: '7526113300',
+  email: 'wsustin3@exblog.jp',
+  password: 'SuhSgIONhq',
+  active: true,
+};
+const mockPutReqBody = {
+  firstName: 'Trebliw',
+  lastName: 'Nitsus',
+  phone: '0033116257',
+  email: '3nitsusw@exblog.jp',
+  password: 'qhNOIgShuS',
+  active: true,
+};
+const mockFaultyReqBody = {
+  firstName: 'Wilbert',
+  lastName: 'Sustin',
+  phone: '7526113300',
+  password: 'SuhSgIONhq',
+  active: true,
+};
 
 describe('/POST admins', () => {
   test('Expect return to be 201 status code, error false and msg that admin has been created', async () => {
-    const response = await request(app).post('/admins').send({
-      firstName: 'Wilbert',
-      lastName: 'Sustin',
-      phone: '7526113300',
-      email: 'wsustin3@exblog.jp',
-      password: 'SuhSgIONhq',
-      active: true,
-    });
+    const response = await request(app).post('/admins').send(mockReqBody);
     expect(response.body.message).toEqual('Admin has been created');
     expect(response.status).toBe(201);
     expect(response.error).toBe(false);
@@ -35,13 +51,7 @@ describe('/POST admins', () => {
   });
 
   test('Should not create an admin when a field is missing', async () => {
-    const response = await request(app).post('/admins').send({
-      firstName: 'Wilbert',
-      lastName: 'Sustin',
-      phone: '7526113300',
-      password: 'SuhSgIONhq',
-      active: true,
-    });
+    const response = await request(app).post('/admins').send(mockFaultyReqBody);
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
     expect(response.body.message).toEqual('Invalid input. Please check it.');
@@ -74,14 +84,7 @@ describe('/GET ADMINS', () => {
 
 describe('/PUT admins', () => {
   test('response should return 200 status code, false error and msg: Admin has been successfully updated', async () => {
-    const response = await request(app).put(`/admins/${adminId}`).send({
-      firstName: 'Wilbert',
-      lastName: 'Sustin',
-      phone: '7526113300',
-      email: 'wsustin3@exblog.jp',
-      password: 'SuhSgIONhq',
-      active: true,
-    });
+    const response = await request(app).put(`/admins/${adminId}`).send(mockPutReqBody);
     expect(response.status).toBe(200);
     expect(response.body.message).toEqual('Admin has been successfully updated');
     expect(response.error).toBe(false);
@@ -95,14 +98,7 @@ describe('/PUT admins', () => {
   });
 
   test('response should return 404 status code, true error and msg: Admin has not been found', async () => {
-    const response = await request(app).put('/admins/6282fbce7904f9cd3d42e9f3').send({
-      firstName: 'Wilbert',
-      lastName: 'Sustin',
-      phone: '7526113300',
-      email: 'wsustin3@exblog.jp',
-      password: 'SuhSgIONhq',
-      active: true,
-    });
+    const response = await request(app).put('/admins/6282fbce7904f9cd3d42e9f3').send(mockPutReqBody);
     expect(response.status).toBe(404);
     expect(response.body.message).toEqual('Admin has not been found');
     expect(response.body.error).toBeTruthy();
