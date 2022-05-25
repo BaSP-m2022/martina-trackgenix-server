@@ -11,7 +11,7 @@ let adminId;
 const nonExistent = '0';
 
 describe('/POST admins', () => {
-  test('Expect return to be Http status 201, error false and msg that admin has been created', async () => {
+  test('Expect return to be 201 status code, error false and msg that admin has been created', async () => {
     const response = await request(app).post('/admins').send({
       firstName: 'Wilbert',
       lastName: 'Sustin',
@@ -46,10 +46,12 @@ describe('/POST admins', () => {
     });
 
     expect(response.status).toBe(400);
+    expect(response.body.message).toEqual('An error has ocurred');
+    expect(response.error).toBe(true);
   });
 });
 
-describe('TEST for /GET', () => {
+describe('/GET ADMINS', () => {
   test('all admins, should show 200 status code, false error, at least one admin, and a msg: Admins whole list', async () => {
     const response = await request(app).get('/admins').send();
 
@@ -59,29 +61,33 @@ describe('TEST for /GET', () => {
     expect(response.body.message).toEqual('Admins whole list');
   });
 
-  test('response should return 200 status code', async () => {
+  test('should show a 404 status code, true error and msg: An error has ocurred', async () => {
+    const response = await request(app).get('/admins').send();
+
+    expect(response.status).toBe(404);
+    expect(response.error).toBe(true);
+    expect(response.body.message).toEqual('An error has ocurred');
+  });
+
+  test('response should return 200 status code, false error, and say Admin Found', async () => {
     const response = await request(app).get(`/admins/${adminId}`).send();
+
     expect(response.status).toBe(200);
-  });
-
-  test('response should return false error', async () => {
-    const response = await request(app).get(`/admins/${adminId}`).send();
     expect(response.error).toBe(false);
-  });
-
-  test('message should say Admin Found', async () => {
-    const response = await request(app).get(`/admins/${adminId}`).send();
     expect(response.body.message).toEqual('Admin Found');
   });
 
-  test('if Admin was not found response should return 404', async () => {
+  test('if Admin was not found, it should show 404, error true and msg: Admin not found', async () => {
     const response = await request(app).get(`/admins/${nonExistent}`).send();
-    expect(response.error).toBe(404);
+
+    expect(response.status).toBe(404);
+    expect(response.body.message).toEqual('Admin not found');
+    expect(response.error).toBe(true);
   });
 });
 
 describe('/PUT admins', () => {
-  test('response should return 200 status code', async () => {
+  test('response should return 200 status code, false error and msg: Admin has been successfully updated', async () => {
     const response = await request(app).put(`/admins/${adminId}`).send({
       firstName: 'Wilbert',
       lastName: 'Sustin',
@@ -92,25 +98,26 @@ describe('/PUT admins', () => {
     });
 
     expect(response.status).toBe(200);
-  });
-
-  test('message should indicate that an admin has been updated', async () => {
-    const response = await request(app).put(`/admins/${adminId}`).send({
-      firstName: 'Wilbert',
-      lastName: 'Sustin',
-      phone: '7526113300',
-      email: 'wsustin3@exblog.jp',
-      password: 'SuhSgIONhq',
-      active: true,
-    });
-
     expect(response.body.message).toEqual('Admin has been successfully updated');
+    expect(response.error).toBe(false);
+
+    test('response should return');
   });
 });
 
-describe('DELETE admins', () => {
-  test('should delete admin', async () => {
+describe('/DELETE admins', () => {
+  test('should return 204 status code and false error', async () => {
     const response = await request(app).delete(`/admins/${adminId}`).send();
+
     expect(response.status).toBe(204);
+    expect(response.error).toBe(false);
+  });
+
+  test('should return 404 status code true error and msg: Admin has not been found', async () => {
+    const response = await request(app).delete(`/admins/${nonExistent}`).send();
+
+    expect(response.error).toBe(true);
+    expect(response.body.message).toEqual('Admin has not been found');
+    expect(response.status).toBe(404);
   });
 });
