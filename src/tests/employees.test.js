@@ -43,10 +43,10 @@ describe('POST TEST', () => {
     employeeId = createNewEmployee.body.data._id;
   });
 
-  test('Should show me an error 400', async () => {
-    const createEmployeefail = await request(app).post('/employees/').send(employeeIncomplete);
-    expect(createEmployeefail.statusCode).toBe(400);
-    expect(createEmployeefail.body.error).toBe(true);
+  test('Should show an error message and status 400 if one required field is empty', async () => {
+    const createEmployeeFail = await request(app).post('/employees/').send(employeeIncomplete);
+    expect(createEmployeeFail.statusCode).toBe(400);
+    expect(createEmployeeFail.body.error).toBe(true);
   });
 });
 
@@ -63,11 +63,13 @@ describe('GET TEST', () => {
     expect(getOneEmployee.statusCode).toBe(200);
     expect(getOneEmployee.body.error).toBe(false);
   });
+
   test('Should show me an error 404 ', async () => {
     const response = await request(app).get('/employees/628af2c4b6824cd901ba98a7');
     expect(response.statusCode).toBe(404);
     expect(response.error).toBeTruthy();
   });
+
   test('Should show me an error 404 ', async () => {
     const response = await request(app).get('/employees/658hjgc4b6828hd901ba97g8');
     expect(response.statusCode).toBe(500);
