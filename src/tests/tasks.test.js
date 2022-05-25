@@ -1,13 +1,14 @@
 import request from 'supertest';
-import app from '../app';
 import task from '../models/Tasks';
 import tasksSeed from '../seeds/tasks';
+import app from '../app';
 
 beforeAll(async () => {
   await task.collection.insertMany(tasksSeed);
 });
 
 let taskId;
+const mockReqBody = { description: 'convallis nulla neque libero convallis eget eleifend' };
 
 describe('POST method tests', () => {
   test('Should not create a new Task / Error 400 / Empty body', async () => {
@@ -18,9 +19,7 @@ describe('POST method tests', () => {
   });
 
   test('Should create a new Task', async () => {
-    const response = await request(app).post('/tasks/').send({
-      description: 'convallis nulla neque libero convallis eget eleifend',
-    });
+    const response = await request(app).post('/tasks/').send(mockReqBody);
     expect(response.status).toBe(201);
     expect(response.body.message).toBe('task created');
     expect(response.body.error).toBe(false);
@@ -71,6 +70,12 @@ describe('PUT method tests', () => {
 });
 
 describe('DELETE method tests', () => {
+  test('Should not delete a task / Wrong Id', async () => {
+    const response = await request(app).delete('/tasks/62714f70585ba1dd80f096d9');
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe('task not found');
+    expect(response.body.error).toEqual(true);
+  });
   test('Should delete a Task', async () => {
     const response = await request(app).delete(`/tasks/${taskId}`);
     expect(response.status).toBe(204);
