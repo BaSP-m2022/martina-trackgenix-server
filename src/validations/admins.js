@@ -4,7 +4,7 @@ const validatedAdmin = (req, res, next) => {
   const newAdmin = Joi.object({
     firstName: Joi.string().min(3).required(),
     lastName: Joi.string().min(3).required(),
-    phone: Joi.string().min(10).max(13).required(),
+    phone: Joi.number().min(10).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
     active: Joi.boolean().required(),
