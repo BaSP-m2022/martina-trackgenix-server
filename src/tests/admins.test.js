@@ -20,7 +20,6 @@ describe('/POST admins', () => {
       password: 'SuhSgIONhq',
       active: true,
     });
-
     expect(response.body.message).toEqual('Admin has been created');
     expect(response.status).toBe(201);
     expect(response.error).toBe(false);
@@ -28,12 +27,11 @@ describe('/POST admins', () => {
     adminId = response.body.data._id;
   });
 
-  test('Should show a 400 status code, error true and msg that an error has ocurred', async () => {
+  test('Should show a 400 status code, error true and msg Invalid input. Please check it.', async () => {
     const response = await request(app).post('/admins').send();
-
     expect(response.status).toBe(400);
-    expect(response.body.message).toEqual('An error has ocurred');
-    expect(response.error).toBe(true);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.message).toEqual('Invalid input. Please check it.');
   });
 
   test('Should not create an admin when a field is missing', async () => {
@@ -44,45 +42,33 @@ describe('/POST admins', () => {
       password: 'SuhSgIONhq',
       active: true,
     });
-
     expect(response.status).toBe(400);
-    expect(response.body.message).toEqual('An error has ocurred');
-    expect(response.error).toBe(true);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.message).toEqual('Invalid input. Please check it.');
   });
 });
 
 describe('/GET ADMINS', () => {
   test('all admins, should show 200 status code, false error, at least one admin, and a msg: Admins whole list', async () => {
     const response = await request(app).get('/admins').send();
-
     expect(response.status).toBe(200);
     expect(response.error).toBe(false);
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.message).toEqual('Admins whole list');
   });
 
-  test('should show a 404 status code, true error and msg: An error has ocurred', async () => {
-    const response = await request(app).get('/admins').send();
-
-    expect(response.status).toBe(404);
-    expect(response.error).toBe(true);
-    expect(response.body.message).toEqual('An error has ocurred');
-  });
-
   test('response should return 200 status code, false error, and say Admin Found', async () => {
     const response = await request(app).get(`/admins/${adminId}`).send();
-
     expect(response.status).toBe(200);
-    expect(response.error).toBe(false);
-    expect(response.body.message).toEqual('Admin Found');
+    expect(response.body.error).toBe(false);
+    expect(response.body.message).toEqual('Admin found');
   });
 
   test('if Admin was not found, it should show 404, error true and msg: Admin not found', async () => {
-    const response = await request(app).get(`/admins/${nonExistent}`).send();
-
+    const response = await request(app).get('/admins/6282fbce7904f9cd3d42e9f3').send();
     expect(response.status).toBe(404);
     expect(response.body.message).toEqual('Admin not found');
-    expect(response.error).toBe(true);
+    expect(response.body.error).toBeTruthy();
   });
 });
 
@@ -96,22 +82,20 @@ describe('/PUT admins', () => {
       password: 'SuhSgIONhq',
       active: true,
     });
-
     expect(response.status).toBe(200);
     expect(response.body.message).toEqual('Admin has been successfully updated');
     expect(response.error).toBe(false);
   });
 
   test('response should return 400 status code, true error and msg: An error has ocurred', async () => {
-    const response = await request(app).put(`/admins/${adminId}`).send();
-
+    const response = await request(app).put(`/admins/${nonExistent}`).send();
     expect(response.status).toBe(400);
-    expect(response.body.message).toEqual('An error has ocurred');
-    expect(response.error).toBe(true);
+    expect(response.body.message).toEqual('Invalid input. Please check it.');
+    expect(response.body.error).toBeTruthy();
   });
 
   test('response should return 404 status code, true error and msg: Admin has not been found', async () => {
-    const response = await request(app).put(`/admins/${nonExistent}`).send({
+    const response = await request(app).put('/admins/6282fbce7904f9cd3d42e9f3').send({
       firstName: 'Wilbert',
       lastName: 'Sustin',
       phone: '7526113300',
@@ -119,10 +103,9 @@ describe('/PUT admins', () => {
       password: 'SuhSgIONhq',
       active: true,
     });
-
     expect(response.status).toBe(404);
     expect(response.body.message).toEqual('Admin has not been found');
-    expect(response.error).toBe(true);
+    expect(response.body.error).toBeTruthy();
   });
 
   test('response should return 400 status code, true error and msg: An error has ocurred', async () => {
@@ -133,25 +116,22 @@ describe('/PUT admins', () => {
       password: 'SuhSgIONhq',
       active: true,
     });
-
     expect(response.status).toBe(400);
-    expect(response.body.message).toEqual('An error has ocurred');
-    expect(response.error).toBe(true);
+    expect(response.body.message).toEqual('Invalid input. Please check it.');
+    expect(response.body.error).toBeTruthy();
   });
 });
 
 describe('/DELETE admins', () => {
   test('should return 204 status code and false error', async () => {
     const response = await request(app).delete(`/admins/${adminId}`).send();
-
     expect(response.status).toBe(204);
     expect(response.error).toBe(false);
   });
 
   test('should return 404 status code true error and msg: Admin has not been found', async () => {
-    const response = await request(app).delete(`/admins/${nonExistent}`).send();
-
-    expect(response.error).toBe(true);
+    const response = await request(app).delete('/admins/6282fbce7904f9cd3d42e9f3').send();
+    expect(response.body.error).toBeTruthy();
     expect(response.body.message).toEqual('Admin has not been found');
     expect(response.status).toBe(404);
   });
