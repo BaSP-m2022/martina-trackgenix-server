@@ -21,21 +21,28 @@ const getTaskById = async (req, res) => {
   try {
     if (req.params.id) {
       const task = await Task.findById(req.params.id);
+      if (!task) {
+        return res.status(404).json({
+          message: 'task not found',
+          data: undefined,
+          error: true,
+        });
+      }
       return res.status(200).json({
-        message: 'task found',
+        message: 'Task found',
         data: task,
         error: false,
       });
     }
-    return res.status(404).json({
-      message: 'task not found',
+    return res.status(400).json({
+      message: 'Invalid params',
       data: undefined,
       error: true,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: 'an error has ocurred',
-      data: error,
+    return res.status(500).json({
+      message: error,
+      data: undefined,
       error: true,
     });
   }
@@ -50,11 +57,7 @@ const updateTask = async (req, res) => {
         error: true,
       });
     }
-    const taskData = await Task.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true },
-    );
+    const taskData = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!taskData) {
       return res.status(404).json({
         message: 'The task has not been found',
