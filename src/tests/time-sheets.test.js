@@ -32,7 +32,6 @@ describe('Timesheet POST', () => {
       hs_worked: 5,
       timesheetDate: '2022-05-02T00:00:00.000+00:00',
     });
-
     expect(response.body.message).toBe('Time sheet created');
   });
 
@@ -78,19 +77,20 @@ describe('Timesheet GET By ID', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.error).toBe(false);
   });
+
   test('ERROR status: 400', async () => {
     const response = await request(app).get('/time-sheet/4').send();
     expect(response.body.message).toBe('An error ocurred');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
+
   test('ERROR status: 404', async () => {
     const response = await request(app).get('/time-sheet/628b9d84b619836ba1d215ea').send();
     expect(response.body.message).toBe('Time sheet id not found');
     expect(response.statusCode).toBe(404);
   });
 
-  // get
   test('It should get the TimeSheet list', async () => {
     const response = await request(app).get('/time-sheet');
     expect(response.statusCode).toBe(200);
@@ -98,6 +98,7 @@ describe('Timesheet GET By ID', () => {
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.error).toBe(false);
   });
+
   test('It should get an any array of two objects', async () => {
     const response = await request(app).get('/time-sheet?hs_worked=13');
     expect(response.statusCode).toBe(200);
@@ -105,6 +106,7 @@ describe('Timesheet GET By ID', () => {
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.error).toBe(false);
   });
+
   test('It should get an any array of one objects', async () => {
     const response = await request(app).get('/time-sheet?hs_worked=6');
     expect(response.statusCode).toBe(200);
@@ -172,6 +174,7 @@ describe('DELETE/timeSheet/:id', () => {
     const response = await request(app).delete(`/time-sheet/${timeSheetId}`).send();
     expect(response.statusCode).toBe(204);
   });
+
   test('It should return status 404 when id is invalid', async () => {
     const response = await request(app).delete('/time-sheet/628b9ce3b619836ba1d215e4').send();
     expect(response.statusCode).toBe(404);
