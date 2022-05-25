@@ -1,24 +1,14 @@
 import express from 'express';
-import Router from './routes';
-// import admins from './controllers/admins';
-// import adminsValidation from './validations/admins';
+import router from './routes';
 
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
 
-app.use(Router);
-
-// app.get('/', admins.getAllAdmins);
-// app.get('/:id', admins.getAdminById);
-// app.get('/getByName', admins.getAdminByName);
-// app.get('/getBySurname', admins.getAdminByLastName);
-// app.put('/', admins.updateAdmin);
-// app.post('/', adminsValidation, admins.createAdmin);
-// app.delete('/:id', admins.deleteAdmin);
+app.use(router);
 
 export default app;
