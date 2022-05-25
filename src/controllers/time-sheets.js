@@ -2,8 +2,13 @@ import TimeSheet from '../models/Time-sheets';
 
 const getAllTimeSheets = async (req, res) => {
   try {
-    const allTimeSheets = await TimeSheet.find({});
-
+    const allTimeSheets = await TimeSheet.find({})
+      .populate('employee', [
+        'first_name',
+        'last_name',
+      ])
+      .populate('project', 'project_name')
+      .populate('task', 'description');
     return res.status(200).json({
       message: 'Here is all the list',
       data: allTimeSheets,
@@ -20,7 +25,13 @@ const getAllTimeSheets = async (req, res) => {
 
 const getTimeSheetById = async (req, res) => {
   try {
-    const timeSheetById = await TimeSheet.findById(req.params.id);
+    const timeSheetById = await TimeSheet.findById(req.params.id)
+      .populate('employee', [
+        'first_name',
+        'last_name',
+      ])
+      .populate('project', 'project_name')
+      .populate('task', 'description');
     if (!timeSheetById) {
       return res.status(404).json({
         message: 'Time sheet id not found',
@@ -33,7 +44,7 @@ const getTimeSheetById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      msg: 'An error ocurred',
+      message: 'An error ocurred',
       data: error,
       error: true,
     });
@@ -44,7 +55,7 @@ const getTimeSheetByProject = async (req, res) => {
   try {
     const timeSheetByProject = await TimeSheet.findOne({
       project_id: req.params.project_id,
-    });
+    }).populate('project', 'project_name');
     if (!timeSheetByProject) {
       return res.status(404).json({
         message: 'Time sheet not found',

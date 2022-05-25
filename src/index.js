@@ -14,10 +14,9 @@ mongoose.connect(URL, (error) => {
   } else {
     // eslint-disable-next-line no-console
     console.log(':círculo_verde_grande: Database connected');
+    app.listen(port, () => {
+      // eslint-disable-next-line no-console
+      console.log(`Example app listening on port ${port}`);
+    });
   }
-});
-
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Example app listening on port ${port}`);
 });
