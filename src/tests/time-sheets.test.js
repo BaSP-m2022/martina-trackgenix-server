@@ -9,8 +9,8 @@ beforeAll(async () => {
 
 let timeSheetId;
 
-describe('Time-sheet POST', () => {
-  test('Create a time-sheet', async () => {
+describe('Timesheet POST', () => {
+  test('Create a timesheet', async () => {
     const response = await request(app).post('/time-sheet').send({
       employee: '628407263debaf079ad1eab6',
       project: '6283baefcd44998f831522aa',
@@ -41,13 +41,13 @@ describe('Time-sheet POST', () => {
     expect(response.status).toBe(400);
   });
 
-  test('ERROR status: 400 (EMPTY BODY)', async () => {
+  test('ERROR status: 400 (Empty Body)', async () => {
     const response = await request(app).post('/time-sheet').send();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
 
-  test('ERROR status: 400 (WRONG KEY)', async () => {
+  test('ERROR status: 400 (Wrong Key)', async () => {
     const response = await request(app).post('/time-sheet').send({
       employee: '628407263debaf079ad1eab6',
       project: '6283baefcd44998f831522aa',
@@ -59,7 +59,7 @@ describe('Time-sheet POST', () => {
     expect(response.body.error).toBe(true);
   });
 
-  test('ERROR status: 400 (MISSING KEYS)', async () => {
+  test('ERROR status: 400 (Missing a field)', async () => {
     const response = await request(app).post('/time-sheet').send({
       employee: '',
       project: '6283baefcd44998f831522aa',
@@ -71,7 +71,7 @@ describe('Time-sheet POST', () => {
   });
 });
 
-describe('Time Sheet GET By ID', () => {
+describe('Timesheet GET By ID', () => {
   test('status: 200', async () => {
     const response = await request(app).get(`/time-sheet/${timeSheetId}`).send();
     expect(response.body.message).toBe('Here is the time sheet you are looking for:');
@@ -126,7 +126,7 @@ describe('PUT/timeSheet/:id', () => {
     expect(response.status).toBe(200);
   });
 
-  test('Message should indicate a creation a time-sheet', async () => {
+  test('Message should indicate a updated a time-sheet', async () => {
     const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
       employee: '628407263debaf079ad1eab6',
       project: '6283baefcd44998f831522aa',
@@ -137,13 +137,13 @@ describe('PUT/timeSheet/:id', () => {
     expect(response.body.message).toBe('Time sheet updated');
   });
 
-  test('ERROR status: 400 (EMPTY BODY)', async () => {
+  test('ERROR status: 400 (Empty Body)', async () => {
     const response = await request(app).put(`/time-sheet/${timeSheetId}`).send();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });
 
-  test('ERROR status: 400 (WRONG KEY)', async () => {
+  test('ERROR status: 400 (Wrong Key)', async () => {
     const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
       employee: '628407263debaf079ad1eab6',
       project: '6283baefcd44998f831522aa',
@@ -155,7 +155,7 @@ describe('PUT/timeSheet/:id', () => {
     expect(response.body.error).toBe(true);
   });
 
-  test('ERROR status: 400 (MISSING KEYS)', async () => {
+  test('ERROR status: 400 (Missing a field)', async () => {
     const response = await request(app).put(`/time-sheet/${timeSheetId}`).send({
       employee: '',
       project: '6283baefcd44998f831522aa',
@@ -175,7 +175,7 @@ describe('DELETE/timeSheet/:id', () => {
   test('It should return status 404 when id is invalid', async () => {
     const response = await request(app).delete('/time-sheet/628b9ce3b619836ba1d215e4').send();
     expect(response.statusCode).toBe(404);
-    expect(response.body.message).toBe('Timesheet not found');
+    expect(response.body.message).toBe('Time sheet not found');
     expect(response.body.error).toBe(true);
   });
 });

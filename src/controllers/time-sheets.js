@@ -155,7 +155,7 @@ const deleteTimeSheet = async (req, res) => {
     const result = await TimeSheet.findByIdAndDelete(req.params.id);
     if (!result) {
       return res.status(404).json({
-        message: 'Timesheet not found',
+        message: 'Time sheet not found',
         data: req.params.id,
         error: true,
       });
