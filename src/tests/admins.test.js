@@ -12,7 +12,7 @@ const nonExistent = '0';
 const mockReqBody = {
   firstName: 'Wilbert',
   lastName: 'Sustin',
-  phone: '7526113300',
+  phone: 7526113300,
   email: 'wsustin3@exblog.jp',
   password: 'SuhSgIONhq',
   active: true,
@@ -20,7 +20,7 @@ const mockReqBody = {
 const mockPutReqBody = {
   firstName: 'Trebliw',
   lastName: 'Nitsus',
-  phone: '0033116257',
+  phone: 3311625700,
   email: '3nitsusw@exblog.jp',
   password: 'qhNOIgShuS',
   active: true,
@@ -28,7 +28,7 @@ const mockPutReqBody = {
 const mockFaultyReqBody = {
   firstName: 'Wilbert',
   lastName: 'Sustin',
-  phone: '7526113300',
+  phone: 7526113300,
   password: 'SuhSgIONhq',
   active: true,
 };
