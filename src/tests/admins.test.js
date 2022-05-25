@@ -100,8 +100,43 @@ describe('/PUT admins', () => {
     expect(response.status).toBe(200);
     expect(response.body.message).toEqual('Admin has been successfully updated');
     expect(response.error).toBe(false);
+  });
 
-    test('response should return');
+  test('response should return 400 status code, true error and msg: An error has ocurred', async () => {
+    const response = await request(app).put(`/admins/${adminId}`).send();
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toEqual('An error has ocurred');
+    expect(response.error).toBe(true);
+  });
+
+  test('response should return 404 status code, true error and msg: Admin has not been found', async () => {
+    const response = await request(app).put(`/admins/${nonExistent}`).send({
+      firstName: 'Wilbert',
+      lastName: 'Sustin',
+      phone: '7526113300',
+      email: 'wsustin3@exblog.jp',
+      password: 'SuhSgIONhq',
+      active: true,
+    });
+
+    expect(response.status).toBe(404);
+    expect(response.body.message).toEqual('Admin has not been found');
+    expect(response.error).toBe(true);
+  });
+
+  test('response should return 400 status code, true error and msg: An error has ocurred', async () => {
+    const response = await request(app).put(`/admins/${adminId}`).send({
+      firstName: 'Wilbert',
+      lastName: 'Sustin',
+      phone: '7526113300',
+      password: 'SuhSgIONhq',
+      active: true,
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toEqual('An error has ocurred');
+    expect(response.error).toBe(true);
   });
 });
 
