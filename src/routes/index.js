@@ -5,6 +5,7 @@ import timeSheetRoutes from './time-sheets';
 import taskRoutes from './tasks';
 import adminRoutes from './admins';
 import projectRoutes from './projects';
+import auth from './auth';
 
 const router = express.Router();
 
@@ -14,6 +15,7 @@ router
   .use('/tasks', taskRoutes)
   .use('/admins', adminRoutes)
   .use('/super-admins', superAdminRoutes)
-  .use('/employees', employeeRoutes);
+  .use('/employees', employeeRoutes)
+  .use('/auth', auth);
 
 export default router;
