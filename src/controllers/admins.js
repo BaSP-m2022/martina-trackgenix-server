@@ -1,11 +1,21 @@
 import Admin from '../models/Admins';
+import firebaseApp from '../helper/firebase';
 
 // Create a new admin
 const createAdmin = async (req, res) => {
   try {
-    const adminData = req.body;
-
-    const newAdmin = await Admin.create(adminData);
+    const newFirebaseUser = await firebaseApp.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+    const newAdmin = await Admin.create({
+      firebaseUid: newFirebaseUser.uid,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phone: req.body.phone,
+      email: req.body.email,
+      active: req.body.active,
+    });
     return res.status(201).json({
       message: 'Admin has been created',
       data: newAdmin,
