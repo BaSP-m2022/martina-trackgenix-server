@@ -100,7 +100,7 @@ describe('PUT /:id', () => {
   test('message should indicate the update of the super admin and return 200 status', async () => {
     const response = await request(app).put(`/super-admins/${superAdmId}`).send(mockPutBody);
     expect(response.body.message).toBe('Super Admin Updated');
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
   });
 
   test('should not update the super admin when one field was not completed', async () => {
