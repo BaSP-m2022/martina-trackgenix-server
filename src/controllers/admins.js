@@ -137,7 +137,13 @@ const updateAdmin = async (req, res) => {
 
     const result = await Admin.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      {
+        firstName: req.body.first_name,
+        lastName: req.body.last_name,
+        phone: req.body.phone,
+        email: req.body.email,
+        active: req.body.active,
+      },
       { new: true },
     );
     if (!result) {

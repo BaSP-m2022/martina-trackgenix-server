@@ -13,7 +13,6 @@ const validatedAdmin = (req, res, next) => {
       .required()
       .regex(/^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/),
     active: Joi.boolean().required(),
-    firebaseUid: Joi.string().required(),
   });
 
   const validation = newAdmin.validate(req.body);
