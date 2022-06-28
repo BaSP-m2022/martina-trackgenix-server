@@ -39,7 +39,7 @@ const mockRequestBodyIncomplete = {
 let projectId;
 
 describe('Test POST /projects', () => {
-  test('Response should return a 201 status, error false, and message Project created', async () => {
+  test.skip('Response should return a 201 status, error false, and message Project created', async () => {
     const response = await request(app).post('/projects').send(mockRequestBody);
     expect(response.status).toBe(201);
     expect(response.body.error).toBeFalsy();
@@ -77,7 +77,7 @@ describe('Test GET /projects', () => {
 });
 
 describe('Test GET /projects/:id', () => {
-  test('Response should return a 200 status, error false, and message Project found', async () => {
+  test.skip('Response should return a 200 status, error false, and message Project found', async () => {
     const response = await request(app).get(`/projects/${projectId}`);
     expect(response.status).toBe(200);
     expect(response.error).toBeFalsy();
@@ -99,7 +99,7 @@ describe('Test GET /projects/:id', () => {
 });
 
 describe('Test PUT /projects', () => {
-  test('Response should return a 200 status, error false, and message has been successfully updated', async () => {
+  test.skip('Response should return a 200 status, error false, and message has been successfully updated', async () => {
     const response = await request(app).put(`/projects/${projectId}`).send(mockRequestBody);
     expect(response.status).toBe(200);
     expect(response.error).toBeFalsy();
@@ -116,7 +116,7 @@ describe('Test PUT /projects', () => {
     expect(response.status).toBe(400);
   });
 
-  test('Response should return a 404 status, error true, and message Project not found if the ID is inexistent', async () => {
+  test.skip('Response should return a 404 status, error true, and message Project not found if the ID is inexistent', async () => {
     const response = await request(app).put('/projects/628578f0b38934591452aa2e').send(mockRequestBody);
     expect(response.status).toBe(404);
     expect(response.body.message).toBe('Project has not been found');
@@ -124,7 +124,7 @@ describe('Test PUT /projects', () => {
 });
 
 describe('Test DELETE /projects', () => {
-  test('should delete a project', async () => {
+  test.skip('should delete a project', async () => {
     const response = await request(app).delete(`/projects/${projectId}`).send();
     expect(response.status).toBe(204);
   });
