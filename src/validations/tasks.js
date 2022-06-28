@@ -2,7 +2,12 @@ import Joi from 'joi';
 
 const validateNewTask = (req, res, next) => {
   const newTaskSchema = Joi.object({
-    description: Joi.string().min(12).max(80).required(),
+    description: Joi.string().min(12).max(80).required()
+      .messages({
+        'string.pattern.base': 'Project name must contain only letters',
+        'string.min': 'must contain at least 12 characters',
+        'string.max': 'must contain at most 80 characters',
+      }),
   });
   const validation = newTaskSchema.validate(req.body);
   if (validation.error) {

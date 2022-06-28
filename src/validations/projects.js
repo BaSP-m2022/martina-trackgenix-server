@@ -8,10 +8,20 @@ const validateCreation = (req, res, next) => {
   });
 
   const projectValidation = Joi.object({
-    project_name: Joi.string().min(1).max(50).required(),
-    start_date: Joi.date().required(),
-    finish_date: Joi.date().optional(),
-    client: Joi.string().min(1).max(50).required(),
+    project_name: Joi.string().min(1).max(50).required()
+      .messages({
+        'string.pattern.base': 'Project name must contain only letters',
+        'string.min': 'must contain at least 1 characters',
+        'string.max': 'must contain at most 50 characters',
+      }),
+    start_date: Joi.date().required().max('now'),
+    finish_date: Joi.date().optional().min('now'),
+    client: Joi.string().min(1).max(50).required()
+      .messages({
+        'string.pattern.base': 'Client name must contain only letters',
+        'string.min': 'must contain at least 1 characters',
+        'string.max': 'must contain at most 50 characters',
+      }),
     active: Joi.boolean().required(),
     employees: Joi.array().items(employeeSchema),
   });
