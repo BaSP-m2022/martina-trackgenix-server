@@ -126,7 +126,11 @@ const deleteEmployee = async (req, res) => {
         error: true,
       });
     }
-    return res.status(204).json();
+    return res.status(200).json({
+      msg: 'Employee deleted',
+      data: result,
+      error: false,
+    });
   } catch (error) {
     return res.json(400).json({
       msg: 'There was an error',
