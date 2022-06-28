@@ -33,7 +33,7 @@ const mockFaultyReqBody = {
   active: true,
 };
 
-describe('/POST admins', () => {
+describe.skip('/POST admins', () => {
   test('Expect return to be 201 status code, error false and msg that admin has been created', async () => {
     const response = await request(app).post('/admins').send(mockReqBody);
     expect(response.body.message).toEqual('Admin has been created');
@@ -58,7 +58,7 @@ describe('/POST admins', () => {
   });
 });
 
-describe('/GET ADMINS', () => {
+describe.skip('/GET ADMINS', () => {
   test('all admins, should show 200 status code, false error, at least one admin, and a msg: Admins whole list', async () => {
     const response = await request(app).get('/admins').send();
     expect(response.status).toBe(200);
@@ -82,7 +82,7 @@ describe('/GET ADMINS', () => {
   });
 });
 
-describe('/PUT admins', () => {
+describe.skip('/PUT admins', () => {
   test('response should return 200 status code, false error and msg: Admin has been successfully updated', async () => {
     const response = await request(app).put(`/admins/${adminId}`).send(mockPutReqBody);
     expect(response.status).toBe(200);
@@ -118,7 +118,7 @@ describe('/PUT admins', () => {
   });
 });
 
-describe('/DELETE admins', () => {
+describe.skip('/DELETE admins', () => {
   test('should return 204 status code and false error', async () => {
     const response = await request(app).delete(`/admins/${adminId}`).send();
     expect(response.status).toBe(204);
