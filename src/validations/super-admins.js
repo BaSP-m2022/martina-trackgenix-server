@@ -21,7 +21,7 @@ const validateCreation = (req, res, next) => {
     email: Joi.string()
       .email({ tlds: { allow: false } })
       .required(),
-    ppassword: Joi.string()
+    password: Joi.string()
       .min(8)
       .required()
       .regex(/^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/)
