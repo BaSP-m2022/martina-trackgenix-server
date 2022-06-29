@@ -35,7 +35,7 @@ const employeeUpdate = {
 };
 
 describe.skip('POST TEST', () => {
-  test.skip('Should create new employee', async () => {
+  test('Should create new employee', async () => {
     const createNewEmployee = await request(app).post('/auth/register').send(employeeComplete);
     expect(createNewEmployee.statusCode).toBe(201);
     expect(createNewEmployee.body.error).toBe(false);
@@ -95,7 +95,7 @@ describe.skip('PUT TEST', () => {
 describe.skip('DELETE TEST', () => {
   test('Should delete an employee', async () => {
     const employeeDelete = await request(app).delete(`/employees/${employeeId}`);
-    expect(employeeDelete.statusCode).toBe(200);
+    expect(employeeDelete.statusCode).toBe(204);
     expect(employeeDelete.error).toBeFalsy();
   });
 });
