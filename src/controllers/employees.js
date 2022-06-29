@@ -79,7 +79,13 @@ const editEmployee = async (req, res) => {
 
     const result = await Employee.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        phone: req.body.phone,
+        email: req.body.email,
+        active: req.body.active,
+      },
       { new: true },
     );
     if (!result) {
