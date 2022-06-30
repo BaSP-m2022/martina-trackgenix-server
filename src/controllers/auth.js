@@ -4,7 +4,7 @@ import firebaseApp from '../helper/firebase';
 
 const getAuth = async (req, res) => {
   try {
-    const employee = await Employee.findOne({ firebaseUid: req.firebaseUid });
+    const employee = await Employee.findOne({ firebaseUid: req.headers.firebaseuid });
     if (employee) {
       return res.status(201).json({
         message: 'Employee found',
@@ -13,7 +13,7 @@ const getAuth = async (req, res) => {
       });
     }
 
-    const admin = await Admin.findOne({ firebaseUid: req.firebaseUid });
+    const admin = await Admin.findOne({ firebaseUid: req.headers.firebaseuid });
     if (admin) {
       return res.status(201).json({
         message: 'Admin found',
@@ -22,7 +22,7 @@ const getAuth = async (req, res) => {
       });
     }
 
-    return res.status(204).json({
+    return res.status(404).json({
       message: 'User not found',
       data: undefined,
       error: true,
@@ -37,11 +37,16 @@ const getAuth = async (req, res) => {
 };
 
 const register = async (req, res) => {
+  let firebaseUid;
   try {
     const newFirebaseUser = await firebaseApp.auth().createUser({
       email: req.body.email,
       password: req.body.password,
     });
+    firebaseUid = newFirebaseUser.uid;
+
+    await firebaseApp.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'EMPLOYEE' });
+
     const newEmployee = await Employee.create({
       firebaseUid: newFirebaseUser.uid,
       first_name: req.body.first_name,
@@ -56,6 +61,9 @@ const register = async (req, res) => {
       error: false,
     });
   } catch (error) {
+    if (firebaseUid) {
+      await firebaseApp.auth().deleteUser(firebaseUid);
+    }
     return res.status(400).json({
       message: error.message,
       data: undefined,

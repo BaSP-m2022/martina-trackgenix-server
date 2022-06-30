@@ -3,11 +3,16 @@ import firebaseApp from '../helper/firebase';
 
 // Create a new admin
 const createAdmin = async (req, res) => {
+  let firebaseUid;
   try {
     const newFirebaseUser = await firebaseApp.auth().createUser({
       email: req.body.email,
       password: req.body.password,
     });
+    firebaseUid = newFirebaseUser.uid;
+
+    await firebaseApp.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'ADMIN' });
+
     const newAdmin = await Admin.create({
       firebaseUid: newFirebaseUser.uid,
       firstName: req.body.firstName,
@@ -22,6 +27,9 @@ const createAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
+    if (firebaseUid) {
+      await firebaseApp.auth().deleteUser(firebaseUid);
+    }
     return res.status(400).json({
       message: 'An error has ocurred',
       data: undefined,
