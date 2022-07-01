@@ -35,6 +35,8 @@ const getTimeSheetById = async (req, res) => {
     if (!timeSheetById) {
       return res.status(404).json({
         message: 'Time sheet id not found',
+        data: undefined,
+        error: true,
       });
     }
     return res.status(200).json({
