@@ -12,7 +12,7 @@ const project = new Schema({
     id: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'Employee',
+      ref: 'employee',
     },
     role: {
       type: String,
