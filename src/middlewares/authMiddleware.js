@@ -10,7 +10,8 @@ const verifyToken = async (req, res, next) => {
     });
   }
   try {
-    await firebase.auth().verifyIdToken(token);
+    const response = await firebase.auth().verifyIdToken(token);
+    req.headers.firebaseUid = response.user_id;
     return next();
   } catch (error) {
     return res.status(401).json({
