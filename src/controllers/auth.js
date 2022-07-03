@@ -4,7 +4,7 @@ import firebaseApp from '../helper/firebase';
 
 const getAuth = async (req, res) => {
   try {
-    const employee = await Employee.findOne({ firebaseUid: req.firebaseUid });
+    const employee = await Employee.findOne({ firebaseUid: req.headers.firebaseUid });
     if (employee) {
       return res.status(201).json({
         message: 'Employee found',
@@ -13,7 +13,7 @@ const getAuth = async (req, res) => {
       });
     }
 
-    const admin = await Admin.findOne({ firebaseUid: req.firebaseUid });
+    const admin = await Admin.findOne({ firebaseUid: req.headers.firebaseUid });
     if (admin) {
       return res.status(201).json({
         message: 'Admin found',
