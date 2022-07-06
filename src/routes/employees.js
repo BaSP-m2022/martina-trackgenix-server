@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get('/', employeesController.getAllEmployees);
 router.get('/:id', employeesController.getEmployeeById);
-router.post('/', employeesValidation, employeesController.createEmployee);
-router.put('/:id', employeesValidation, employeesController.editEmployee);
+router.post('/', employeesValidation.validateCreation, employeesController.createEmployee);
+router.put('/:id', employeesValidation.validateUpdate, employeesController.editEmployee);
 router.delete('/:id', employeesController.deleteEmployee);
 
 export default router;

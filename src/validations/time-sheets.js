@@ -1,10 +1,10 @@
 import Joi from 'joi';
 
-const validateTimesheet = (req, res, next) => {
+const validateCreate = (req, res, next) => {
   const newTimeSheetSchema = Joi.object({
-    employee: Joi.string().min(1).max(25).required(),
-    project: Joi.string().min(1).max(25).required(),
-    task: Joi.string().min(1).max(25).required(),
+    employee: Joi.string().alphanum().length(24).required(),
+    project: Joi.string().alphanum().length(24).required(),
+    task: Joi.string().alphanum().length(24).required(),
     hs_worked: Joi.number().required(),
     timesheetDate: Joi.date().required(),
   });
@@ -19,4 +19,23 @@ const validateTimesheet = (req, res, next) => {
   return next();
 };
 
-export default validateTimesheet;
+const validateUpdate = (req, res, next) => {
+  const newTimeSheetSchema = Joi.object({
+    employee: Joi.string().alphanum().length(24),
+    project: Joi.string().alphanum().length(24),
+    task: Joi.string().alphanum().length(24),
+    hs_worked: Joi.number(),
+    timesheetDate: Joi.date(),
+  });
+
+  const validation = newTimeSheetSchema.validate(req.body);
+  if (validation.error) {
+    return res.status(400).json({
+      message: validation.error.details[0].message,
+      error: true,
+    });
+  }
+  return next();
+};
+
+export default { validateUpdate, validateCreate };

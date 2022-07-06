@@ -7,6 +7,6 @@ const router = express.Router();
 
 router
   .get('/', authMiddleware.verifyToken, authController.getAuth)
-  .post('/register', employeesValidation, authController.register);
+  .post('/register', employeesValidation.validateCreation, authController.register);
 
 export default router;

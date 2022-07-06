@@ -1,10 +1,14 @@
 import Joi from 'joi';
 
-const validatedAdmin = (req, res, next) => {
+const validateCreate = (req, res, next) => {
   const newAdmin = Joi.object({
     firstName: Joi.string().min(3).max(15).required(),
     lastName: Joi.string().min(3).max(15).required(),
-    phone: Joi.number().min(1000000000).max(9999999999).required(),
+    phone: Joi.number().min(1000000000).max(9999999999).required()
+      .messages({
+        'number.min': 'Phone number must be 10 digits long',
+        'number.max': 'Phone number must be no more than 10 digits long',
+      }),
     email: Joi.string()
       .email({ tlds: { allow: false } })
       .required(),
@@ -18,12 +22,34 @@ const validatedAdmin = (req, res, next) => {
   const validation = newAdmin.validate(req.body);
   if (validation.error) {
     return res.status(400).json({
-      message: 'Invalid input. Please check it.',
-      data: validation.error.details[0].message,
+      message: validation.error.details[0].message,
       error: true,
     });
   }
   return next();
 };
 
-export default validatedAdmin;
+const validateUpdate = (req, res, next) => {
+  const newAdmin = Joi.object({
+    firstName: Joi.string().min(3).max(15),
+    lastName: Joi.string().min(3).max(15),
+    phone: Joi.number().min(1000000000).max(9999999999).messages({
+      'number.min': 'Phone number must be 10 digits long',
+      'number.max': 'Phone number must be no more than 10 digits long',
+    }),
+    email: Joi.string()
+      .email({ tlds: { allow: false } }),
+    active: Joi.boolean(),
+  });
+
+  const validation = newAdmin.validate(req.body);
+  if (validation.error) {
+    return res.status(400).json({
+      message: validation.error.details[0].message,
+      error: true,
+    });
+  }
+  return next();
+};
+
+export default { validateCreate, validateUpdate };

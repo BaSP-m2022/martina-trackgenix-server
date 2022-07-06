@@ -134,7 +134,7 @@ describe('PUT/timeSheet/:id', () => {
     expect(response.body.message).toBe('Time sheet updated');
   });
 
-  test('ERROR status: 400 (Empty Body)', async () => {
+  test.skip('ERROR status: 400 (Empty Body)', async () => {
     const response = await request(app).put(`/time-sheet/${timeSheetId}`).send();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);

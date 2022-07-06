@@ -68,7 +68,6 @@ const mockPutBody = {
   firstName: 'Juan',
   lastName: 'Acosta',
   email: 'lautaroeacosta23@gmail.com',
-  password: 'test12345',
   active: true,
 };
 
