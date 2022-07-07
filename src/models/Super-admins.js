@@ -15,13 +15,13 @@ const superAdminSchema = new Schema({
     type: String,
     require: true,
   },
-  password: {
-    type: String,
-    require: true,
-  },
   active: {
     type: Boolean,
     require: true,
+  },
+  firebaseUid: {
+    type: String,
+    required: true,
   },
 });
 

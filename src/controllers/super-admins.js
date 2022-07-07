@@ -1,4 +1,5 @@
 import SuperAdmins from '../models/Super-admins';
+import firebaseApp from '../helper/firebase';
 
 const getAllSuperAdmin = async (req, res) => {
   try {
@@ -10,7 +11,7 @@ const getAllSuperAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(404).json({
-      message: 'An error occurred in the Get all method of S.Admin',
+      message: 'An error occurred in the Get all method of Super Admin',
       data: undefined,
       error: true,
     });
@@ -34,7 +35,7 @@ const getSuperAdminById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error occurred in the Get By ID method of S.Admin',
+      message: 'An error occurred in the Get By ID method of Super Admin',
       data: error,
       error: true,
     });
@@ -42,25 +43,36 @@ const getSuperAdminById = async (req, res) => {
 };
 
 const createSuperAdmin = async (req, res) => {
+  let firebaseUid;
   try {
-    const newSuperAdmin = new SuperAdmins({
+    const newFirebaseUser = await firebaseApp.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+    firebaseUid = newFirebaseUser.uid;
+
+    await firebaseApp.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'SUPERADMIN' });
+
+    const newSuperAdmin = await SuperAdmins.create({
+      firebaseUid: newFirebaseUser.uid,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
       active: req.body.active,
     });
-    const createOk = await newSuperAdmin.save();
     return res.status(201).json({
-      message: 'super Admin created',
-      data: createOk,
+      message: 'SuperAdmin has been created',
+      data: newSuperAdmin,
       error: false,
     });
   } catch (error) {
+    if (firebaseUid) {
+      await firebaseApp.auth().deleteUser(firebaseUid);
+    }
     return res.status(400).json({
-      message: 'An error occurred in the POST method of S.Admin',
+      message: 'An error has ocurred',
       data: undefined,
-      error: false,
+      error: true,
     });
   }
 };
@@ -71,7 +83,7 @@ const updateSuperAdmin = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Super Admin not found',
-        data: 'req.params.id',
+        data: undefined,
         error: true,
       });
     }
@@ -82,7 +94,7 @@ const updateSuperAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error occurred in the put method S.Admin',
+      message: 'An error occurred in updated Super Admin',
       data: undefined,
       error: true,
     });
@@ -106,7 +118,7 @@ const deleteSuperAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error occurred in the DELETE method of S.Admin',
+      message: 'An error occurred in deleted Super Admin',
       data: undefined,
       error: true,
     });
