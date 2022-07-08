@@ -83,7 +83,7 @@ const updateProject = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Project has not been found',
-        data: `id: ${req.params.id}`,
+        data: undefined,
         error: true,
       });
     }
@@ -94,8 +94,8 @@ const updateProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error.message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }

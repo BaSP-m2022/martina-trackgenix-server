@@ -73,7 +73,7 @@ const updateTask = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: 'an error has ocurred',
-      data: error.details[0].message,
+      data: undefined,
       error: true,
     });
   }

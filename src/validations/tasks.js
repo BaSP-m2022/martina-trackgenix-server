@@ -12,8 +12,8 @@ const validateNewTask = (req, res, next) => {
   const validation = newTaskSchema.validate(req.body);
   if (validation.error) {
     return res.status(400).json({
-      message: 'Invalid input. Please check it.',
-      data: validation.error.details[0].message,
+      message: validation.error.details[0].message,
+      data: undefined,
       error: true,
     });
   }
