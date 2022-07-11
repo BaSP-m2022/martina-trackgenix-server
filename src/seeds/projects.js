@@ -10,7 +10,7 @@ export default [{
   employees: [
     {
       role: 'DEV',
-      rate: '10',
+      rate: 10,
       id: '628578f0b38934591452aa2e',
     },
   ],
