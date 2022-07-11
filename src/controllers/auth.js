@@ -1,5 +1,6 @@
 import Employee from '../models/Employees';
 import Admin from '../models/Admins';
+import SuperAdmins from '../models/Super-admins';
 import firebaseApp from '../helper/firebase';
 
 const getAuth = async (req, res) => {
@@ -18,6 +19,15 @@ const getAuth = async (req, res) => {
       return res.status(201).json({
         message: 'Admin found',
         data: admin,
+        error: false,
+      });
+    }
+
+    const superAdmin = await SuperAdmins.findOne({ firebaseUid: req.headers.firebaseUid });
+    if (superAdmin) {
+      return res.status(201).json({
+        message: 'Super Admin found',
+        data: superAdmin,
         error: false,
       });
     }
