@@ -4,7 +4,7 @@ const validateCreation = (req, res, next) => {
   const employeeSchema = Joi.object({
     id: Joi.string().alphanum().length(24).required(),
     role: Joi.string().valid('DEV', 'PM', 'QA', 'TL').required(),
-    rate: Joi.string().required(),
+    rate: Joi.number().min(1).required(),
   });
 
   const projectValidation = Joi.object({
@@ -40,7 +40,7 @@ const validateUpdate = (req, res, next) => {
   const employeeSchema = Joi.object({
     id: Joi.string().alphanum().length(24),
     role: Joi.string().valid('DEV', 'PM', 'QA', 'TL'),
-    rate: Joi.string(),
+    rate: Joi.number().min(1),
   });
 
   const projectValidation = Joi.object({

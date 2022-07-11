@@ -19,7 +19,7 @@ const project = new Schema({
       required: true,
       enum: ['DEV', 'PM', 'QA', 'TL'],
     },
-    rate: { type: String, required: true },
+    rate: { type: Number, required: true },
   }],
 });
 

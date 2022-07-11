@@ -15,8 +15,8 @@ const getAllTimeSheets = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(500).json({
-      msg: 'An error ocurred',
+    return res.status(400).json({
+      msg: error.message,
       data: undefined,
       error: true,
     });
@@ -46,8 +46,8 @@ const getTimeSheetById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error ocurred',
-      data: error,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -72,8 +72,8 @@ const getTimeSheetByProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -98,8 +98,8 @@ const getTimeSheetByDate = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -117,7 +117,7 @@ const createNewTimeSheet = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -145,8 +145,8 @@ const updateTimeSheet = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error.details[0].message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -158,15 +158,15 @@ const deleteTimeSheet = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Time sheet not found',
-        data: req.params.id,
+        data: undefined,
         error: true,
       });
     }
     return res.status(204).json();
   } catch (error) {
-    return res.json({
-      message: 'An error has ocurred',
-      data: error,
+    return res.status(400).json({
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }

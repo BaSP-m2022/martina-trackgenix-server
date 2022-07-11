@@ -11,7 +11,7 @@ const getAllEmployees = async (req, res) => {
     });
   } catch (error) {
     return res.status(404).json({
-      msg: 'There was an error',
+      msg: error.message,
       data: undefined,
       error: true,
     });
@@ -42,7 +42,7 @@ const getEmployeeById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -60,7 +60,7 @@ const createEmployee = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      msg: 'There was an error',
+      msg: error.message,
       data: undefined,
       error: true,
     });
@@ -102,7 +102,7 @@ const editEmployee = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      msg: 'There was an error',
+      msg: error.message,
       data: undefined,
       error: true,
     });
@@ -129,8 +129,8 @@ const deleteEmployee = async (req, res) => {
     return res.status(204).json();
   } catch (error) {
     return res.json(400).json({
-      msg: 'There was an error',
-      data: error,
+      msg: error.message,
+      data: undefined,
       error: true,
     });
   }

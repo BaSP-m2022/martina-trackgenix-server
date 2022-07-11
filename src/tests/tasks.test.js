@@ -14,7 +14,6 @@ describe('POST method tests', () => {
   test('Should not create a new Task / Error 400 / Empty body', async () => {
     const response = await request(app).post('/tasks/').send({});
     expect(response.status).toBe(400);
-    expect(response.body.message).toBe('Invalid input. Please check it.');
     expect(response.body.error).toBe(true);
   });
 
@@ -64,7 +63,6 @@ describe('PUT method tests', () => {
   test('Should not return an updated Task / Error 400 / Empty body', async () => {
     const response = await request(app).put(`/tasks/${taskId}`).send({});
     expect(response.status).toBe(400);
-    expect(response.body.message).toBe('Invalid input. Please check it.');
     expect(response.body.error).toEqual(true);
   });
 });
