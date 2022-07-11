@@ -11,7 +11,7 @@ const createProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -26,9 +26,9 @@ const getAllProjects = async (req, res) => {
       data: allProjects,
       error: false,
     });
-  } catch (err) {
+  } catch (error) {
     return res.status(400).json({
-      message: 'An error has occurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -59,7 +59,7 @@ const getProjectById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -114,8 +114,8 @@ const deleteProject = async (req, res) => {
     return res.status(204).json();
   } catch (error) {
     return res.status(400).json({
-      message: 'An error ocurred',
-      data: error,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }

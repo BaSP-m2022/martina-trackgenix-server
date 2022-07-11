@@ -11,7 +11,7 @@ const getAllSuperAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(404).json({
-      message: 'An error occurred in the Get all method of Super Admin',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -35,7 +35,7 @@ const getSuperAdminById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error occurred in the Get By ID method of Super Admin',
+      message: error.message,
       data: error,
       error: true,
     });
@@ -70,7 +70,7 @@ const createSuperAdmin = async (req, res) => {
       await firebaseApp.auth().deleteUser(firebaseUid);
     }
     return res.status(400).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -94,7 +94,7 @@ const updateSuperAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error occurred in updated Super Admin',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -118,7 +118,7 @@ const deleteSuperAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error occurred in deleted Super Admin',
+      message: error.message,
       data: undefined,
       error: true,
     });

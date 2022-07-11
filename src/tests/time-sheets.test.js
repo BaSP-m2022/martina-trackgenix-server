@@ -75,7 +75,6 @@ describe('Timesheet GET By ID', () => {
 
   test('Error in the request and cannot return time sheets', async () => {
     const response = await request(app).get('/time-sheet/4').send();
-    expect(response.body.message).toBe('An error ocurred');
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe(true);
   });

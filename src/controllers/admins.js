@@ -31,7 +31,7 @@ const createAdmin = async (req, res) => {
       await firebaseApp.auth().deleteUser(firebaseUid);
     }
     return res.status(400).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -50,7 +50,7 @@ const getAllAdmins = async (req, res) => {
     });
   } catch (error) {
     return res.status(404).json({
-      message: 'An error has ocurred',
+      message: error.message,
       data: undefined,
       error: true,
     });
@@ -75,8 +75,8 @@ const getAdminById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -100,8 +100,8 @@ const getAdminByName = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -120,13 +120,13 @@ const getAdminByLastName = async (req, res) => {
     }
     return res.status(404).json({
       message: 'Admin not found',
-      data: req.query,
+      data: undefined,
       error: true,
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -138,7 +138,7 @@ const updateAdmin = async (req, res) => {
     if (!req.params) {
       return res.status(404).json({
         message: 'Admin not found',
-        data: req.params.id,
+        data: undefined,
         error: true,
       });
     }
@@ -157,7 +157,7 @@ const updateAdmin = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Admin has not been found',
-        data: `id: ${req.params.id}`,
+        data: undefined,
         error: true,
       });
     }
@@ -168,8 +168,8 @@ const updateAdmin = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error has ocurred',
-      data: error.details[0].message,
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
@@ -181,15 +181,15 @@ const deleteAdmin = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         message: 'Admin has not been found',
-        data: req.params.id,
+        data: undefined,
         error: true,
       });
     }
     return res.status(204).json();
   } catch (error) {
-    return res.json({
-      message: 'An error has ocurred',
-      data: error,
+    return res.status(400).json({
+      message: error.message,
+      data: undefined,
       error: true,
     });
   }
